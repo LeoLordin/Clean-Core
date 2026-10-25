@@ -50,7 +50,7 @@ Instead of scaling parameter-heavy autoregressive models (Transformers) with hig
    * Solves quadratic Godunov upwind schemes: $B_m^2 - A_m(C_m - n_i^2) \ge 0$ across metric graphs.
 
 3. **Curvature-Bounded Causal Discovery (`clean_core/cognition/causal_scm.py`)**
-   * Continuous DAG learning via NOTEARS acyclicity constraint $h(A) = \operatorname{Tr}(e^{A \circ A}) - d = 0$.
+   * Continuous DAG learning via NOTEARS acyclicity constraint $h(A) = \mathrm{Tr}(e^{A \circ A}) - d = 0$.
    * Strict spectral radius regularization $\rho(A) \le 0.95$ enforced through real Schur decomposition ($A = Z T Z^\top$).
 
 4. **Dynamic Topological Vocabulary (`clean_core/core/quantizer.py`)**
