@@ -50,7 +50,7 @@ class CleanCoreProductionAgent:
             char_codes += [0] * (15 - len(char_codes))
         info = self.train_step({f"char_{i}": val for i, val in enumerate(char_codes)})
         d_pole = float(np.linalg.norm(self.neurons[0].mu[1:]))
-        return f"[Clean Core 5.0]: Согласен! (Стабильное состояние, d_pole={d_pole:.4f})"
+        return f"[Clean Core 5.0]: Acknowledged (Stable attractor, d_pole={d_pole:.4f})"
 
     def save_checkpoint(self, filepath):
         with open(filepath, 'wb') as f:
