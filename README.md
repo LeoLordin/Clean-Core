@@ -84,11 +84,11 @@ python test_production_capabilities.py
 **Expected Output:**
 ```text
 ================================================================================
-   ЧЕСТНОЕ ТЕСТИРОВАНИЕ ПРОДАКШЕН-МОДУЛЕЙ CLEAN CORE 5.0 (clean_core_package)
+   CLEAN CORE 5.0 — PRODUCTION CAPABILITIES BENCHMARK (clean_core_package)
 ================================================================================
-[МОДУЛЬ 1/6] Геометрия H^16: Дрейф <mu, mu>_L = 2.22e-16 | Время = ~45 ms
-[МОДУЛЬ 2/6] AIXI Polyhedral Decider: a*=0, eps_safe=0.5000
-[МОДУЛЬ 3/6] Agent 1000 steps: ~0.85 сек (~1170.0 TPS)
+[MODULE 1/3] Geometry H^16: Drift <mu, mu>_L = 2.22e-16 | Time = ~45 ms
+[MODULE 2/3] AIXI Polyhedral Decider: a*=0, eps_safe=0.5000
+[MODULE 3/3] Agent 1000 steps: ~0.85 sec (~1170.0 TPS)
 ================================================================================
 ```
 
