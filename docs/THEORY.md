@@ -129,31 +129,31 @@ Evolution occurs across three distinct physical timescales:
 $$\epsilon_0 \sim 10^{-3}\text{ s} \quad (\text{inference}), \qquad \epsilon_1 \sim 1\text{ s} \quad (\text{weight adaptation}), \qquad \epsilon_2 \sim 10^5\text{ s} \quad (\text{synaptogenesis})$$
 
 The sensory layer $l=0$ is pinned via a strict Dirichlet boundary condition:
-$$\boldsymbol{\mu}_0^{(0)}(t) = \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^d}\left( \mathbf{v}_{\text{bundle}}(t) \right) \;\in\; \mathcal{H}^d, \quad \mathbf{w}_0^{(0)}(t) \equiv \mathbf{0}$$
+$$\boldsymbol{\mu}_0^{(0)}(t) = \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^d}\left( \mathbf{v}_{\text{bundle}}(t) \right) \in \mathcal{H}^d, \quad \mathbf{w}_0^{(0)}(t) \equiv \mathbf{0}$$
 
 Zero-phase-lag Fréchet barycenter streaming estimator across layers $l \in \{1, \dots, L\}$:
 $$\overline{\boldsymbol{\mu}}^{(l)}(t) = \begin{cases} \mathbf{o} = (1, 0, \dots, 0)^\top, & t = 0 \\ \mathrm{Exp}_{\overline{\boldsymbol{\mu}}^{(l)}(t-\Delta t)}^{\mathcal{H}^d}\left( \gamma_{\text{bary}} \cdot \mathbf{v}_{\text{bary}}^{(l)}(t) \right), & t > 0 \end{cases}$$
-$$\mathbf{v}_{\text{bary}}^{(l)}(t) = \frac{1}{|V^{(l)}|} \sum_{j \in V^{(l)}} \mathrm{Log}_{\overline{\boldsymbol{\mu}}^{(l)}(t-\Delta t)}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_j^{(l)}(t) \right) \;\in\; T_{\overline{\boldsymbol{\mu}}^{(l)}}\mathcal{H}^d$$
+$$\mathbf{v}_{\text{bary}}^{(l)}(t) = \frac{1}{|V^{(l)}|} \sum_{j \in V^{(l)}} \mathrm{Log}_{\overline{\boldsymbol{\mu}}^{(l)}(t-\Delta t)}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_j^{(l)}(t) \right) \in T_{\overline{\boldsymbol{\mu}}^{(l)}}\mathcal{H}^d$$
 
 Canonical closed-form orthonormal Lorentz boost tetrad frame:
 $$E\left(\boldsymbol{\mu}_i^{(l)}(t)\right)_{:, k} = \mathbf{e}_k + \frac{\left(\boldsymbol{\mu}_i^{(l)}(t)\right)_k}{1.0 + \left(\boldsymbol{\mu}_i^{(l)}(t)\right)_0} \left( \mathbf{o} + \boldsymbol{\mu}_i^{(l)}(t) \right), \quad k \in \{1, \dots, d-1\}$$
 $$E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} E\left(\boldsymbol{\mu}_i^{(l)}\right) \equiv \mathbf{I}_{d-1}, \quad \left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} E\left(\boldsymbol{\mu}_i^{(l)}\right) \equiv \mathbf{0}^\top$$
 
 Chordal distance to the layer barycenter and kinematic Laplace-Beltrami drift regulator:
-$$r_i^{(l)}(t) = d_{\mathcal{H}^d}\left( \boldsymbol{\mu}_i^{(l)}(t), \, \overline{\boldsymbol{\mu}}^{(l)}(t) \right) = 2 \mathrm{arcsinh}\left( \frac{1}{2} \sqrt{\max\left( 0.0, \; \left\langle \boldsymbol{\mu}_i^{(l)}(t) - \overline{\boldsymbol{\mu}}^{(l)}(t), \, \boldsymbol{\mu}_i^{(l)}(t) - \overline{\boldsymbol{\mu}}^{(l)}(t) \right\rangle_{\mathcal{L}} \right)} \right)$$
+$$r_i^{(l)}(t) = d_{\mathcal{H}^d}\left( \boldsymbol{\mu}_i^{(l)}(t), \overline{\boldsymbol{\mu}}^{(l)}(t) \right) = 2 \mathrm{arcsinh}\left( \frac{1}{2} \sqrt{\max\left( 0.0, \left\langle \boldsymbol{\mu}_i^{(l)}(t) - \overline{\boldsymbol{\mu}}^{(l)}(t), \boldsymbol{\mu}_i^{(l)}(t) - \overline{\boldsymbol{\mu}}^{(l)}(t) \right\rangle_{\mathcal{L}} \right)} \right)$$
 $$f_{\text{drift\_safe}}(r) = \frac{1}{1 + r \cdot \tanh(r)}$$
 
 Prediction error in the local orthonormal frame:
-$$\tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) = E\left(\boldsymbol{\mu}_i^{(l)}(t)\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \, \boldsymbol{\varepsilon}_i^{(l)}(t) \;\in\; \mathbb{R}^{d-1}$$
+$$\tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) = E\left(\boldsymbol{\mu}_i^{(l)}(t)\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \boldsymbol{\varepsilon}_i^{(l)}(t) \in \mathbb{R}^{d-1}$$
 
 Fisher-Rao Diagonal plus Low-Rank (DLR) error covariance factorization:
-$$\tilde{\mathbf{\Sigma}}_i^{(l)}(t) = \mathrm{diag}\left(\tilde{\mathbf{d}}_i^{(l)}(t)\right) + \tilde{\mathbf{V}}_i^{(l)}(t) \mathrm{diag}\left(\mathbf{s}_i^{(l)}(t)\right) \left( \tilde{\mathbf{V}}_i^{(l)}(t) \right)^\top \;\in\; \mathbb{R}^{(d-1) \times (d-1)}$$
+$$\tilde{\mathbf{\Sigma}}_i^{(l)}(t) = \mathrm{diag}\left(\tilde{\mathbf{d}}_i^{(l)}(t)\right) + \tilde{\mathbf{V}}_i^{(l)}(t) \mathrm{diag}\left(\mathbf{s}_i^{(l)}(t)\right) \left( \tilde{\mathbf{V}}_i^{(l)}(t) \right)^\top \in \mathbb{R}^{(d-1) \times (d-1)}$$
 
 Analytical precision matrix inversion via the Woodbury matrix identity:
 $$\tilde{\mathbf{\Pi}}_i^{(l)}(t) = \mathbf{D}^{-1} - \mathbf{D}^{-1} \tilde{\mathbf{V}}_i^{(l)} \left( \mathrm{diag}\left(\mathbf{s}_i^{(l)}\right)^{-1} + \left(\tilde{\mathbf{V}}_i^{(l)}\right)^\top \mathbf{D}^{-1} \tilde{\mathbf{V}}_i^{(l)} \right)^{-1} \left(\tilde{\mathbf{V}}_i^{(l)}\right)^\top \mathbf{D}^{-1}, \quad \mathbf{D} = \mathrm{diag}\left(\tilde{\mathbf{d}}_i^{(l)}(t)\right)$$
 
 Temperature-scaled Itô-to-Stratonovich drift correction:
-$$\tilde{\mathbf{v}}_{\text{drift\_Ito}, i}^{(l)}(t) = -0.5 \cdot \alpha_{\text{temp}} \cdot \mathbf{T}_i(t) \cdot \mathrm{sech}^2\left( \frac{\alpha_{\text{temp}}}{T_{\max}} \max\left(0.0, \; \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \right)^\top \tilde{\mathbf{\Pi}}_i^{(l)}(t) \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t)\right) \right) \tilde{\mathbf{\Pi}}_i^{(l)}(t) \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t)$$
+$$\tilde{\mathbf{v}}_{\text{drift\_Ito}, i}^{(l)}(t) = -0.5 \cdot \alpha_{\text{temp}} \cdot \mathbf{T}_i(t) \cdot \mathrm{sech}^2\left( \frac{\alpha_{\text{temp}}}{T_{\max}} \max\left(0.0, \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \right)^\top \tilde{\mathbf{\Pi}}_i^{(l)}(t) \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t)\right) \right) \tilde{\mathbf{\Pi}}_i^{(l)}(t) \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t)$$
 
 Canonical Hamiltonian equations on the conformal bundle:
 $$H_{\text{neuron}}(\boldsymbol{\mu}, \mathbf{p}) = \frac{1}{2 \Omega^2(\boldsymbol{\mu})} \langle \mathbf{p}, \mathbf{p} \rangle_{\mathcal{L}} + \mathcal{F}_{\text{pragmatic}}^{\text{Sylvester}}(\boldsymbol{\mu})$$
@@ -161,48 +161,48 @@ $$\frac{\mathrm{d}\boldsymbol{\mu}}{\mathrm{d}t} = \frac{1}{\Omega^2(\boldsymbol
 
 Total internal dynamic forces of inference:
 $$\tilde{\mathbf{v}}_{\text{forces}, i}^{(l)}(t) = \pi_i^{(l)}(t) \sigma_\beta \tilde{\mathbf{\Pi}}_i^{(l)}(t) \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) + \alpha_{\text{damp}}(t) \cdot \epsilon_0 \cdot f_{\text{drift\_safe}}\left( r_i^{(l)}(t) \right) E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\boldsymbol{\mu}_i^{(l)}}^{\mathcal{H}^d}\left( \overline{\boldsymbol{\mu}}^{(l)} \right)$$
-$$+ \tilde{\mathbf{\Delta}}_{\text{fast}, i}^{(l)}(t) + \tilde{\mathbf{v}}_{\text{bottom-up}, i}^{(l)}(t) + \tilde{\mathbf{v}}_{\text{conformal}, i}^{(l)}(t) + E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \frac{\nabla \Omega}{\Omega^3} \langle \mathbf{p}_i^{(l)}, \mathbf{p}_i^{(l)} \rangle_{\mathcal{L}} - \left( \lambda_2(t) + \rho_2 \max\left(0.0, \; \mathcal{C}_2(\mathbf{\Xi}) - C_2^*\right) \right) \mathbf{w}_i^{(l)}(t-\Delta t)$$
+$$+ \tilde{\mathbf{\Delta}}_{\text{fast}, i}^{(l)}(t) + \tilde{\mathbf{v}}_{\text{bottom-up}, i}^{(l)}(t) + \tilde{\mathbf{v}}_{\text{conformal}, i}^{(l)}(t) + E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \frac{\nabla \Omega}{\Omega^3} \langle \mathbf{p}_i^{(l)}, \mathbf{p}_i^{(l)} \rangle_{\mathcal{L}} - \left( \lambda_2(t) + \rho_2 \max\left(0.0, \mathcal{C}_2(\mathbf{\Xi}) - C_2^*\right) \right) \mathbf{w}_i^{(l)}(t-\Delta t)$$
 $$\tilde{\mathbf{v}}_{\text{bottom-up}, i}^{(l)}(t) = \sum_{k \in \text{children}(i)} E_{ik}^{(l)}(t) \cdot E\left(\boldsymbol{\mu}_i^{(l)}(t)\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\boldsymbol{\mu}_i^{(l)}(t)}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_{\text{pred}, k}^{(l-1)}(t) \right)$$
 
 Unconditionally $A$-stable semi-implicit velocity splitting with CFL-calibrated Langevin noise:
 $$\mathbf{w}_{\text{det}, i}^{(l)}(t) = \left( \mathbf{I}_{d-1} + \frac{\Delta t}{\epsilon_0} \pi_i^{(l)}(t) \sigma_\beta \tilde{\mathbf{\Pi}}_i^{(l)}(t) \right)^{-1} \cdot \left( \frac{\Delta t}{\epsilon_0} \tilde{\mathbf{v}}_{\text{forces}, i}^{(l)}(t) + \Delta t \cdot \tilde{\mathbf{v}}_{\text{drift\_Ito}, i}^{(l)}(t) \right)$$
-$$\sigma_{\text{discrete}, i}^{(l)}(t) = \sqrt{2 \mathbf{T}_i(t) \cdot \min\left(1.0, \; \frac{\epsilon_0}{\Delta t}\right)} \cdot 0.05 \cdot \gamma_{\text{anneal}}^{\text{epoch}}$$
+$$\sigma_{\text{discrete}, i}^{(l)}(t) = \sqrt{2 \mathbf{T}_i(t) \cdot \min\left(1.0, \frac{\epsilon_0}{\Delta t}\right)} \cdot 0.05 \cdot \gamma_{\text{anneal}}^{\text{epoch}}$$
 $$\mathbf{w}_{\text{raw}, i}^{(l)}(t) = \mathbf{w}_{\text{det}, i}^{(l)}(t) + \sigma_{\text{discrete}, i}^{(l)}(t) \cdot \boldsymbol{\xi}_{i, t}, \quad \boldsymbol{\xi}_{i, t} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{I}_{d-1}\right)$$
 
 Nonlinear Euclidean velocity clamping:
-$$\mathbf{w}_i^{(l)}(t) = \frac{\mathbf{w}_{\text{raw}, i}^{(l)}(t)}{\max\left( 1.0, \; \frac{\|\mathbf{w}_{\text{raw}, i}^{(l)}(t)\|_2}{v_{\max}} \right)}, \quad v_{\max} = 5.0$$
+$$\mathbf{w}_i^{(l)}(t) = \frac{\mathbf{w}_{\text{raw}, i}^{(l)}(t)}{\max\left( 1.0, \frac{\|\mathbf{w}_{\text{raw}, i}^{(l)}(t)\|_2}{v_{\max}} \right)}, \quad v_{\max} = 5.0$$
 
 Canonical tangent lift and geodesic exponential stepping:
-$$\mathbf{v}_i^{(l)}(t) = E\left(\boldsymbol{\mu}_i^{(l)}(t)\right) \mathbf{w}_i^{(l)}(t) \;\in\; T_{\boldsymbol{\mu}_i^{(l)}}\mathcal{H}^d, \quad \|\mathbf{v}_i^{(l)}(t)\|_{\mathcal{L}} \equiv \|\mathbf{w}_i^{(l)}(t)\|_2$$
+$$\mathbf{v}_i^{(l)}(t) = E\left(\boldsymbol{\mu}_i^{(l)}(t)\right) \mathbf{w}_i^{(l)}(t) \in T_{\boldsymbol{\mu}_i^{(l)}}\mathcal{H}^d, \quad \|\mathbf{v}_i^{(l)}(t)\|_{\mathcal{L}} \equiv \|\mathbf{w}_i^{(l)}(t)\|_2$$
 $$\boldsymbol{\mu}_i^{(l)}(t + \Delta t) = \cosh\left(\|\mathbf{w}_i^{(l)}(t)\|_2\right) \boldsymbol{\mu}_i^{(l)}(t) + \mathrm{sinhc}\left(\|\mathbf{w}_i^{(l)}(t)\|_2\right) \mathbf{v}_i^{(l)}(t)$$
 $$\mathrm{sinhc}(x) = \begin{cases} 1.0 + \frac{x^2}{6} + \frac{x^4}{120}, & x < 10^{-4} \\ \frac{\sinh(x)}{x}, & x \ge 10^{-4} \end{cases}$$
 
 Continuous radial normalization projection onto the Lorentz hyperboloid:
-$$\boldsymbol{\mu}_i^{(l)}(t + \Delta t) \leftarrow \frac{\boldsymbol{\mu}_i^{(l)}(t + \Delta t)}{\sqrt{\max\left(\delta_{\text{eps}}, \; -\left\langle \boldsymbol{\mu}_i^{(l)}(t + \Delta t), \, \boldsymbol{\mu}_i^{(l)}(t + \Delta t) \right\rangle_{\mathcal{L}}\right)}}$$
+$$\boldsymbol{\mu}_i^{(l)}(t + \Delta t) \leftarrow \frac{\boldsymbol{\mu}_i^{(l)}(t + \Delta t)}{\sqrt{\max\left(\delta_{\text{eps}}, -\left\langle \boldsymbol{\mu}_i^{(l)}(t + \Delta t), \boldsymbol{\mu}_i^{(l)}(t + \Delta t) \right\rangle_{\mathcal{L}}\right)}}$$
 
 Adaptive variational scalar precision:
-$$\pi_i^{(l)}(t + \Delta t) = \mathrm{Softclip}_{\left[\pi_{\min}, \pi_{\max}\right]}\!\left( \frac{d - 1}{\max\left( \delta_{\text{eps}}, \; \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \right)^\top \tilde{\mathbf{\Pi}}_i^{(l)}(t) \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \right) \right)} \right)$$
+$$\pi_i^{(l)}(t + \Delta t) = \mathrm{Softclip}_{[\pi_{\min}, \pi_{\max}]}\left( \frac{d - 1}{\max\left( \delta_{\text{eps}}, \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \right)^\top \tilde{\mathbf{\Pi}}_i^{(l)}(t) \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \right) \right)} \right)$$
 
 K-FAC natural gradient synaptic update with Tikhonov damping and Frobenius norm clipping:
 $$\Delta \mathbf{W}_i^{(1, l)} = \left( \tilde{\mathbf{B}}_i^{(1, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1} \left( \nabla_{\mathbf{W}_i^{(1, l)}} \mathcal{F}_{\text{pragmatic}}^{\text{Sylvester}} + \nabla_{\mathbf{W}_i^{(1, l)}} \mathcal{L}_{\text{Lip}} + \nabla_{\mathbf{W}_i^{(1, l)}} \mathcal{L}_{\text{PHR}, 1} \right) \left( \tilde{\mathbf{A}}_i^{(1, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1}$$
-$$\mathbf{W}_i^{(1, l)}(t + \Delta t) = \mathbf{W}_i^{(1, l)}(t) - \frac{\Delta t}{\epsilon_1} \frac{\Delta \mathbf{W}_i^{(1, l)}}{\max\left(1.0, \; \frac{\|\Delta \mathbf{W}_i^{(1, l)}\|_F}{M_{\text{step}}}\right)}, \quad M_{\text{step}} = 1.0, \; \delta_{\text{kfac}} = 0.2$$
+$$\mathbf{W}_i^{(1, l)}(t + \Delta t) = \mathbf{W}_i^{(1, l)}(t) - \frac{\Delta t}{\epsilon_1} \frac{\Delta \mathbf{W}_i^{(1, l)}}{\max\left(1.0, \frac{\|\Delta \mathbf{W}_i^{(1, l)}\|_F}{M_{\text{step}}}\right)}, \quad M_{\text{step}} = 1.0, \quad \delta_{\text{kfac}} = 0.2$$
 $$\Delta \mathbf{W}_i^{(2, l)} = \left( \tilde{\mathbf{B}}_i^{(2, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1} \left( \nabla_{\mathbf{W}_i^{(2, l)}} \mathcal{F}_{\text{pragmatic}}^{\text{Sylvester}} + \nabla_{\mathbf{W}_i^{(2, l)}} \mathcal{L}_{\text{Lip}} + \nabla_{\mathbf{W}_i^{(2, l)}} \mathcal{L}_{\text{PHR}, 1} \right) \left( \tilde{\mathbf{A}}_i^{(2, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1}$$
-$$\mathbf{W}_i^{(2, l)}(t + \Delta t) = \mathbf{W}_i^{(2, l)}(t) - \frac{\Delta t}{\epsilon_1} \frac{\Delta \mathbf{W}_i^{(2, l)}}{\max\left(1.0, \; \frac{\|\Delta \mathbf{W}_i^{(2, l)}\|_F}{M_{\text{step}}}\right)}$$
+$$\mathbf{W}_i^{(2, l)}(t + \Delta t) = \mathbf{W}_i^{(2, l)}(t) - \frac{\Delta t}{\epsilon_1} \frac{\Delta \mathbf{W}_i^{(2, l)}}{\max\left(1.0, \frac{\|\Delta \mathbf{W}_i^{(2, l)}\|_F}{M_{\text{step}}}\right)}$$
 $$\mathbf{b}_i^{(1, l)}(t + \Delta t) = \mathbf{b}_i^{(1, l)}(t) - \frac{\Delta t}{\epsilon_1} \left( \tilde{\mathbf{B}}_i^{(1, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1} \nabla_{\mathbf{b}_i^{(1, l)}} \mathcal{F}_{\text{pragmatic}}^{\text{Sylvester}}$$
 $$\mathbf{b}_i^{(2, l)}(t + \Delta t) = \mathbf{b}_i^{(2, l)}(t) - \frac{\Delta t}{\epsilon_1} \left( \tilde{\mathbf{B}}_i^{(2, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1} \nabla_{\mathbf{b}_i^{(2, l)}} \mathcal{F}_{\text{pragmatic}}^{\text{Sylvester}}$$
 
 Synaptogenesis of graph topology (timescale $\epsilon_2$):
-$$E_{ji}^{(l+1)}(t + \Delta t) = \mathrm{Softclip}_{[E_{\min}, 1.0]}\!\left( E_{ji}^{(l+1)}(t) + \Delta t \left( \eta_E \frac{1}{\max\left(\delta_{\text{eps}}, \; -\left\langle \boldsymbol{\mu}_i^{(l)}(t), \, \boldsymbol{\mu}_j^{(l+1)}(t) \right\rangle_{\mathcal{L}}\right)} - \lambda_E E_{ji}^{(l+1)}(t) \right) \right)$$
+$$E_{ji}^{(l+1)}(t + \Delta t) = \mathrm{Softclip}_{[E_{\min}, 1.0]}\left( E_{ji}^{(l+1)}(t) + \Delta t \left( \eta_E \frac{1}{\max\left(\delta_{\text{eps}}, -\left\langle \boldsymbol{\mu}_i^{(l)}(t), \boldsymbol{\mu}_j^{(l+1)}(t) \right\rangle_{\mathcal{L}}\right)} - \lambda_E E_{ji}^{(l+1)}(t) \right) \right)$$
 
 ---
 
 ### Section 2: Maupertuis-Jacobi Conformal Differential Geometry
 Conformal deformation of the pseudo-Euclidean metric by the pragmatic free energy target potential:
-$$\tilde{g}_{AB}(\boldsymbol{\mu}) = \Omega^2(\boldsymbol{\mu}) \, (\boldsymbol{\eta}_{\mathcal{L}})_{AB}, \quad \tilde{g}^{AB}(\boldsymbol{\mu}) = \Omega^{-2}(\boldsymbol{\mu}) \, (\boldsymbol{\eta}_{\mathcal{L}})^{AB}$$
-$$\Omega(\boldsymbol{\mu}) = \max\left( \delta_{\text{eps}}, \; \mathcal{F}_{\text{threshold}} - \mathcal{F}_{\text{pragmatic}}^{\text{Sylvester}}(\boldsymbol{\mu}) \right)$$
+$$\tilde{g}_{AB}(\boldsymbol{\mu}) = \Omega^2(\boldsymbol{\mu}) (\boldsymbol{\eta}_{\mathcal{L}})_{AB}, \quad \tilde{g}^{AB}(\boldsymbol{\mu}) = \Omega^{-2}(\boldsymbol{\mu}) (\boldsymbol{\eta}_{\mathcal{L}})^{AB}$$
+$$\Omega(\boldsymbol{\mu}) = \max\left( \delta_{\text{eps}}, \mathcal{F}_{\text{threshold}} - \mathcal{F}_{\text{pragmatic}}^{\text{Sylvester}}(\boldsymbol{\mu}) \right)$$
 
 Levi-Civita connection transformation on the conformal hyperboloid:
-$$\tilde{\Gamma}_{BC}^A = \Gamma_{BC}^A + \delta_B^A \, \partial_C \ln \Omega(\boldsymbol{\mu}) + \delta_C^A \, \partial_B \ln \Omega(\boldsymbol{\mu}) - (\boldsymbol{\eta}_{\mathcal{L}})_{BC} \, (\boldsymbol{\eta}_{\mathcal{L}})^{AK} \, \partial_K \ln \Omega(\boldsymbol{\mu})$$
+$$\tilde{\Gamma}_{BC}^A = \Gamma_{BC}^A + \delta_B^A \partial_C \ln \Omega(\boldsymbol{\mu}) + \delta_C^A \partial_B \ln \Omega(\boldsymbol{\mu}) - (\boldsymbol{\eta}_{\mathcal{L}})_{BC} (\boldsymbol{\eta}_{\mathcal{L}})^{AK} \partial_K \ln \Omega(\boldsymbol{\mu})$$
 
 Closed-form fictitious conformal drift force in local orthonormal tetrad coordinates:
 $$\tilde{\mathbf{v}}_{\text{conformal}, i}^{(l)}(t) = -\|\mathbf{w}_i^{(l)}(t)\|_2^2 \cdot E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^d} \ln \Omega\left(\boldsymbol{\mu}_i^{(l)}\right) + 2 \left( \left(\mathbf{w}_i^{(l)}(t)\right)^\top E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^d} \ln \Omega\left(\boldsymbol{\mu}_i^{(l)}\right) \right) \mathbf{w}_i^{(l)}(t)$$
@@ -219,8 +219,8 @@ $$\mathbf{p}_{i, t+\Delta t}^{(l)} = \mathbf{p}_{i, t}^{(l)} - \Delta t \left( \
 $$\boldsymbol{\mu}_{i, t+\Delta t}^{(l)} = \boldsymbol{\mu}_{i, t}^{(l)} + \Delta t \cdot \boldsymbol{\eta}_{\mathcal{L}}^{-1} \mathbf{p}_{i, t+\frac{\Delta t}{2}}^{(l)}$$
 
 Constraint multipliers $\lambda_{\text{mid}}$ and $\mu_{\text{mid}}$ are determined uniquely such that:
-$$\left\langle \boldsymbol{\mu}_{i, t+\Delta t}^{(l)}, \, \boldsymbol{\mu}_{i, t+\Delta t}^{(l)} \right\rangle_{\mathcal{L}} \equiv -1.000000000000$$
-$$\left\langle \boldsymbol{\mu}_{i, t+\Delta t}^{(l)}, \, \mathbf{p}_{i, t+\Delta t}^{(l)} \right\rangle_{\mathcal{L}} \equiv 0.000000000000$$
+$$\left\langle \boldsymbol{\mu}_{i, t+\Delta t}^{(l)}, \boldsymbol{\mu}_{i, t+\Delta t}^{(l)} \right\rangle_{\mathcal{L}} \equiv -1.000000000000$$
+$$\left\langle \boldsymbol{\mu}_{i, t+\Delta t}^{(l)}, \mathbf{p}_{i, t+\Delta t}^{(l)} \right\rangle_{\mathcal{L}} \equiv 0.000000000000$$
 
 Preservation of the canonical symplectic 2-form:
 $$\omega_{t+\Delta t} = \sum_{k=1}^d \mathrm{d}p_k(t+\Delta t) \wedge \mathrm{d}\mu^k(t+\Delta t) \equiv \sum_{k=1}^d \mathrm{d}p_k(t) \wedge \mathrm{d}\mu^k(t) = \omega_t$$
@@ -232,7 +232,7 @@ Nonlinear Hamilton-Jacobi-Bellman stochastic dynamic programming equation:
 $$\frac{\partial V(\boldsymbol{\mu})}{\partial t} + \min_{\mathbf{w}} \left[ \langle \nabla_{\mathcal{H}^d} V(\boldsymbol{\mu}), \mathbf{w} \rangle_{\mathcal{L}} + \frac{1}{2 \lambda} \|\mathbf{w}\|_2^2 \right] + \mathcal{F}_{\text{pragmatic}}(\boldsymbol{\mu}) + \frac{\lambda \sigma^2}{2} \Delta_{\mathcal{H}^d} V(\boldsymbol{\mu}) = 0$$
 
 Logarithmic Cole-Hopf transformation:
-$$\psi(\boldsymbol{\mu}, t) = \exp\left( -\frac{V(\boldsymbol{\mu}, t)}{\lambda \sigma^2} \right) \;\Longleftrightarrow\; V(\boldsymbol{\mu}, t) = -\lambda \sigma^2 \ln \psi(\boldsymbol{\mu}, t)$$
+$$\psi(\boldsymbol{\mu}, t) = \exp\left( -\frac{V(\boldsymbol{\mu}, t)}{\lambda \sigma^2} \right) \Longleftrightarrow V(\boldsymbol{\mu}, t) = -\lambda \sigma^2 \ln \psi(\boldsymbol{\mu}, t)$$
 
 Linear parabolic Schrödinger-Beltrami value diffusion:
 $$\frac{\partial \psi(\boldsymbol{\mu}, t)}{\partial t} = \frac{\lambda \sigma^2}{2} \Delta_{\mathcal{H}^d} \psi(\boldsymbol{\mu}, t) - \frac{\mathcal{F}_{\text{pragmatic}}(\boldsymbol{\mu})}{\lambda \sigma^2} \psi(\boldsymbol{\mu}, t)$$
@@ -254,10 +254,10 @@ $$\sum_{k=1}^m \frac{\left( S_i - S_{(k)} \right)^2}{d_{\mathcal{H}^d}^2\left( \
 
 Analytical root update via the Fast Sweeping method:
 $$A_m = \sum_{k=1}^m \frac{1}{d_k^2}, \quad B_m = \sum_{k=1}^m \frac{S_{(k)}}{d_k^2}, \quad C_m = \sum_{k=1}^m \frac{S_{(k)}^2}{d_k^2}$$
-$$S_i = \frac{B_m + \sqrt{\max\left( 0.0, \; B_m^2 - A_m \left( C_m - \frac{1}{\Omega_i^2} \right) \right)}}{A_m}$$
+$$S_i = \frac{B_m + \sqrt{\max\left( 0.0, B_m^2 - A_m \left( C_m - \frac{1}{\Omega_i^2} \right) \right)}}{A_m}$$
 
 Optical velocity vector:
-$$\mathbf{w}_{\text{geodesic}, i}^{(l)}(t) = -v_{\max} \cdot \frac{E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^d} S\left(\boldsymbol{\mu}_i^{(l)}\right)}{\max\left(\delta_{\text{eps}}, \; \left\| \nabla_{\mathcal{H}^d} S\left(\boldsymbol{\mu}_i^{(l)}\right) \right\|_{\mathcal{L}}\right)}$$
+$$\mathbf{w}_{\text{geodesic}, i}^{(l)}(t) = -v_{\max} \cdot \frac{E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^d} S\left(\boldsymbol{\mu}_i^{(l)}\right)}{\max\left(\delta_{\text{eps}}, \left\| \nabla_{\mathcal{H}^d} S\left(\boldsymbol{\mu}_i^{(l)}\right) \right\|_{\mathcal{L}}\right)}$$
 
 ---
 
@@ -274,7 +274,7 @@ $$Q_{\min}(a^*) > \max_{a \neq a^*} Q_{\max}(a) \implies a_{\text{computable}}^*
 
 Polyhedral safety radius and continuous motor pressure vector:
 $$\varepsilon_{\text{safe}} = \frac{Q_{\min}(a^*) - \max_{a \neq a^*} Q_{\max}(a)}{\sqrt{\sum_{o \in \mathcal{O}} \left( Q(a^*, o) - \max_{a \neq a^*} Q(a, o) \right)^2}} > 0$$
-$$\mathbf{m}_{\text{poly}}(a^*) = \varepsilon_{\text{safe}} \cdot \frac{\sum_{a \neq a^*} \frac{\mathbf{e}_{a^*} - \mathbf{e}_a}{Q_{\min}(a^*) - Q_{\max}(a) + \delta_{\text{eps}}}}{\left\| \sum_{a \neq a^*} \frac{\mathbf{e}_{a^*} - \mathbf{e}_a}{Q_{\min}(a^*) - Q_{\max}(a) + \delta_{\text{eps}}} \right\|_2} \;\in\; \mathbb{R}^{d_{\text{act}}}$$
+$$\mathbf{m}_{\text{poly}}(a^*) = \varepsilon_{\text{safe}} \cdot \frac{\sum_{a \neq a^*} \frac{\mathbf{e}_{a^*} - \mathbf{e}_a}{Q_{\min}(a^*) - Q_{\max}(a) + \delta_{\text{eps}}}}{\left\| \sum_{a \neq a^*} \frac{\mathbf{e}_{a^*} - \mathbf{e}_a}{Q_{\min}(a^*) - Q_{\max}(a) + \delta_{\text{eps}}} \right\|_2} \in \mathbb{R}^{d_{\text{act}}}$$
 
 ---
 
@@ -283,16 +283,16 @@ Full microstate configuration vector:
 $$\mathbf{\Xi}_i^{(l)}(t) = \begin{pmatrix} \boldsymbol{\mu}_i^{(l)}(t) \\ \mathbf{p}_i^{(l)}(t) \\ \mathbf{\Theta}_i^{(l)}(t) \\ \pi_i^{(l)}(t) \\ E_{ji}^{(l+1)}(t) \\ \mathbf{A}_{\text{SCM}}(t) \end{pmatrix} \in \mathcal{M}_i^{(l)}, \quad \mathbf{\Theta}_i^{(l)}(t) = \left\{ \mathbf{W}_i^{(1, l)}, \mathbf{W}_i^{(2, l)}, \mathbf{b}_i^{(1, l)}, \mathbf{b}_i^{(2, l)} \right\}$$
 
 Motor actuation update via Expected Free Energy (EFE) gradient descent:
-$$\frac{\mathrm{d} \mathbf{a}}{\mathrm{d} t} = -\eta_a \nabla_{\mathbf{a}} \left[ \mathbb{D}_{\text{KL}}\!\left[ Q(s_{t+\Delta t} \mid \mathbf{a}(t)) \;\middle\|\; P^*(s_{\text{target}}) \right] - \lambda_{\text{Pearl}}(t) \mathcal{I}_{\text{Pearl}}^{\text{causal}}\big( \mathbf{do}(\mathbf{a}(t)) \big) + \frac{\lambda_{\text{policy}}}{2} \|\mathbf{a}(t) - \mathbf{a}_{\text{target}}(t)\|^2 \right]$$
-$$\mathbf{a}(t + \Delta t) = \mathrm{Softclip}_{[-1, 1]}\!\left( \mathbf{a}(t) + \Delta t \cdot \frac{\mathrm{d} \mathbf{a}}{\mathrm{d} t} \right) \;\in\; [-1, 1]^{d_{\text{act}}}$$
+$$\frac{\mathrm{d} \mathbf{a}}{\mathrm{d} t} = -\eta_a \nabla_{\mathbf{a}} \left[ \mathbb{D}_{\text{KL}}\left( Q(s_{t+\Delta t} \mid \mathbf{a}(t)) \parallel P^*(s_{\text{target}}) \right) - \lambda_{\text{Pearl}}(t) \mathcal{I}_{\text{Pearl}}^{\text{causal}}\big( \mathbf{do}(\mathbf{a}(t)) \big) + \frac{\lambda_{\text{policy}}}{2} \|\mathbf{a}(t) - \mathbf{a}_{\text{target}}(t)\|^2 \right]$$
+$$\mathbf{a}(t + \Delta t) = \mathrm{Softclip}_{[-1, 1]}\left( \mathbf{a}(t) + \Delta t \cdot \frac{\mathrm{d} \mathbf{a}}{\mathrm{d} t} \right) \in [-1, 1]^{d_{\text{act}}}$$
 $$\mathbf{a}_{\text{target}}(t) = \tanh\left( \mathbf{W}_{\text{motor}} \cdot \mathbf{w}_{\text{geodesic}}^{(L)}(t) + \mathbf{W}_{\text{poly}} \cdot \mathbf{m}_{\text{poly}}(a^*) + \mathbf{W}_{\text{social}} \cdot \mathbf{a}_{\text{ToM}}^*(t) + \mathbf{b}_{\text{motor}} \right)$$
 
 ---
 
 ### Section 8: Master Augmented Lagrangian (PHR) Action Functional
-$$\mathcal{J}_{\text{AGI\_Master}}\big[ \mathbf{\Xi}(t), \mathbf{a}(t) \big] = \int_{0}^T \Bigg[ \mathcal{F}_{\text{pragmatic}}^{\text{Sylvester}}\big( \mathbf{\Xi} \big) + \mathcal{K}_{\text{VIB}}\big( \mathbf{\Xi}, \mathbf{a} \big) + \lambda_{\text{goal}}(t) \mathbb{D}_{\text{KL}}\!\left[ Q(s \mid \mathbf{a}) \;\middle\|\; P^*(s) \right] - \lambda_{\text{Pearl}}(t) \mathcal{I}_{\text{Pearl}}^{\text{causal}}\big( \mathbf{do}(\mathbf{a}) \big)$$
-$$- \mu_{\text{ground}}(t) \mathcal{I}_{\text{grounding}} + \gamma_{\text{Gödel}}(t) \left( \frac{d_{\mathcal{H}^d}\left( \boldsymbol{\mu}_{\text{self}}^*(t), \, \overline{\mathcal{T}}_{\text{introspect}}(t) \right)}{R_{\mathcal{H}}} \right)^2 + \mathcal{L}_{\text{kin}} + \mathcal{L}_{\text{Lip}} + \mathcal{L}_{\text{Eikonal}}$$
-$$+ \mathcal{L}_{\text{Landauer}} + \sum_{k=1}^2 \left( \frac{\rho_k}{2} \max\left( 0.0, \; \mathcal{C}_k(\mathbf{\Xi}) - C_k^* + \frac{\lambda_k(t)}{\rho_k} \right)^2 - \frac{\lambda_k(t)^2}{2 \rho_k} \right) \Bigg] \mathrm{d}t$$
+$$\mathcal{J}_{\text{AGI\_Master}}\big[ \mathbf{\Xi}(t), \mathbf{a}(t) \big] = \int_{0}^T \Bigg[ \mathcal{F}_{\text{pragmatic}}^{\text{Sylvester}}\big( \mathbf{\Xi} \big) + \mathcal{K}_{\text{VIB}}\big( \mathbf{\Xi}, \mathbf{a} \big) + \lambda_{\text{goal}}(t) \mathbb{D}_{\text{KL}}\left( Q(s \mid \mathbf{a}) \parallel P^*(s) \right) - \lambda_{\text{Pearl}}(t) \mathcal{I}_{\text{Pearl}}^{\text{causal}}\big( \mathbf{do}(\mathbf{a}) \big)$$
+$$- \mu_{\text{ground}}(t) \mathcal{I}_{\text{grounding}} + \gamma_{\text{Gödel}}(t) \left( \frac{d_{\mathcal{H}^d}\left( \boldsymbol{\mu}_{\text{self}}^*(t), \overline{\mathcal{T}}_{\text{introspect}}(t) \right)}{R_{\mathcal{H}}} \right)^2 + \mathcal{L}_{\text{kin}} + \mathcal{L}_{\text{Lip}} + \mathcal{L}_{\text{Eikonal}}$$
+$$+ \mathcal{L}_{\text{Landauer}} + \sum_{k=1}^2 \left( \frac{\rho_k}{2} \max\left( 0.0, \mathcal{C}_k(\mathbf{\Xi}) - C_k^* + \frac{\lambda_k(t)}{\rho_k} \right)^2 - \frac{\lambda_k(t)^2}{2 \rho_k} \right) \Bigg] \mathrm{d}t$$
 
 Eikonal residual penalty:
 $$\mathcal{L}_{\text{Eikonal}} = \lambda_{\text{Eik}} \sum_{l=1}^L \sum_{i \in V^{(l)}} \left( \left\| \nabla_{\mathcal{H}^d} S\left(\boldsymbol{\mu}_i^{(l)}\right) \right\|_{\mathcal{L}}^2 - \varepsilon_{\text{visc}} \Delta_{\mathcal{H}^d} S\left(\boldsymbol{\mu}_i^{(l)}\right) - n^2\left(\boldsymbol{\mu}_i^{(l)}\right) \right)^2$$
@@ -302,9 +302,9 @@ $$\mathcal{L}_{\text{Landauer}} = k_B \ln(2) \cdot \mathbf{T}_i \cdot \max\left(
 
 Kinetic limits and Moreau-Yosida multiplier update:
 $$\mathcal{L}_{\text{kin}} = \sum_{l=1}^L \sum_{i \in V^{(l)}} \frac{\kappa_v}{2} \|\mathbf{w}_i^{(l)}(t)\|_2^2$$
-$$\mathcal{C}_1(\mathbf{\Xi}) = \max_{l \in \{1,\dots,L\}} \max_{i \in V^{(l)}} \max\left( \sigma_{\max}\left(\mathbf{W}_i^{(1, l)}\right), \, \sigma_{\max}\left(\mathbf{W}_i^{(2, l)}\right) \right) \le C_1^* = 1.0$$
+$$\mathcal{C}_1(\mathbf{\Xi}) = \max_{l \in \{1,\dots,L\}} \max_{i \in V^{(l)}} \max\left( \sigma_{\max}\left(\mathbf{W}_i^{(1, l)}\right), \sigma_{\max}\left(\mathbf{W}_i^{(2, l)}\right) \right) \le C_1^* = 1.0$$
 $$\mathcal{C}_2(\mathbf{\Xi}) = \frac{1}{\sum_{l=1}^L |V^{(l)}|} \sum_{l=1}^L \sum_{i \in V^{(l)}} \|\mathbf{w}_i^{(l)}(t)\|_2^2 \le C_2^* = v_{\text{budget}}^2$$
-$$\lambda_k(t + \Delta t) = \lambda_k(t) + \frac{\Delta t \cdot \eta_\lambda}{1 + \gamma_{\text{prox}} \Delta t} \cdot \max\left( -\frac{\lambda_k(t)}{\rho_k}, \; \mathcal{C}_k(\mathbf{\Xi}(t)) - C_k^* \right)$$
+$$\lambda_k(t + \Delta t) = \lambda_k(t) + \frac{\Delta t \cdot \eta_\lambda}{1 + \gamma_{\text{prox}} \Delta t} \cdot \max\left( -\frac{\lambda_k(t)}{\rho_k}, \mathcal{C}_k(\mathbf{\Xi}(t)) - C_k^* \right)$$
 
 ---
 
@@ -317,43 +317,43 @@ $$\mathbf{u}_m \sim \{-1, +1\}^{d-1}$$
 
 ### Section 10: Retraction Perceptron & Tangent-Space SoftVQ
 Parent context assembly:
-$$\tilde{\mathbf{a}}_i^{(l)}(t) = \begin{cases} \sum_{j \in \text{parents}(i)} E_{ji}^{(l+1)} \mathrm{SoftVQ}_{\text{tangent}}\left( \boldsymbol{\mu}_j^{(l+1)}(t) \right), & 0 \le l < L \\ E\left(\overline{\boldsymbol{\mu}}^{(L)}(t)\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\overline{\boldsymbol{\mu}}^{(L)}(t)}^{\mathcal{H}^d}\left( \overline{\mathcal{T}}_{\text{introspect}}(t) \right), & l = L \end{cases} \;\in\; \mathbb{R}^{d-1}$$
+$$\tilde{\mathbf{a}}_i^{(l)}(t) = \begin{cases} \sum_{j \in \text{parents}(i)} E_{ji}^{(l+1)} \mathrm{SoftVQ}_{\text{tangent}}\left( \boldsymbol{\mu}_j^{(l+1)}(t) \right), & 0 \le l < L \\ E\left(\overline{\boldsymbol{\mu}}^{(L)}(t)\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\overline{\boldsymbol{\mu}}^{(L)}(t)}^{\mathcal{H}^d}\left( \overline{\mathcal{T}}_{\text{introspect}}(t) \right), & l = L \end{cases} \in \mathbb{R}^{d-1}$$
 
 Two-layer prediction perceptron with tangent Euclidean retraction ($R_{\text{pred\_max}} = 3.0$):
-$$\mathbf{h}_i^{(l)}(t) = \sigma\!\left( \mathbf{W}_i^{(1, l)} \tilde{\mathbf{a}}_i^{(l)}(t) + \mathbf{b}_i^{(1, l)} \right) \;\in\; \mathbb{R}^{h_{\text{dim}}}$$
-$$\mathbf{u}_{2, i}^{(l)}(t) = \mathbf{W}_i^{(2, l)} \mathbf{h}_i^{(l)}(t) + \mathbf{b}_i^{(2, l)} \;\in\; \mathbb{R}^{d-1}$$
-$$\mathbf{u}_{2, \text{safe}, i}^{(l)}(t) = \mathbf{u}_{2, i}^{(l)}(t) \cdot \min\left(1.0, \; \frac{R_{\text{pred\_max}}}{\|\mathbf{u}_{2, i}^{(l)}(t)\|_2}\right), \quad R_{\text{pred\_max}} = 3.0$$
-$$\mathbf{v}_{\text{pred}, i}^{(l)}(t) = E\left(\overline{\boldsymbol{\mu}}^{(l)}(t)\right) \cdot \mathbf{u}_{2, \text{safe}, i}^{(l)}(t) \;\in\; T_{\overline{\boldsymbol{\mu}}^{(l)}}\mathcal{H}^d, \quad \|\mathbf{v}_{\text{pred}, i}^{(l)}(t)\|_{\mathcal{L}} \equiv \|\mathbf{u}_{2, \text{safe}, i}^{(l)}(t)\|_2 \le 3.0$$
-$$\boldsymbol{\mu}_{\text{pred}, i}^{(l)}(t) = \mathrm{Exp}_{\overline{\boldsymbol{\mu}}^{(l)}(t)}^{\mathcal{H}^d}\left( \mathbf{v}_{\text{pred}, i}^{(l)}(t) \right) \;\in\; \mathcal{H}^d$$
-$$\boldsymbol{\varepsilon}_i^{(l)}(t) = \mathrm{Log}_{\boldsymbol{\mu}_i^{(l)}(t)}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_{\text{pred}, i}^{(l)}(t) \right) \;\in\; T_{\boldsymbol{\mu}_i^{(l)}}\mathcal{H}^d$$
+$$\mathbf{h}_i^{(l)}(t) = \sigma\left( \mathbf{W}_i^{(1, l)} \tilde{\mathbf{a}}_i^{(l)}(t) + \mathbf{b}_i^{(1, l)} \right) \in \mathbb{R}^{h_{\text{dim}}}$$
+$$\mathbf{u}_{2, i}^{(l)}(t) = \mathbf{W}_i^{(2, l)} \mathbf{h}_i^{(l)}(t) + \mathbf{b}_i^{(2, l)} \in \mathbb{R}^{d-1}$$
+$$\mathbf{u}_{2, \text{safe}, i}^{(l)}(t) = \mathbf{u}_{2, i}^{(l)}(t) \cdot \min\left(1.0, \frac{R_{\text{pred\_max}}}{\|\mathbf{u}_{2, i}^{(l)}(t)\|_2}\right), \quad R_{\text{pred\_max}} = 3.0$$
+$$\mathbf{v}_{\text{pred}, i}^{(l)}(t) = E\left(\overline{\boldsymbol{\mu}}^{(l)}(t)\right) \cdot \mathbf{u}_{2, \text{safe}, i}^{(l)}(t) \in T_{\overline{\boldsymbol{\mu}}^{(l)}}\mathcal{H}^d, \quad \|\mathbf{v}_{\text{pred}, i}^{(l)}(t)\|_{\mathcal{L}} \equiv \|\mathbf{u}_{2, \text{safe}, i}^{(l)}(t)\|_2 \le 3.0$$
+$$\boldsymbol{\mu}_{\text{pred}, i}^{(l)}(t) = \mathrm{Exp}_{\overline{\boldsymbol{\mu}}^{(l)}(t)}^{\mathcal{H}^d}\left( \mathbf{v}_{\text{pred}, i}^{(l)}(t) \right) \in \mathcal{H}^d$$
+$$\boldsymbol{\varepsilon}_i^{(l)}(t) = \mathrm{Log}_{\boldsymbol{\mu}_i^{(l)}(t)}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_{\text{pred}, i}^{(l)}(t) \right) \in T_{\boldsymbol{\mu}_i^{(l)}}\mathcal{H}^d$$
 
 SoftVQ tangent quantization with active token preservation:
-$$d_{\text{min\_act}}^2 = \min_{m: \, m_{\text{pruned}, m} = 1} d_{\mathcal{H}^d}^2\left( \boldsymbol{\mu}_j^{(l+1)}, \, \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^d}(E(\mathbf{o})\mathbf{c}_m) \right)$$
+$$d_{\text{min\_act}}^2 = \min_{m: \, m_{\text{pruned}, m} = 1} d_{\mathcal{H}^d}^2\left( \boldsymbol{\mu}_j^{(l+1)}, \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^d}(E(\mathbf{o})\mathbf{c}_m) \right)$$
 $$w_k = \frac{m_{\text{pruned}, k} \cdot \exp\left( \frac{-d_{\mathcal{H}^d}^2\left( \boldsymbol{\mu}_j^{(l+1)}, \mathrm{Exp}_{\mathbf{o}}(E(\mathbf{o})\mathbf{c}_k) \right) + d_{\text{min\_act}}^2}{T_{\text{vq}}} \right)}{\sum_{k'=0}^{|\mathcal{C}|} m_{\text{pruned}, k'} \exp\left( \frac{-d_{\mathcal{H}^d}^2\left( \boldsymbol{\mu}_j^{(l+1)}, \mathrm{Exp}_{\mathbf{o}}(E(\mathbf{o})\mathbf{c}_{k'}) \right) + d_{\text{min\_act}}^2}{T_{\text{vq}}} \right) + \delta_{\text{eps}}}$$
-$$\mathrm{SoftVQ}_{\text{tangent}}\left( \boldsymbol{\mu}_j^{(l+1)} \right) = \sum_{k=0}^{|\mathcal{C}|} w_k \mathbf{c}_k \;\in\; \mathbb{R}^{d-1}, \quad \mathbf{c}_0 = \mathbf{0}, \; m_{\text{pruned}, 0} \equiv 1$$
+$$\mathrm{SoftVQ}_{\text{tangent}}\left( \boldsymbol{\mu}_j^{(l+1)} \right) = \sum_{k=0}^{|\mathcal{C}|} w_k \mathbf{c}_k \in \mathbb{R}^{d-1}, \quad \mathbf{c}_0 = \mathbf{0}, \quad m_{\text{pruned}, 0} \equiv 1$$
 
 ---
 
 ### Section 11: Sigmoidal Spike Activation Masking
-$$\sigma_\beta\!\left( \left\| \tilde{\boldsymbol{\varepsilon}}_i^{(l)} \right\|_{\tilde{\mathbf{\Pi}}_i^{(l)}}^2 - \tau_i^{(l)} \right) = \frac{1}{1 + \exp\left( -\beta \left( \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)} \right)^\top \tilde{\mathbf{\Pi}}_i^{(l)} \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)} \right) - \tau_i^{(l)} \right) \right)}$$
+$$\sigma_\beta\left( \left\| \tilde{\boldsymbol{\varepsilon}}_i^{(l)} \right\|_{\tilde{\mathbf{\Pi}}_i^{(l)}}^2 - \tau_i^{(l)} \right) = \frac{1}{1 + \exp\left( -\beta \left( \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)} \right)^\top \tilde{\mathbf{\Pi}}_i^{(l)} \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)} \right) - \tau_i^{(l)} \right) \right)}$$
 
 ---
 
 ### Section 12: DLR Factorization with Oja-QR & K-FAC Natural Gradient
 Streaming Oja subspace tracking:
-$$\mathbf{y}_i^{(l)}(t) = \left( \tilde{\mathbf{V}}_i^{(l)}(t) \right)^\top \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \;\in\; \mathbb{R}^{r}$$
-$$\mathbf{s}_i^{(l)}(t + \Delta t) = (1 - \eta_m) \mathbf{s}_i^{(l)}(t) + \eta_m \left( \mathbf{y}_i^{(l)}(t) \odot \mathbf{y}_i^{(l)}(t) + \delta_{\min} \mathbf{1} \right) \;\in\; \mathbb{R}^r$$
-$$\tilde{\mathbf{V}}_{\text{raw}, i}^{(l)} = \tilde{\mathbf{V}}_i^{(l)}(t) + \eta_m \left[ \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \left( \mathbf{y}_i^{(l)}(t) \right)^\top - \tilde{\mathbf{V}}_i^{(l)}(t) \, \mathbf{y}_i^{(l)}(t) \left( \mathbf{y}_i^{(l)}(t) \right)^\top \right]$$
-$$\tilde{\mathbf{V}}_i^{(l)}(t + \Delta t) = \mathrm{QR\_Q}\left( \tilde{\mathbf{V}}_{\text{raw}, i}^{(l)} \right) \;\in\; \mathbb{R}^{(d-1) \times r}$$
+$$\mathbf{y}_i^{(l)}(t) = \left( \tilde{\mathbf{V}}_i^{(l)}(t) \right)^\top \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \in \mathbb{R}^{r}$$
+$$\mathbf{s}_i^{(l)}(t + \Delta t) = (1 - \eta_m) \mathbf{s}_i^{(l)}(t) + \eta_m \left( \mathbf{y}_i^{(l)}(t) \odot \mathbf{y}_i^{(l)}(t) + \delta_{\min} \mathbf{1} \right) \in \mathbb{R}^r$$
+$$\tilde{\mathbf{V}}_{\text{raw}, i}^{(l)} = \tilde{\mathbf{V}}_i^{(l)}(t) + \eta_m \left[ \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \left( \mathbf{y}_i^{(l)}(t) \right)^\top - \tilde{\mathbf{V}}_i^{(l)}(t) \mathbf{y}_i^{(l)}(t) \left( \mathbf{y}_i^{(l)}(t) \right)^\top \right]$$
+$$\tilde{\mathbf{V}}_i^{(l)}(t + \Delta t) = \mathrm{QR\_Q}\left( \tilde{\mathbf{V}}_{\text{raw}, i}^{(l)} \right) \in \mathbb{R}^{(d-1) \times r}$$
 
 Residual variance tracking:
-$$\tilde{\boldsymbol{\varepsilon}}_{\text{residual}, i}^{(l)}(t) = \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) - \tilde{\mathbf{V}}_i^{(l)}(t + \Delta t) \left( \left( \tilde{\mathbf{V}}_i^{(l)}(t + \Delta t) \right)^\top \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \right) \;\in\; \mathbb{R}^{d-1}$$
+$$\tilde{\boldsymbol{\varepsilon}}_{\text{residual}, i}^{(l)}(t) = \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) - \tilde{\mathbf{V}}_i^{(l)}(t + \Delta t) \left( \left( \tilde{\mathbf{V}}_i^{(l)}(t + \Delta t) \right)^\top \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \right) \in \mathbb{R}^{d-1}$$
 $$\tilde{\mathbf{d}}_i^{(l)}(t + \Delta t) = (1 - \eta_m) \tilde{\mathbf{d}}_i^{(l)}(t) + \eta_m \left( \tilde{\boldsymbol{\varepsilon}}_{\text{residual}, i}^{(l)}(t) \odot \tilde{\boldsymbol{\varepsilon}}_{\text{residual}, i}^{(l)}(t) + \delta_{\min} \mathbf{1} \right)$$
 
 Sensitivity vectors under isometric Lorentz parallel transport:
-$$\mathbf{g}_i^{(2, \text{local})} = +\pi_i^{(l)}(t) \cdot \tilde{\mathbf{\Pi}}_i^{(l)}(t) \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \;\in\; \mathbb{R}^{d-1}$$
-$$\mathbf{g}_i^{(2, l)} = E\left(\overline{\boldsymbol{\mu}}^{(l)}(t)\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \; \mathbf{P}_{\boldsymbol{\mu}_i^{(l)}(t) \to \overline{\boldsymbol{\mu}}^{(l)}(t)}\left( E\left(\boldsymbol{\mu}_i^{(l)}(t)\right) \mathbf{g}_i^{(2, \text{local})} \right) \;\in\; \mathbb{R}^{d-1}$$
-$$\mathbf{g}_i^{(1, l)} = \left( \left(\mathbf{W}_i^{(2, l)}\right)^\top \mathbf{g}_i^{(2, l)} \right) \odot \sigma'\left( \mathbf{W}_i^{(1, l)} \tilde{\mathbf{a}}_i^{(l)} + \mathbf{b}_i^{(1, l)} \right) \;\in\; \mathbb{R}^{h_{\text{dim}}}$$
+$$\mathbf{g}_i^{(2, \text{local})} = +\pi_i^{(l)}(t) \cdot \tilde{\mathbf{\Pi}}_i^{(l)}(t) \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \in \mathbb{R}^{d-1}$$
+$$\mathbf{g}_i^{(2, l)} = E\left(\overline{\boldsymbol{\mu}}^{(l)}(t)\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathbf{P}_{\boldsymbol{\mu}_i^{(l)}(t) \to \overline{\boldsymbol{\mu}}^{(l)}(t)}\left( E\left(\boldsymbol{\mu}_i^{(l)}(t)\right) \mathbf{g}_i^{(2, \text{local})} \right) \in \mathbb{R}^{d-1}$$
+$$\mathbf{g}_i^{(1, l)} = \left( \left(\mathbf{W}_i^{(2, l)}\right)^\top \mathbf{g}_i^{(2, l)} \right) \odot \sigma'\left( \mathbf{W}_i^{(1, l)} \tilde{\mathbf{a}}_i^{(l)} + \mathbf{b}_i^{(1, l)} \right) \in \mathbb{R}^{h_{\text{dim}}}$$
 
 Kronecker covariance factors with identity initialization $\tilde{\mathbf{A}}(0) = \mathbf{I}$, $\tilde{\mathbf{B}}(0) = \mathbf{I}$:
 $$\tilde{\mathbf{A}}_i^{(1, l)}(t + \Delta t) = (1 - \eta_k) \tilde{\mathbf{A}}_i^{(1, l)}(t) + \eta_k \left( \frac{\tilde{\mathbf{a}}_i^{(l)} \left( \tilde{\mathbf{a}}_i^{(l)} \right)^\top}{1.0 + \|\tilde{\mathbf{a}}_i^{(l)}\|^2} \right)$$
@@ -364,23 +364,23 @@ $$\tilde{\mathbf{B}}_i^{(2, l)}(t + \Delta t) = (1 - \eta_k) \tilde{\mathbf{B}}_
 ---
 
 ### Section 13: Spectral Lipschitz Regularization
-$$\mathcal{L}_{\text{Lip}} = \lambda_{\text{Lip}} \sum_{l=1}^L \sum_{i \in V^{(l)}} \left[ \max\left( 0.0, \; \sigma_{\max}\left( \mathbf{W}_i^{(1, l)} \right) - 1.0 \right)^2 + \max\left( 0.0, \; \sigma_{\max}\left( \mathbf{W}_i^{(2, l)} \right) - 1.0 \right)^2 \right]$$
+$$\mathcal{L}_{\text{Lip}} = \lambda_{\text{Lip}} \sum_{l=1}^L \sum_{i \in V^{(l)}} \left[ \max\left( 0.0, \sigma_{\max}\left( \mathbf{W}_i^{(1, l)} \right) - 1.0 \right)^2 + \max\left( 0.0, \sigma_{\max}\left( \mathbf{W}_i^{(2, l)} \right) - 1.0 \right)^2 \right]$$
 
 ---
 
 ### Section 14: Minkowski Metric & Geodesic Operators
 $$\langle \mathbf{x}, \mathbf{y} \rangle_{\mathcal{L}} = -x_0 y_0 + \sum_{k=1}^{d-1} x_k y_k, \quad \boldsymbol{\eta}_{\mathcal{L}} = \mathrm{diag}(-1, 1, \dots, 1)$$
-$$\|\mathbf{v}\|_{\mathcal{L}} = \sqrt{\max\left( 0.0, \; \langle \mathbf{v}, \mathbf{v} \rangle_{\mathcal{L}} \right)}$$
-$$d_{\mathcal{H}^d}(\mathbf{x}, \mathbf{y}) = 2 \mathrm{arcsinh}\left( \frac{1}{2} \sqrt{\max\left( 0.0, \; \langle \mathbf{x} - \mathbf{y}, \, \mathbf{x} - \mathbf{y} \rangle_{\mathcal{L}} \right)} \right)$$
-$$\mathrm{Exp}_{\boldsymbol{\mu}}^{\mathcal{H}^d}(\mathbf{v}) = \begin{cases} \left( 1 + \frac{1}{2}\|\mathbf{v}\|_{\mathcal{L}}^2 \right) \boldsymbol{\mu} + \left( 1 + \frac{1}{6}\|\mathbf{v}\|_{\mathcal{L}}^2 \right) \mathbf{v}, & \|\mathbf{v}\|_{\mathcal{L}} < 10^{-4} \\ \cosh\Big( \|\mathbf{v}\|_{\mathcal{L}} \Big) \boldsymbol{\mu} + \sinh\Big( \|\mathbf{v}\|_{\mathcal{L}} \Big) \frac{\mathbf{v}}{\|\mathbf{v}\|_{\mathcal{L}}}, & \|\mathbf{v}\|_{\mathcal{L}} \ge 10^{-4} \end{cases}$$
+$$\|\mathbf{v}\|_{\mathcal{L}} = \sqrt{\max\left( 0.0, \langle \mathbf{v}, \mathbf{v} \rangle_{\mathcal{L}} \right)}$$
+$$d_{\mathcal{H}^d}(\mathbf{x}, \mathbf{y}) = 2 \mathrm{arcsinh}\left( \frac{1}{2} \sqrt{\max\left( 0.0, \langle \mathbf{x} - \mathbf{y}, \mathbf{x} - \mathbf{y} \rangle_{\mathcal{L}} \right)} \right)$$
+$$\mathrm{Exp}_{\boldsymbol{\mu}}^{\mathcal{H}^d}(\mathbf{v}) = \begin{cases} \left( 1 + \frac{1}{2}\|\mathbf{v}\|_{\mathcal{L}}^2 \right) \boldsymbol{\mu} + \left( 1 + \frac{1}{6}\|\mathbf{v}\|_{\mathcal{L}}^2 \right) \mathbf{v}, & \|\mathbf{v}\|_{\mathcal{L}} < 10^{-4} \\ \cosh\left( \|\mathbf{v}\|_{\mathcal{L}} \right) \boldsymbol{\mu} + \sinh\left( \|\mathbf{v}\|_{\mathcal{L}} \right) \frac{\mathbf{v}}{\|\mathbf{v}\|_{\mathcal{L}}}, & \|\mathbf{v}\|_{\mathcal{L}} \ge 10^{-4} \end{cases}$$
 $$\mathbf{u} = \mathbf{y} + \langle \boldsymbol{\mu}, \mathbf{y} \rangle_{\mathcal{L}} \boldsymbol{\mu}, \quad \mathrm{Log}_{\boldsymbol{\mu}}^{\mathcal{H}^d}(\mathbf{y}) = \begin{cases} \left( 1 - \frac{\|\mathbf{u}\|_{\mathcal{L}}^2}{6} + \frac{3 \|\mathbf{u}\|_{\mathcal{L}}^4}{40} \right) \mathbf{u}, & \|\mathbf{u}\|_{\mathcal{L}} < 10^{-4} \\ \frac{d_{\mathcal{H}^d}(\boldsymbol{\mu}, \mathbf{y})}{\|\mathbf{u}\|_{\mathcal{L}}} \cdot \mathbf{u}, & \|\mathbf{u}\|_{\mathcal{L}} \ge 10^{-4} \end{cases}$$
 $$\mathbf{P}_{\mathbf{x} \to \mathbf{y}}(\mathbf{v}) = \mathbf{v} + \frac{\langle \mathbf{v}, \mathbf{y} \rangle_{\mathcal{L}}}{1 - \langle \mathbf{x}, \mathbf{y} \rangle_{\mathcal{L}}} (\mathbf{x} + \mathbf{y})$$
 
 ---
 
 ### Section 15: Variational Information Bottleneck (VIB)
-$$\mathcal{K}_{\text{VIB}}\big( \mathbf{\Xi}(t), \mathbf{a}(t) \big) = \sum_{l=0}^L \sum_{i \in V^{(l)}} \mathbb{D}_{\text{KL}}\!\left[ Q\left( \mathbf{\Theta}_i^{(l)} \;\middle|\; \mathcal{D}_{\text{data}} \right) \;\middle\|\; P_0\left( \mathbf{\Theta}_i^{(l)} \right) \right] - \beta_{\text{info}}(t) \, \mathcal{I}_{\text{var}}\left( \boldsymbol{\mu}_i^{(l)} ; \mathbf{x}_{\text{world}} \;\middle|\; \mathbf{a}(t) \right)$$
-$$\mathcal{I}_{\text{var}}\left( \boldsymbol{\mu}_i^{(l)} ; \mathbf{x}_{\text{world}} \;\middle|\; \mathbf{a}(t) \right) \ge \mathbb{E}_{\mathcal{B}}\!\left[ f_{\psi}^{\text{VIB}}\left(\mathbf{x}_{\text{world}}, \boldsymbol{\mu}_i^{(l)}, \mathbf{a}(t)\right) - \ln \sum_{\mathbf{x}' \in \mathcal{B}} \exp\Big( f_{\psi}^{\text{VIB}}\left(\mathbf{x}', \boldsymbol{\mu}_i^{(l)}, \mathbf{a}(t)\right) \Big) \right]$$
+$$\mathcal{K}_{\text{VIB}}\big( \mathbf{\Xi}(t), \mathbf{a}(t) \big) = \sum_{l=0}^L \sum_{i \in V^{(l)}} \mathbb{D}_{\text{KL}}\left( Q\left( \mathbf{\Theta}_i^{(l)} \;\middle|\; \mathcal{D}_{\text{data}} \right) \;\middle\|\; P_0\left( \mathbf{\Theta}_i^{(l)} \right) \right) - \beta_{\text{info}}(t) \mathcal{I}_{\text{var}}\left( \boldsymbol{\mu}_i^{(l)} ; \mathbf{x}_{\text{world}} \;\middle|\; \mathbf{a}(t) \right)$$
+$$\mathcal{I}_{\text{var}}\left( \boldsymbol{\mu}_i^{(l)} ; \mathbf{x}_{\text{world}} \;\middle|\; \mathbf{a}(t) \right) \ge \mathbb{E}_{\mathcal{B}}\left[ f_{\psi}^{\text{VIB}}\left(\mathbf{x}_{\text{world}}, \boldsymbol{\mu}_i^{(l)}, \mathbf{a}(t)\right) - \ln \sum_{\mathbf{x}' \in \mathcal{B}} \exp\left( f_{\psi}^{\text{VIB}}\left(\mathbf{x}', \boldsymbol{\mu}_i^{(l)}, \mathbf{a}(t)\right) \right) \right]$$
 
 ---
 
@@ -389,9 +389,9 @@ Structural causal forward model:
 $$s_{t+\Delta t} = f_\phi\left( \left( (1 + \delta_{\text{scm}})\mathbf{I}_{d_{\text{scm}}} - \mathbf{A}_{\text{SCM}}^\top \right)^{-1} g(s_t, \mathbf{a}(t)) \right) + \boldsymbol{\epsilon}_{\text{scm}}$$
 
 Causal counterfactual mutual information:
-$$\mathcal{I}_{\text{Pearl}}^{\text{causal}}\big( \mathbf{do}(\mathbf{a}(t)) \big) = \mathbb{E}_{\mathcal{B}}\!\left[ f_\phi\big(s_{t+\Delta t}, s_t, \mathbf{do}(\mathbf{a}(t))\big) - \ln \sum_{s' \in \mathcal{B}} \exp\Big( f_\phi\big(s', s_t, \mathbf{a}_{\text{counterfactual}}(t)\big) \Big) \right]$$
+$$\mathcal{I}_{\text{Pearl}}^{\text{causal}}\big( \mathbf{do}(\mathbf{a}(t)) \big) = \mathbb{E}_{\mathcal{B}}\left[ f_\phi\big(s_{t+\Delta t}, s_t, \mathbf{do}(\mathbf{a}(t))\big) - \ln \sum_{s' \in \mathcal{B}} \exp\Big( f_\phi\big(s', s_t, \mathbf{a}_{\text{counterfactual}}(t)\big) \Big) \right]$$
 $$\mathbf{P}_{\mathbf{a}^\perp}(t) = \mathbf{I}_{d_{\text{act}}} - \frac{\mathbf{a}(t) \mathbf{a}(t)^\top}{\|\mathbf{a}(t)\|^2 + \delta_{\text{proj}}^2}, \quad \delta_{\text{proj}} = 10^{-5}$$
-$$\mathbf{a}_{\text{counterfactual}}(t) = \mathrm{Softclip}_{[-1, 1]}\!\left( \mathbf{a}(t) + \sigma_{\text{cf}} \mathbf{P}_{\mathbf{a}^\perp}(t) \boldsymbol{\zeta} \right), \quad \boldsymbol{\zeta} \sim \mathcal{N}(\mathbf{0}, \mathbf{I}_{d_{\text{act}}})$$
+$$\mathbf{a}_{\text{counterfactual}}(t) = \mathrm{Softclip}_{[-1, 1]}\left( \mathbf{a}(t) + \sigma_{\text{cf}} \mathbf{P}_{\mathbf{a}^\perp}(t) \boldsymbol{\zeta} \right), \quad \boldsymbol{\zeta} \sim \mathcal{N}(\mathbf{0}, \mathbf{I}_{d_{\text{act}}})$$
 
 Log-determinant acyclicity constraint:
 $$h_{\text{log}}(\mathbf{A}_{\text{SCM}}) = \ln \left( \frac{1}{d_{\text{scm}}} \mathrm{Tr}\left( \mathrm{expm}(\mathbf{A}_{\text{SCM}} \circ \mathbf{A}_{\text{SCM}}) \right) \right) = 0$$
@@ -404,55 +404,55 @@ $$\mathbf{A} = \mathbf{Z} \mathbf{T} \mathbf{Z}^\top, \quad \mathbf{Z}^\top \mat
 ---
 
 ### Section 17: Friston Active Inference Target Divergence
-$$\mathbb{D}_{\text{KL}}\!\left[ Q\big(s_{t+\Delta t} \mid \mathbf{a}(t)\big) \;\middle\|\; P^*\big(s_{\text{target}}\big) \right] = \sum_{k} Q\big(s_{t+\Delta t} = k \mid \mathbf{a}(t)\big) \ln \frac{Q\big(s_{t+\Delta t} = k \mid \mathbf{a}(t)\big)}{P^*\big(s_{\text{target}} = k\big)}$$
+$$\mathbb{D}_{\text{KL}}\left( Q\big(s_{t+\Delta t} \mid \mathbf{a}(t)\big) \;\middle\|\; P^*\big(s_{\text{target}}\big) \right) = \sum_{k} Q\big(s_{t+\Delta t} = k \mid \mathbf{a}(t)\big) \ln \frac{Q\big(s_{t+\Delta t} = k \mid \mathbf{a}(t)\big)}{P^*\big(s_{\text{target}} = k\big)}$$
 
 ---
 
 ### Section 18: Multimodal Dirichlet Sensory Grounding
-$$\mathbf{v}_{\text{bundle}} = E(\mathbf{o}) \cdot \pi_{\text{bundle}}\left( \mathbf{W}_{\text{vis}} \text{Enc}_{\text{vis}}(\mathbf{x}_{\text{img}}) \;\parallel\; \mathbf{W}_{\text{txt}} \text{Enc}_{\text{txt}}(\mathbf{x}_{\text{text}}) \;\parallel\; \mathbf{W}_{\text{aud}} \text{Enc}_{\text{aud}}(\mathbf{x}_{\text{audio}}) \right) \;\in\; T_{\mathbf{o}}\mathcal{H}^d$$
+$$\mathbf{v}_{\text{bundle}} = E(\mathbf{o}) \cdot \pi_{\text{bundle}}\left( \mathbf{W}_{\text{vis}} \text{Enc}_{\text{vis}}(\mathbf{x}_{\text{img}}) \parallel \mathbf{W}_{\text{txt}} \text{Enc}_{\text{txt}}(\mathbf{x}_{\text{text}}) \parallel \mathbf{W}_{\text{aud}} \text{Enc}_{\text{aud}}(\mathbf{x}_{\text{audio}}) \right) \in T_{\mathbf{o}}\mathcal{H}^d$$
 $$\boldsymbol{\mu}_0^{(0)}(t + \Delta t) = \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^d}\left( \mathbf{v}_{\text{bundle}} \right)$$
-$$\mathcal{I}_{\text{grounding}}\big( \boldsymbol{\mu}^{(L)} ; \boldsymbol{\mu}_0^{(0)} \big) = \mathbb{E}_{\mathcal{B}}\!\left[ f_{\text{ground}}\big(\boldsymbol{\mu}^{(L)}, \boldsymbol{\mu}_0^{(0)}\big) - \ln \sum_{\boldsymbol{\mu}' \in \mathcal{B}} \exp\Big( f_{\text{ground}}\big(\boldsymbol{\mu}^{(L)}, \boldsymbol{\mu}'\big) \Big) \right]$$
+$$\mathcal{I}_{\text{grounding}}\big( \boldsymbol{\mu}^{(L)} ; \boldsymbol{\mu}_0^{(0)} \big) = \mathbb{E}_{\mathcal{B}}\left[ f_{\text{ground}}\big(\boldsymbol{\mu}^{(L)}, \boldsymbol{\mu}_0^{(0)}\big) - \ln \sum_{\boldsymbol{\mu}' \in \mathcal{B}} \exp\Big( f_{\text{ground}}\big(\boldsymbol{\mu}^{(L)}, \boldsymbol{\mu}'\big) \Big) \right]$$
 
 ---
 
 ### Section 19: Gödelian Ego-Reflection via Adjoint Resolvents
 Historical state macro-representation:
-$$\text{feat}_{\text{hist}}(t) = \Big[ \mathrm{Concat}_{l=1, i}^L\left( \mathrm{sg}\big[\boldsymbol{\mu}_i^{(l)}(t-\Delta t)\big], \, \pi_i^{(l)}(t-\Delta t) \right) \;\parallel\; \mathbf{a}(t-\Delta t) \Big] \;\in\; \mathbb{R}^{D_{\text{hist}}}$$
+$$\text{feat}_{\text{hist}}(t) = \left[ \mathrm{Concat}_{l=1, i}^L\left( \mathrm{sg}\big[\boldsymbol{\mu}_i^{(l)}(t-\Delta t)\big], \pi_i^{(l)}(t-\Delta t) \right) \parallel \mathbf{a}(t-\Delta t) \right] \in \mathbb{R}^{D_{\text{hist}}}$$
 
 Ego-resolvent fixed point:
-$$v_{\text{self}}^*(t) = \left( (1 + \delta_{\text{reg}})\mathbf{I}_{d-1} - \mathbf{W}_{\text{self}, v}(t) \right)^{-1} \cdot \left( \mathbf{W}_{\text{self}, \text{hist}}(t) \cdot \text{feat}_{\text{hist}}(t) + \mathbf{b}_{\text{self}}(t) \right) \;\in\; \mathbb{R}^{d-1}$$
-$$\mathbf{v}_{\text{ambient}}^*(t) = E\left( \overline{\boldsymbol{\mu}}^{(L)}(t) \right) \cdot v_{\text{self}}^*(t) \;\in\; T_{\overline{\boldsymbol{\mu}}^{(L)}}\mathcal{H}^d$$
-$$\boldsymbol{\mu}_{\text{self}}^*(t) = \mathrm{Exp}_{\overline{\boldsymbol{\mu}}^{(L)}(t)}^{\mathcal{H}^d}\left( \mathbf{v}_{\text{ambient}}^*(t) \right) \;\in\; \mathcal{H}^d$$
+$$v_{\text{self}}^*(t) = \left( (1 + \delta_{\text{reg}})\mathbf{I}_{d-1} - \mathbf{W}_{\text{self}, v}(t) \right)^{-1} \cdot \left( \mathbf{W}_{\text{self}, \text{hist}}(t) \cdot \text{feat}_{\text{hist}}(t) + \mathbf{b}_{\text{self}}(t) \right) \in \mathbb{R}^{d-1}$$
+$$\mathbf{v}_{\text{ambient}}^*(t) = E\left( \overline{\boldsymbol{\mu}}^{(L)}(t) \right) \cdot v_{\text{self}}^*(t) \in T_{\overline{\boldsymbol{\mu}}^{(L)}}\mathcal{H}^d$$
+$$\boldsymbol{\mu}_{\text{self}}^*(t) = \mathrm{Exp}_{\overline{\boldsymbol{\mu}}^{(L)}(t)}^{\mathcal{H}^d}\left( \mathbf{v}_{\text{ambient}}^*(t) \right) \in \mathcal{H}^d$$
 $$\overline{\mathcal{T}}_{\text{introspect}}(t) = \mathrm{Exp}_{\overline{\mathcal{T}}(t-\Delta t)}^{\mathcal{H}^d}\left( \gamma_{\text{ema}} \mathrm{Log}_{\overline{\mathcal{T}}(t-\Delta t)}^{\mathcal{H}^d}\Big( \boldsymbol{\mu}_{\text{self}}^*(t) \Big) \right)$$
-$$\mathbf{g}_{\text{self}} = E\left(\overline{\mathcal{T}}_{\text{introspect}}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\overline{\mathcal{T}}_{\text{introspect}}(t)}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_{\text{self}}^*(t) \right) \;\in\; \mathbb{R}^{d-1}$$
-$$\tilde{\mathbf{g}} = E\left(\overline{\boldsymbol{\mu}}^{(L)}(t)\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \; \mathbf{P}_{\overline{\mathcal{T}}_{\text{introspect}}(t) \to \overline{\boldsymbol{\mu}}^{(L)}(t)}\left( E\left(\overline{\mathcal{T}}_{\text{introspect}}\right) \mathbf{g}_{\text{self}} \right) \;\in\; \mathbb{R}^{d-1}$$
-$$\mathbf{W}_{\text{self}, v}(t + \Delta t) = \mathrm{Clip}_{\sigma_{\max} \le 1 - \epsilon_{\text{gap}}}\!\left( \mathbf{W}_{\text{self}, v}(t) - \Delta t \, \eta_{\text{self}} \left( (1 + \delta_{\text{reg}})\mathbf{I}_{d-1} - \mathbf{W}_{\text{self}, v}(t)^\top \right)^{-1} \tilde{\mathbf{g}} \cdot \left( v_{\text{self}}^*(t) \right)^\top \right)$$
-$$\mathbf{W}_{\text{self}, \text{hist}}(t + \Delta t) = \mathbf{W}_{\text{self}, \text{hist}}(t) - \Delta t \, \eta_{\text{self}} \left( (1 + \delta_{\text{reg}})\mathbf{I}_{d-1} - \mathbf{W}_{\text{self}, v}(t)^\top \right)^{-1} \tilde{\mathbf{g}} \cdot \left( \text{feat}_{\text{hist}}(t) \right)^\top$$
-$$\mathbf{b}_{\text{self}}(t + \Delta t) = \mathbf{b}_{\text{self}}(t) - \Delta t \, \eta_{\text{self}} \left( (1 + \delta_{\text{reg}})\mathbf{I}_{d-1} - \mathbf{W}_{\text{self}, v}(t)^\top \right)^{-1} \tilde{\mathbf{g}}$$
+$$\mathbf{g}_{\text{self}} = E\left(\overline{\mathcal{T}}_{\text{introspect}}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\overline{\mathcal{T}}_{\text{introspect}}(t)}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_{\text{self}}^*(t) \right) \in \mathbb{R}^{d-1}$$
+$$\tilde{\mathbf{g}} = E\left(\overline{\boldsymbol{\mu}}^{(L)}(t)\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathbf{P}_{\overline{\mathcal{T}}_{\text{introspect}}(t) \to \overline{\boldsymbol{\mu}}^{(L)}(t)}\left( E\left(\overline{\mathcal{T}}_{\text{introspect}}\right) \mathbf{g}_{\text{self}} \right) \in \mathbb{R}^{d-1}$$
+$$\mathbf{W}_{\text{self}, v}(t + \Delta t) = \mathrm{Clip}_{\sigma_{\max} \le 1 - \epsilon_{\text{gap}}}\left( \mathbf{W}_{\text{self}, v}(t) - \Delta t \eta_{\text{self}} \left( (1 + \delta_{\text{reg}})\mathbf{I}_{d-1} - \mathbf{W}_{\text{self}, v}(t)^\top \right)^{-1} \tilde{\mathbf{g}} \cdot \left( v_{\text{self}}^*(t) \right)^\top \right)$$
+$$\mathbf{W}_{\text{self}, \text{hist}}(t + \Delta t) = \mathbf{W}_{\text{self}, \text{hist}}(t) - \Delta t \eta_{\text{self}} \left( (1 + \delta_{\text{reg}})\mathbf{I}_{d-1} - \mathbf{W}_{\text{self}, v}(t)^\top \right)^{-1} \tilde{\mathbf{g}} \cdot \left( \text{feat}_{\text{hist}}(t) \right)^\top$$
+$$\mathbf{b}_{\text{self}}(t + \Delta t) = \mathbf{b}_{\text{self}}(t) - \Delta t \eta_{\text{self}} \left( (1 + \delta_{\text{reg}})\mathbf{I}_{d-1} - \mathbf{W}_{\text{self}, v}(t)^\top \right)^{-1} \tilde{\mathbf{g}}$$
 
 ---
 
 ### Section 20: Sleep Replay Consolidation via Vitter Stratified Reservoirs
 $$\mathcal{M}_{\text{fast}} = \bigcup_{k=1}^K \mathcal{M}_k, \quad |\mathcal{M}_k| \le \left\lfloor \frac{M_{\text{capacity}}}{K} \right\rfloor$$
 $$\mathbb{E}_{\mathbf{m} \sim \mathcal{M}_{\text{fast}}} [\nabla \mathcal{L}_{\text{recon}}] = \frac{1}{K} \sum_{k=1}^K \mathbb{E}_{\mathbf{m} \sim \mathcal{M}_k} [\nabla \mathcal{L}_{\text{recon}}(\mathbf{m})]$$
-$$\left( \frac{\partial \mathbf{W}_i^{(1, l)}}{\partial t} \right)_{\text{replay}} = -\eta_{\text{replay}} \cdot \frac{1}{K} \sum_{k=1}^K \mathbb{E}_{\mathbf{m} \sim \mathcal{M}_k}\!\left[ \left( \tilde{\mathbf{B}}_i^{(1, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1} \nabla_{\mathbf{W}_i^{(1, l)}} \mathcal{L}_{\text{recon}}\big( \mathbf{m} \big) \left( \tilde{\mathbf{A}}_i^{(1, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1} \right]$$
-$$\left( \frac{\partial \mathbf{W}_i^{(2, l)}}{\partial t} \right)_{\text{replay}} = -\eta_{\text{replay}} \cdot \frac{1}{K} \sum_{k=1}^K \mathbb{E}_{\mathbf{m} \sim \mathcal{M}_k}\!\left[ \left( \tilde{\mathbf{B}}_i^{(2, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1} \nabla_{\mathbf{W}_i^{(2, l)}} \mathcal{L}_{\text{recon}}\big( \mathbf{m} \big) \left( \tilde{\mathbf{A}}_i^{(2, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1} \right]$$
+$$\left( \frac{\partial \mathbf{W}_i^{(1, l)}}{\partial t} \right)_{\text{replay}} = -\eta_{\text{replay}} \cdot \frac{1}{K} \sum_{k=1}^K \mathbb{E}_{\mathbf{m} \sim \mathcal{M}_k}\left[ \left( \tilde{\mathbf{B}}_i^{(1, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1} \nabla_{\mathbf{W}_i^{(1, l)}} \mathcal{L}_{\text{recon}}\big( \mathbf{m} \big) \left( \tilde{\mathbf{A}}_i^{(1, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1} \right]$$
+$$\left( \frac{\partial \mathbf{W}_i^{(2, l)}}{\partial t} \right)_{\text{replay}} = -\eta_{\text{replay}} \cdot \frac{1}{K} \sum_{k=1}^K \mathbb{E}_{\mathbf{m} \sim \mathcal{M}_k}\left[ \left( \tilde{\mathbf{B}}_i^{(2, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1} \nabla_{\mathbf{W}_i^{(2, l)}} \mathcal{L}_{\text{recon}}\big( \mathbf{m} \big) \left( \tilde{\mathbf{A}}_i^{(2, l)} + \delta_{\text{kfac}}\mathbf{I} \right)^{-1} \right]$$
 
 ---
 
 ### Section 21: SoftVQ Semantic Codebook Evolution & Pruning
 Dynamic usage tracking and thresholded pruning:
-$$u_k(t+\Delta t) = \gamma_{\text{usage}} \cdot u_k(t) + \sum_{l=0}^L \sum_{j \in V^{(l)}} \mathbb{I}\left( k = \arg\min_{m: \, m_{\text{pruned}, m} = 1} d_{\mathcal{H}^d}\left(\boldsymbol{\mu}_j^{(l)}(t), \, \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^d}(E(\mathbf{o})\mathbf{c}_m)\right) \right)$$
-$$m_{\text{pruned}, k} = \begin{cases} 1, & k \in \mathcal{K}_{\text{protected}} \;\lor\; k = 0 \\ 0, & u_k(t+\Delta t) < \theta_{\text{prune}} = 0.05 \;\land\; k \notin \mathcal{K}_{\text{protected}} \\ 1, & u_k(t+\Delta t) \ge 0.05 \end{cases}$$
+$$u_k(t+\Delta t) = \gamma_{\text{usage}} \cdot u_k(t) + \sum_{l=0}^L \sum_{j \in V^{(l)}} \mathbb{I}\left( k = \arg\min_{m: \, m_{\text{pruned}, m} = 1} d_{\mathcal{H}^d}\left(\boldsymbol{\mu}_j^{(l)}(t), \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^d}(E(\mathbf{o})\mathbf{c}_m)\right) \right)$$
+$$m_{\text{pruned}, k} = \begin{cases} 1, & k \in \mathcal{K}_{\text{protected}} \lor k = 0 \\ 0, & u_k(t+\Delta t) < \theta_{\text{prune}} = 0.05 \land k \notin \mathcal{K}_{\text{protected}} \\ 1, & u_k(t+\Delta t) \ge 0.05 \end{cases}$$
 
 Spontaneous concept spawning under epistemic prediction divergence:
-$$\text{If } \left( \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \right)^\top \tilde{\mathbf{\Pi}}_i^{(l)}(t) \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \right) > \theta_{\text{spawn}} \right) \land \left( |\mathcal{C}_{\text{active}}| < K_{\max} \right) \land \left( \min_{m} d_{\mathcal{H}^d}\left(\boldsymbol{\mu}_i^{(l)}, \, \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^d}(E(\mathbf{o})\mathbf{c}_m)\right) > d_{\min} \right):$$
+$$\text{If } \left( \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \right)^\top \tilde{\mathbf{\Pi}}_i^{(l)}(t) \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \right) > \theta_{\text{spawn}} \right) \land \left( |\mathcal{C}_{\text{active}}| < K_{\max} \right) \land \left( \min_{m} d_{\mathcal{H}^d}\left(\boldsymbol{\mu}_i^{(l)}, \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^d}(E(\mathbf{o})\mathbf{c}_m)\right) > d_{\min} \right):$$
 $$\mathcal{C} \leftarrow \mathcal{C} \cup \left\{ E(\mathbf{o})^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\mathbf{o}}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_i^{(l)}(t) \right) + \boldsymbol{\eta}_{\text{noise}} \right\}, \quad u_{\text{new}} \leftarrow 1.0, \quad m_{\text{pruned}, \text{new}} \leftarrow 1$$
 
 ---
 
 ### Section 22: Thermodynamic Langevin Frame Noise
-$$\mathbf{T}_i\left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)} \right) = T_{\max} \cdot \tanh\left( \frac{\alpha_{\text{temp}}}{T_{\max}} \max\left(0.0, \; \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)} \right)^\top \tilde{\mathbf{\Pi}}_i^{(l)} \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)} \right) \right) \right), \quad T_{\max} = 1.0$$
+$$\mathbf{T}_i\left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)} \right) = T_{\max} \cdot \tanh\left( \frac{\alpha_{\text{temp}}}{T_{\max}} \max\left(0.0, \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)} \right)^\top \tilde{\mathbf{\Pi}}_i^{(l)} \left( \tilde{\boldsymbol{\varepsilon}}_i^{(l)} \right) \right) \right), \quad T_{\max} = 1.0$$
 $$\boldsymbol{\zeta}_{i, t}^{\text{tangent}} = E\left(\boldsymbol{\mu}_i^{(l)}(t)\right) \left[ \sigma_{\text{discrete}, i}^{(l)}(t) \boldsymbol{\xi}_{i, t} \right], \quad \boldsymbol{\xi}_{i, t} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{I}_{d-1}\right)$$
 
 ---
@@ -460,15 +460,15 @@ $$\boldsymbol{\zeta}_{i, t}^{\text{tangent}} = E\left(\boldsymbol{\mu}_i^{(l)}(t
 ### Section 23: Fast Associative Attention & Memristive Crossbar Currents
 Key-value manifold projections:
 $$\mathbf{m}_m^{\text{key}} = \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^d}\left( E(\mathbf{o}) \cdot \mathbf{W}_{\text{key}} \mathbf{h}_m \right), \quad \mathbf{m}_m^{\text{value}} = \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^d}\left( E(\mathbf{o}) \cdot \mathbf{W}_{\text{val}} \mathbf{h}_m \right), \quad \mathbf{h}_m \in \mathbf{H}_{\text{memory}}$$
-$$\text{score}_m = -\frac{d_{\mathcal{H}^d}^2\left( \boldsymbol{\mu}_i^{(l)}, \, \mathbf{m}_m^{\text{key}} \right)}{T_{\text{attn}} \sqrt{d-1}}, \quad w_m = \frac{\exp\left( \text{score}_m - \max_k(\text{score}_k) \right)}{\sum_{k \in \mathcal{M}_{\text{fast}}} \exp\left( \text{score}_k - \max_k(\text{score}_k) \right)}$$
-$$\tilde{\mathbf{\Delta}}_{\text{fast}, i}^{\text{attn}}(t) = \eta_{\text{dopamine}} \sum_{m \in \mathcal{M}_{\text{fast}}} w_m E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\boldsymbol{\mu}_i^{(l)}}\left( \mathbf{m}_m^{\text{value}} \right) \;\in\; \mathbb{R}^{d-1}$$
-$$\tilde{\mathbf{\Delta}}_{\text{fast}, i}^{(l)}(t) = \tilde{\mathbf{\Delta}}_{\text{fast}, i}^{\text{attn}}(t) + E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \; \mathbf{P}_{\mathbf{o} \to \boldsymbol{\mu}_i^{(l)}(t)}\left( E(\mathbf{o}) \cdot \mathbf{W}_{\text{analog\_crossbar}} \cdot \mathbf{s}_i(t) \right) \;\in\; \mathbb{R}^{d-1}$$
+$$\text{score}_m = -\frac{d_{\mathcal{H}^d}^2\left( \boldsymbol{\mu}_i^{(l)}, \mathbf{m}_m^{\text{key}} \right)}{T_{\text{attn}} \sqrt{d-1}}, \quad w_m = \frac{\exp\left( \text{score}_m - \max_k(\text{score}_k) \right)}{\sum_{k \in \mathcal{M}_{\text{fast}}} \exp\left( \text{score}_k - \max_k(\text{score}_k) \right)}$$
+$$\tilde{\mathbf{\Delta}}_{\text{fast}, i}^{\text{attn}}(t) = \eta_{\text{dopamine}} \sum_{m \in \mathcal{M}_{\text{fast}}} w_m E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\boldsymbol{\mu}_i^{(l)}}\left( \mathbf{m}_m^{\text{value}} \right) \in \mathbb{R}^{d-1}$$
+$$\tilde{\mathbf{\Delta}}_{\text{fast}, i}^{(l)}(t) = \tilde{\mathbf{\Delta}}_{\text{fast}, i}^{\text{attn}}(t) + E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathbf{P}_{\mathbf{o} \to \boldsymbol{\mu}_i^{(l)}(t)}\left( E(\mathbf{o}) \cdot \mathbf{W}_{\text{analog\_crossbar}} \cdot \mathbf{s}_i(t) \right) \in \mathbb{R}^{d-1}$$
 
 ---
 
 ### Section 24: Lyapunov-Hespanha Dynamic Stability
 Unified Lyapunov energy functional:
-$$V(\mathbf{\Xi}(t)) = \frac{1}{2} \sum_{l=1}^L \sum_{i \in V^{(l)}} d_{\mathcal{H}^d}^2\left( \boldsymbol{\mu}_i^{(l)}(t), \; \overline{\boldsymbol{\mu}}^{(l)}(t) \right) + \frac{1}{2} \|\mathbf{a}(t) - \mathbf{a}_{\text{target}}(t)\|^2 \ge 0$$
+$$V(\mathbf{\Xi}(t)) = \frac{1}{2} \sum_{l=1}^L \sum_{i \in V^{(l)}} d_{\mathcal{H}^d}^2\left( \boldsymbol{\mu}_i^{(l)}(t), \overline{\boldsymbol{\mu}}^{(l)}(t) \right) + \frac{1}{2} \|\mathbf{a}(t) - \mathbf{a}_{\text{target}}(t)\|^2 \ge 0$$
 $$\frac{\mathrm{d}V}{\mathrm{d}t} \le -\alpha_{\text{damp}}(t) \cdot V + \sigma_{\text{noise}}^2$$
 $$\tau_{\text{dwell}} > \frac{\ln(1 + \mu_{\text{jump}})}{\alpha_{\min}}, \quad V(t^+) \le (1 + \mu_{\text{jump}}) V(t^-)$$
 
@@ -478,15 +478,15 @@ $$\tau_{\text{dwell}} > \frac{\ln(1 + \mu_{\text{jump}})}{\alpha_{\min}}, \quad 
 Pareto tail exponent tracking:
 $$\mathcal{S}_{\text{tail}}(t) = \left\{ i \in \bigcup_{l=0}^L V^{(l)} \;\middle|\; \left\| \tilde{\boldsymbol{\varepsilon}}_i(t) \right\|_{\tilde{\mathbf{\Pi}}_i} \ge \varepsilon_{\min} \right\}$$
 $$\overline{L}_{\text{tail}}(t) = \begin{cases} (1 - \gamma_{\text{soc}}) \overline{L}_{\text{tail}}(t - \Delta t) + \gamma_{\text{soc}} \left( \frac{1}{|\mathcal{S}_{\text{tail}}|} \sum_{i \in \mathcal{S}_{\text{tail}}} \ln \left( \frac{\left\| \tilde{\boldsymbol{\varepsilon}}_i(t) \right\|_{\tilde{\mathbf{\Pi}}_i}}{\varepsilon_{\min}} \right) \right), & |\mathcal{S}_{\text{tail}}| \ge N_{\min} \\ \overline{L}_{\text{tail}}(t - \Delta t), & |\mathcal{S}_{\text{tail}}| < N_{\min} \end{cases}$$
-$$\hat{\alpha}_{\text{measured}}(t) = 1 + \frac{1}{\max\left( \delta_{\text{soc}}, \; \overline{L}_{\text{tail}}(t) \right)}$$
-$$\Delta \alpha = \mathrm{clip}\left( \Delta t \cdot \left(1.2 \cdot \eta_\alpha\right) \left( 1.5 - \hat{\alpha}_{\text{measured}}(t) \right), \; -\Delta \alpha_{\max}, \; +\Delta \alpha_{\max} \right)$$
-$$\alpha_{\text{damp}}(t + \Delta t) = \begin{cases} \max\left( \alpha_{\min}, \; \alpha_{\text{damp}}(t) + \Delta \alpha \right), & |\mathcal{S}_{\text{tail}}| \ge N_{\min} \\ \alpha_{\text{damp}}(t), & |\mathcal{S}_{\text{tail}}| < N_{\min} \end{cases}, \quad \alpha_{\min} = 0.05$$
+$$\hat{\alpha}_{\text{measured}}(t) = 1 + \frac{1}{\max\left( \delta_{\text{soc}}, \overline{L}_{\text{tail}}(t) \right)}$$
+$$\Delta \alpha = \mathrm{clip}\left( \Delta t \cdot \left(1.2 \cdot \eta_\alpha\right) \left( 1.5 - \hat{\alpha}_{\text{measured}}(t) \right), -\Delta \alpha_{\max}, +\Delta \alpha_{\max} \right)$$
+$$\alpha_{\text{damp}}(t + \Delta t) = \begin{cases} \max\left( \alpha_{\min}, \alpha_{\text{damp}}(t) + \Delta \alpha \right), & |\mathcal{S}_{\text{tail}}| \ge N_{\min} \\ \alpha_{\text{damp}}(t), & |\mathcal{S}_{\text{tail}}| < N_{\min} \end{cases}, \quad \alpha_{\min} = 0.05$$
 
 ---
 
 ### Section 26: Poincaré Holographic Memory & Harish-Chandra Transforms
 Lorentz group spherical basis ($\mathrm{SO}^+(1, d-1)$):
-$$\phi_{\lambda, \mathbf{b}}(\boldsymbol{\mu}) = \left( \langle \boldsymbol{\mu}, \boldsymbol{\xi}(\mathbf{b}) \rangle_{\mathcal{L}} \right)^{-\frac{d-2}{2} + i \lambda}, \quad \lambda \in \mathbb{R}^+, \; \mathbf{b} \in \mathbb{S}^{d-2}, \quad \boldsymbol{\xi}(\mathbf{b}) = (1, \mathbf{b})^\top$$
+$$\phi_{\lambda, \mathbf{b}}(\boldsymbol{\mu}) = \left( \langle \boldsymbol{\mu}, \boldsymbol{\xi}(\mathbf{b}) \rangle_{\mathcal{L}} \right)^{-\frac{d-2}{2} + i \lambda}, \quad \lambda \in \mathbb{R}^+, \quad \mathbf{b} \in \mathbb{S}^{d-2}, \quad \boldsymbol{\xi}(\mathbf{b}) = (1, \mathbf{b})^\top$$
 
 Direct Harish-Chandra episode encoding:
 $$\tilde{A}_m(\lambda, \mathbf{b}) = \int_{\mathcal{H}^d} \mathrm{Log}_{\mathbf{o}}^{\mathcal{H}^d}\left(\boldsymbol{\mu}_m\right) \cdot \phi_{-\lambda, \mathbf{b}}(\boldsymbol{\mu}) \, \mathrm{d}\mathrm{Vol}_{\mathcal{H}^d}(\boldsymbol{\mu})$$
@@ -507,31 +507,31 @@ Dynamic thought step-size:
 $$\Delta t_{\text{thought}}(\mathbf{\Xi}) = \Delta t_0 \cdot \left( 1 + \gamma_{\text{sys2}} \cdot \mathrm{Var}_{\mathbf{\Theta}}\left[ \boldsymbol{\mu}^{(L)} \right] \right)$$
 
 Emergency state rollback and exponential backoff:
-$$\text{If } \Big( \dot{\bar{\mathcal{J}}}(t) > \theta_{\text{impasse}} \Big) \land \Big( t - t_{\text{last\_reset}} \ge \tau_{\text{cooldown}}(t) \Big) \implies \begin{cases} \left( \mathbf{\Xi}_{\text{internal}}, \; \tilde{\mathbf{A}}, \; \tilde{\mathbf{B}}, \; \mathcal{M}_{\text{fast}} \right)_{t+\Delta t} \leftarrow \mathcal{B}_{\text{ring\_buffer}}(K_{\text{check}} = 5) \\ \boldsymbol{\mu}_0^{(0)}(t+\Delta t) \leftarrow \text{grounded sensory stream} \\ \mathbf{T}_i \leftarrow T_{\max} \cdot \left( 0.8 \right)^{N_{\text{consecutive\_resets}}} \\ \tau_{\text{cooldown}}(t+\Delta t) \leftarrow \min\left( \tau_{\max}, \; 2.0 \cdot \tau_{\text{cooldown}}(t) \right) \\ N_{\text{consecutive\_resets}} \leftarrow N_{\text{consecutive\_resets}} + 1 \\ t_{\text{last\_reset}} \leftarrow t \end{cases}$$
+$$\text{If } \Big( \dot{\bar{\mathcal{J}}}(t) > \theta_{\text{impasse}} \Big) \land \Big( t - t_{\text{last\_reset}} \ge \tau_{\text{cooldown}}(t) \Big) \implies \begin{cases} \left( \mathbf{\Xi}_{\text{internal}}, \tilde{\mathbf{A}}, \tilde{\mathbf{B}}, \mathcal{M}_{\text{fast}} \right)_{t+\Delta t} \leftarrow \mathcal{B}_{\text{ring\_buffer}}(K_{\text{check}} = 5) \\ \boldsymbol{\mu}_0^{(0)}(t+\Delta t) \leftarrow \text{grounded sensory stream} \\ \mathbf{T}_i \leftarrow T_{\max} \cdot \left( 0.8 \right)^{N_{\text{consecutive\_resets}}} \\ \tau_{\text{cooldown}}(t+\Delta t) \leftarrow \min\left( \tau_{\max}, 2.0 \cdot \tau_{\text{cooldown}}(t) \right) \\ N_{\text{consecutive\_resets}} \leftarrow N_{\text{consecutive\_resets}} + 1 \\ t_{\text{last\_reset}} \leftarrow t \end{cases}$$
 $$\text{If } \dot{\bar{\mathcal{J}}}(t) \le 0 \implies N_{\text{consecutive\_resets}} \leftarrow 0, \quad \tau_{\text{cooldown}} \leftarrow \tau_{\text{cooldown}, 0}$$
 
 ---
 
 ### Section 29: Neuromorphic STE Spike Encoder
-$$\lambda_{\text{spike}, i}^{(l)}(t) = f_{\max} \cdot \sigma\left( \mathbf{W}_{\text{enc}} \cdot E(\mathbf{o})^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\mathbf{o}}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_i^{(l)}(t) \right) + \mathbf{b}_{\text{enc}} \right) \;\in\; \mathbb{R}^{M_{\text{crossbar}}}$$
-$$p_{i, m}(t) = 1.0 - \exp\left( -\lambda_{\text{spike}, i, m}^{(l)}(t) \cdot \Delta t \right) \;\in\; [0, 1]$$
-$$\mathbf{s}_i(t) = \mathrm{step}\left( p_i(t) - \boldsymbol{\xi}_{\text{uniform}} \right) - \mathrm{sg}\left[ p_i(t) \right] + p_i(t) \;\in\; \{0, 1\}^{M_{\text{crossbar}}}, \quad \boldsymbol{\xi}_{\text{uniform}} \sim \mathcal{U}(0, 1)^{M_{\text{crossbar}}}$$
+$$\lambda_{\text{spike}, i}^{(l)}(t) = f_{\max} \cdot \sigma\left( \mathbf{W}_{\text{enc}} \cdot E(\mathbf{o})^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\mathbf{o}}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_i^{(l)}(t) \right) + \mathbf{b}_{\text{enc}} \right) \in \mathbb{R}^{M_{\text{crossbar}}}$$
+$$p_{i, m}(t) = 1.0 - \exp\left( -\lambda_{\text{spike}, i, m}^{(l)}(t) \cdot \Delta t \right) \in [0, 1]$$
+$$\mathbf{s}_i(t) = \mathrm{step}\left( p_i(t) - \boldsymbol{\xi}_{\text{uniform}} \right) - \mathrm{sg}\left[ p_i(t) \right] + p_i(t) \in \{0, 1\}^{M_{\text{crossbar}}}, \quad \boldsymbol{\xi}_{\text{uniform}} \sim \mathcal{U}(0, 1)^{M_{\text{crossbar}}}$$
 
 ---
 
 ### Section 30: System-1 Fast Geodesic Inference Relaxation
 $$\boldsymbol{\mu}_i^{(l)}(\tau + 1) = \mathrm{Exp}_{\boldsymbol{\mu}_i^{(l)}(\tau)}^{\mathcal{H}^d}\left( E(\boldsymbol{\mu}_i^{(l)}(\tau)) \cdot \mathbf{w}_{\text{relax}, i}^{(l)}(\tau) \right), \quad \tau \in \{0, 1, \dots, K_{\text{relax}}-1\}$$
 $$\mathbf{w}_{\text{relax}, i}^{(l)}(\tau) = \left( \mathbf{I}_{d-1} + \frac{\Delta t}{\epsilon_0} \pi_i \tilde{\mathbf{\Pi}}_i \right)^{-1} \left( \frac{\Delta t}{\epsilon_0} \tilde{\mathbf{v}}_{\text{bottom-up}, i}^{(l)}(\tau) \right)$$
-$$\mathbf{w}_{\text{relax}, i}^{(l)} \leftarrow \frac{\mathbf{w}_{\text{relax}, i}^{(l)}}{\max\left(1.0, \; \frac{\|\mathbf{w}_{\text{relax}, i}^{(l)}\|_2}{v_{\max}}\right)}$$
+$$\mathbf{w}_{\text{relax}, i}^{(l)} \leftarrow \frac{\mathbf{w}_{\text{relax}, i}^{(l)}}{\max\left(1.0, \frac{\|\mathbf{w}_{\text{relax}, i}^{(l)}\|_2}{v_{\max}}\right)}$$
 
 ---
 
 ### Section 31: Conformal Connection & Christoffel Symbols
 The conformal deformation tensor:
-$$\tilde{g}_{AB}(\boldsymbol{\mu}) = \Omega^2(\boldsymbol{\mu}) \, (\boldsymbol{\eta}_{\mathcal{L}})_{AB}, \quad \Omega(\boldsymbol{\mu}) = \max\left( \delta_{\text{eps}}, \; \mathcal{F}_{\text{threshold}} - \mathcal{F}_{\text{pragmatic}}^{\text{Sylvester}}(\boldsymbol{\mu}) \right)$$
+$$\tilde{g}_{AB}(\boldsymbol{\mu}) = \Omega^2(\boldsymbol{\mu}) (\boldsymbol{\eta}_{\mathcal{L}})_{AB}, \quad \Omega(\boldsymbol{\mu}) = \max\left( \delta_{\text{eps}}, \mathcal{F}_{\text{threshold}} - \mathcal{F}_{\text{pragmatic}}^{\text{Sylvester}}(\boldsymbol{\mu}) \right)$$
 
 Christoffel symbols of the second kind:
-$$\tilde{\Gamma}_{BC}^A = \Gamma_{BC}^A + \delta_B^A \, \partial_C \ln \Omega(\boldsymbol{\mu}) + \delta_C^A \, \partial_B \ln \Omega(\boldsymbol{\mu}) - (\boldsymbol{\eta}_{\mathcal{L}})_{BC} \, (\boldsymbol{\eta}_{\mathcal{L}})^{AK} \, \partial_K \ln \Omega(\boldsymbol{\mu})$$
+$$\tilde{\Gamma}_{BC}^A = \Gamma_{BC}^A + \delta_B^A \partial_C \ln \Omega(\boldsymbol{\mu}) + \delta_C^A \partial_B \ln \Omega(\boldsymbol{\mu}) - (\boldsymbol{\eta}_{\mathcal{L}})_{BC} (\boldsymbol{\eta}_{\mathcal{L}})^{AK} \partial_K \ln \Omega(\boldsymbol{\mu})$$
 
 Conformal fictitious force:
 $$\tilde{\mathbf{v}}_{\text{conformal}, i}^{(l)}(t) = -\|\mathbf{w}_i^{(l)}(t)\|_2^2 \cdot E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^d} \ln \Omega\left(\boldsymbol{\mu}_i^{(l)}\right) + 2 \left( \left(\mathbf{w}_i^{(l)}(t)\right)^\top E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^d} \ln \Omega\left(\boldsymbol{\mu}_i^{(l)}\right) \right) \mathbf{w}_i^{(l)}(t)$$
@@ -580,7 +580,7 @@ $$\mathbf{m}_{\text{poly}}(a^*) = \varepsilon_{\text{safe}} \cdot \frac{\sum_{a 
 
 ### Section 35: Asynchronous Zero-Downtime Gödel JIT Engine Hot-Swapping
 Deductive self-improvement decision criterion:
-$$\mathcal{P} \vdash \left[ \mathbb{E}[U(F_{\text{new}})] > \mathbb{E}[U(F_{\text{old}})] \right] \implies \text{atomic\_store}(\& \text{ActiveEngine}, \text{Engine}_{\text{new}})$$
+$$\mathcal{P} \vdash \left[ \mathbb{E}[U(F_{\text{new}})] > \mathbb{E}[U(F_{\text{old}})] \right] \implies \mathrm{atomic\_store}(\& \mathrm{ActiveEngine}, \mathrm{Engine}_{\text{new}})$$
 
 Double-buffering guarantees bounded execution jitter ($\Delta t = 0$).
 
@@ -597,8 +597,8 @@ $$\frac{\partial \kappa_l}{\partial t} = -\eta_\kappa \nabla_{\kappa_l} \mathcal
 
 ### Section 37: Lock-Free RCU Multi-Timescale Engine Dispatcher
 Decoupling execution across temporal scales ($\epsilon_0 \sim 10^{-3}\text{ s}$, $\epsilon_1 \sim 1\text{ s}$, $\epsilon_2 \sim 10^5\text{ s}$) using Read-Copy-Update (RCU):
-$$\text{Thread}_{\text{fast}} \to \text{Read}(\text{ActivePtr})$$
-$$\text{Thread}_{\text{slow}} \to \text{Write}(\text{ShadowCopy}) \to \text{AtomicSwap}()$$
+$$\mathrm{Thread}_{\text{fast}} \to \mathrm{Read}(\mathrm{ActivePtr})$$
+$$\mathrm{Thread}_{\text{slow}} \to \mathrm{Write}(\mathrm{ShadowCopy}) \to \mathrm{AtomicSwap}()$$
 
 Guarantees deadlock-free and livelock-free continuous inference.
 
@@ -833,7 +833,7 @@ Preserves historical relational representations while expanding capacity by a fa
 
 ### Geometric Manifolds, Bundles, and Sets
 * $\mathcal{H}^d$: Lorentz hyperboloid manifold (upper sheet of the two-sheeted hyperboloid in Minkowski space $\mathbb{R}^{1, d-1}$):
-  $$\mathcal{H}^d = \left\{ \mathbf{x} \in \mathbb{R}^d \;\middle|\; \langle \mathbf{x}, \mathbf{x} \rangle_{\mathcal{L}} = -x_0^2 + \sum_{k=1}^{d-1} x_k^2 = -1, \; x_0 > 0 \right\}$$
+  $$\mathcal{H}^d = \left\{ \mathbf{x} \in \mathbb{R}^d \;\middle|\; \langle \mathbf{x}, \mathbf{x} \rangle_{\mathcal{L}} = -x_0^2 + \sum_{k=1}^{d-1} x_k^2 = -1, \quad x_0 > 0 \right\}$$
 * $T_{\boldsymbol{\mu}}\mathcal{H}^d$: Tangent vector space orthogonal to $\boldsymbol{\mu}$ under the Minkowski bilinear form:
   $$T_{\boldsymbol{\mu}}\mathcal{H}^d = \left\{ \mathbf{v} \in \mathbb{R}^d \;\middle|\; \langle \boldsymbol{\mu}, \mathbf{v} \rangle_{\mathcal{L}} = 0 \right\}$$
 * $T_{\boldsymbol{\mu}}^*\mathcal{H}^d$: Cotangent space (space of canonical momenta 1-forms) dual to $T_{\boldsymbol{\mu}}\mathcal{H}^d$.
@@ -995,7 +995,7 @@ Preserves historical relational representations while expanding capacity by a fa
 * $\epsilon_{\text{gap}} = 0.05$: Spectral stability gap for $\mathbf{W}_{\text{self}, v}$ and $\mathbf{A}_{\text{SCM}}$.
 * $\beta = 5.0$: Steepness coefficient of the sigmoidal spike mask.
 * $\tau_i^{(l)}$: Local energy threshold for neuronal spike emission.
-* $\hat{\alpha}_{\text{measured}}(t)$: Measured Pareto tail exponent of the SOC criticality regulator.
+* $\hat_{\alpha}_{\text{measured}}(t)$: Measured Pareto tail exponent of the SOC criticality regulator.
 * $\gamma_{\text{soc}} = 0.05$: Exponential moving average smoothing factor for SOC tracking.
 * $\alpha_{\text{damp}}(t)$: Dynamic viscous damping coefficient.
 * $\alpha_{\min} = 0.05$: Lower bound on damping ensuring asymptotic Lyapunov dissipativity.
@@ -1034,16 +1034,16 @@ Preserves historical relational representations while expanding capacity by a fa
 * $\|\mathbf{v}\|_{\mathcal{L}} = \sqrt{\max(0.0, \langle \mathbf{v}, \mathbf{v} \rangle_{\mathcal{L}})}$: Minkowski seminorm for space-like vectors.
 * $\|\mathbf{w}\|_2 = \sqrt{\sum_{k=1}^{d-1} w_k^2}$: Standard Euclidean norm in local orthonormal tetrad frame.
 * $\|\mathbf{W}\|_F = \sqrt{\sum_{i, j} W_{ij}^2}$: Frobenius matrix norm.
-* $d_{\mathcal{H}^d}(\mathbf{x}, \mathbf{y}) = 2 \mathrm{arcsinh}(0.5 \sqrt{\max(0, \langle \mathbf{x}-\mathbf{y}, \mathbf{x}-\mathbf{y} \rangle_{\mathcal{L}})})$: Numerically stable chordal geodesic distance.
+* $d_{\mathcal{H}^d}(\mathbf{x}, \mathbf{y}) = 2 \mathrm{arcsinh}\left(0.5 \sqrt{\max(0, \langle \mathbf{x}-\mathbf{y}, \mathbf{x}-\mathbf{y} \rangle_{\mathcal{L}})}\right)$: Numerically stable chordal geodesic distance.
 * $\mathrm{Exp}_{\boldsymbol{\mu}}^{\mathcal{H}^d}(\mathbf{v})$: Geodesic exponential mapping from $T_{\boldsymbol{\mu}}\mathcal{H}^d$ onto $\mathcal{H}^d$ with Taylor expansion for small velocities.
 * $\mathrm{Log}_{\boldsymbol{\mu}}^{\mathcal{H}^d}(\mathbf{y})$: Riemannian logarithmic mapping projecting manifold coordinates into tangent vectors.
 * $\mathbf{P}_{\mathbf{x} \to \mathbf{y}}(\mathbf{v})$: Isometric parallel transport operator along geodesics.
-* $h_{\text{log}}(\mathbf{A}) = \ln(\frac{1}{d} \mathrm{Tr}(\mathrm{expm}(\mathbf{A}\circ\mathbf{A})))$: Smooth NOTEARS acyclicity constraint.
+* $h_{\text{log}}(\mathbf{A}) = \ln\left(\frac{1}{d} \mathrm{Tr}\left(\mathrm{expm}(\mathbf{A}\circ\mathbf{A})\right)\right)$: Smooth NOTEARS acyclicity constraint.
 * $\mathrm{expm}(\mathbf{M}) = \sum_{k=0}^\infty \frac{\mathbf{M}^k}{k!}$: Matrix exponential.
 * $\mathrm{Tr}(\mathbf{M})$: Trace of a square matrix.
 * $\det(\mathbf{M})$: Determinant of a square matrix.
 * $\rho(\mathbf{M})$: Spectral radius of a matrix (maximum eigenvalue modulus), evaluated via real Schur decomposition $\mathbf{M} = \mathbf{Z} \mathbf{T} \mathbf{Z}^\top$.
-* $\mathbb{D}_{\text{KL}}[Q \parallel P]$: Kullback-Leibler divergence between probability distributions.
+* $\mathbb{D}_{\text{KL}}(Q \parallel P)$: Kullback-Leibler divergence between probability distributions.
 * $\mathcal{F}_{\text{pragmatic}}^{\text{Sylvester}}$: Sylvester Pragmatic Free Energy functional summed from Dirichlet layer $l=0$ to layer $L$.
 * $\mathcal{J}_{\text{AGI\_Master}}$: Master Augmented Lagrangian (PHR) action functional with Landauer thermal dissipation.
 * $V(\mathbf{\Xi})$: Unified Lyapunov-Hespanha dynamic stability candidate functional.
