@@ -7,11 +7,16 @@ print("=========================================================================
 print("   CLEAN CORE 5.0 — PRODUCTION CAPABILITIES BENCHMARK (clean_core_package)")
 print("================================================================================")
 
-# 1. Lorentz & Geodesics
+# 1. Lorentz & Geodesics (10,000 Stochastic Manifold Steps)
 mu = cc.POLE.copy()
-v_tangent = np.array([0.0, 0.1] + [0.0]*14, dtype=cc.FP64)
+np.random.seed(42)
 t0 = time.time()
 for _ in range(10000):
+    # Случайный касательный вектор шума
+    v_raw = np.random.normal(0.0, 0.01, size=15)
+    v_tangent = np.array([0.0] + list(v_raw), dtype=cc.FP64)
+    # Ортогонализация к текущей точке mu
+    v_tangent = v_tangent + cc.minkowski_dot(mu, v_tangent) * mu
     mu = cc.exp_map(mu, v_tangent)
 t1 = time.time()
 drift = abs(cc.minkowski_norm_sq(mu) - (-1.0))
