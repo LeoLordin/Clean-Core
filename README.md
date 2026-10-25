@@ -8,6 +8,16 @@
 
 ---
 
+> ⚠️ **Project Status: Early-Stage Research Prototype (`v0.1.0-alpha`)**  
+> **Clean Core 5.0** is an experimental Proof of Concept exploring non-Euclidean Active Inference. 
+> The mathematical formulations, geodesic approximations, and algorithms represent our initial theoretical baseline and are **actively being refined**. 
+> They should not be considered 100% mathematically proven or production-hardened. 
+> 
+> **We warmly welcome feedback, rigorous peer review, bug reports, and community contributions!**  
+> If you find a mathematical inconsistency or numerical instability, please open an [Issue](../../issues) or submit a Pull Request.
+
+---
+
 ## ⚡ Overview
 
 **Clean Core 5.0** is an experimental, dependency-minimal cognitive architecture built from first principles. It unifies **pseudo-Riemannian geometry**, **Friston's Active Inference (Free Energy Principle)**, and **structural causal discovery** into a single deterministic, closed-loop control system.
