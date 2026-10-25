@@ -137,6 +137,12 @@ If you are a mathematician, systems programmer, or AI safety researcher — feel
 
 ---
 
+## 📚 Mathematical Specification
+For the complete, rigorous theoretical derivation (Sections 1–38, Lie-Euler-Maruyama dynamics, 
+Hamiltonian mechanics, and causal Do-calculus), see our [Full Theory Document](docs/THEORY.md).
+
+---
+
 ## 📜 License
 
 Distributed under the **MIT License**. See `LICENSE` for more information.
