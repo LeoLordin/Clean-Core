@@ -9,12 +9,12 @@
 ---
 
 > ⚠️ **Project Status: Early-Stage Research Prototype (`v0.1.0-alpha`)**  
-> **Clean Core 5.0** is an experimental Proof of Concept exploring non-Euclidean Active Inference. 
-> The mathematical formulations, geodesic approximations, and algorithms represent our initial theoretical baseline and are **actively being refined**. 
-> They should not be considered 100% mathematically proven or production-hardened. 
+> **Clean Core 5.0** is an open, exploratory Proof of Concept synthesizing non-Euclidean differential geometry, Active Inference, and algorithmic information theory. 
 > 
-> **We warmly welcome feedback, rigorous peer review, bug reports, and community contributions!**  
-> If you find a mathematical inconsistency or numerical instability, please open an [Issue](../../issues) or submit a Pull Request.
+> * **Theoretical Formulations:** The mathematical models in [`docs/THEORY.md`](docs/THEORY.md) represent an ambitious theoretical synthesis. While dimensionally consistent, certain derivations contain idealized assumptions, and mathematical typos or edge-case inconsistencies **may be present**.
+> * **Code Implementation:** The current codebase is an initial algorithmic prototype demonstrating core mechanics (geodesic stability, Eikonal graph wave propagation, and zero-reward Active Inference). It is **not yet production-hardened**.
+> 
+> **We treat this repository as an open scientific whiteboard.** We warmly welcome peer review, mathematical critiques, bug reports, and contributions! If you spot an error in the derivations or numerical instabilities in the code, please open an [Issue](../../issues) or submit a Pull Request.
 
 ---
 
