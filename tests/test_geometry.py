@@ -14,7 +14,12 @@ from clean_core.geometry.lorentz import (
 from clean_core.geometry.symplectic import projected_kick_drift_step
 from clean_core.estimation.fisher_rao import FisherRaoDLREstimator
 from clean_core.geometry.eikonal import godunov_fast_sweeping_solver
-from clean_core.core.inference import compute_maupertuis_conformal_drift, system1_fast_inference_step
+from clean_core.core.inference import (
+    compute_maupertuis_conformal_drift,
+    system1_fast_inference_step,
+    system1_query_relaxation,
+    thermodynamic_langevin_noise,
+)
 from clean_core.core.neuron import NeuronMicrostate
 from clean_core.core.quantizer import SoftVQQuantizer
 from clean_core.config import ETA_L
@@ -160,6 +165,16 @@ def test_conformal_drift_matches_local_frame_equation():
     )
 
 
+def test_langevin_noise_uses_temperature_scaling_and_reproducible_rng():
+    first = thermodynamic_langevin_noise(8, 0.5, 0.01, rng=np.random.default_rng(3))
+    second = thermodynamic_langevin_noise(8, 0.5, 0.01, rng=np.random.default_rng(3))
+
+    np.testing.assert_array_equal(first, second)
+    assert np.all(np.isfinite(first))
+    assert np.any(first != 0.0)
+    np.testing.assert_array_equal(thermodynamic_langevin_noise(8, 0.0, 0.01), np.zeros(8))
+
+
 def test_inference_error_is_projected_into_updated_neuron_frame():
     neuron = NeuronMicrostate()
     parent = exp_map(POLE.copy(), np.concatenate(([0.0], np.linspace(-0.02, 0.02, D_SPATIAL))))
@@ -169,3 +184,17 @@ def test_inference_error_is_projected_into_updated_neuron_frame():
 
     np.testing.assert_allclose(error_local, expected_error, atol=1e-12)
     np.testing.assert_allclose(neuron.eps_tilde, expected_error.astype(np.float32), atol=1e-7)
+
+
+def test_system1_query_relaxation_preserves_weights_and_manifold_state():
+    neuron = NeuronMicrostate()
+    weights_before = (neuron.W1.copy(), neuron.W2.copy())
+    query = exp_map(POLE.copy(), np.concatenate(([0.0], np.linspace(-0.01, 0.01, D_SPATIAL))))
+
+    states, errors = system1_query_relaxation([neuron], query, POLE, steps=4)
+
+    assert states.shape == (1, D_SPATIAL + 1)
+    assert len(errors) == 1
+    assert abs(minkowski_norm_sq(states[0]) + 1.0) < 1e-12
+    np.testing.assert_array_equal(neuron.W1, weights_before[0])
+    np.testing.assert_array_equal(neuron.W2, weights_before[1])

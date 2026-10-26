@@ -7,6 +7,7 @@ from clean_core.core.inference import system1_fast_inference_step
 from clean_core.cognition.aixi_bridge import BoundedActionHeuristic
 from clean_core.cognition.goedel_reflection import GoedelEgoReflectionEngine
 from clean_core.cognition.causal_scm import NOTEARSCausalSCM
+from clean_core.cognition.criticality import SOCCriticalityRegulator
 from clean_core.memory.harish_chandra import HarishChandraHolographicMemory
 from clean_core.interfaces.dirichlet_sensory import DirichletSensoryLayer
 from clean_core.interfaces.motor_efe import MotorEFEController
@@ -18,6 +19,7 @@ class CleanCoreProductionAgent:
         self.action_heuristic = BoundedActionHeuristic()
         self.goedel = GoedelEgoReflectionEngine()
         self.scm = NOTEARSCausalSCM()
+        self.criticality = SOCCriticalityRegulator()
         self.memory = HarishChandraHolographicMemory()
         self.motor = MotorEFEController()
         self.fe_history = []
@@ -36,8 +38,18 @@ class CleanCoreProductionAgent:
         barycenter_L1 = self.barycenter_L1
         eps_list = []
         for n in self.neurons:
-            _, eps = system1_fast_inference_step(n, mu_sensory, barycenter_L1)
+            _, eps = system1_fast_inference_step(
+                n,
+                mu_sensory,
+                barycenter_L1,
+                alpha_damp=self.criticality.alpha_damp,
+            )
             eps_list.append((n.mu.copy(), eps))
+        self.criticality.update(
+            [error for _, error in eps_list],
+            [neuron.Pi_precision for neuron in self.neurons],
+            dt=0.01,
+        )
         selected_action, score_margin, m_poly = self.action_heuristic.select_action(raw_v)
         mu_self, T_intro = self.goedel.step_ego_reflection(eps_list, barycenter_L1)
         a_motor = self.motor.synthesize_motor_action(mu_self, m_poly)

@@ -37,7 +37,9 @@ Kinetic limits and Moreau-Yosida multiplier update:
 ```
 
 ```math
-\lambda_k(t + \Delta t) = \lambda_k(t) + \frac{\Delta t \cdot \eta_\lambda}{1 + \gamma_{\mathrm{prox}} \Delta t} \cdot \max\left( -\frac{\lambda_k(t)}{\rho_k}, \mathcal{C}_k(\mathbf{\Xi}(t)) - C_k^{*} \right)
+\lambda_k(t + \Delta t) = \max\left(0, \lambda_k(t) + \frac{\Delta t \cdot \eta_\lambda}{1 + \gamma_{\mathrm{prox}} \Delta t} \cdot \max\left( -\frac{\lambda_k(t)}{\rho_k}, \mathcal{C}_k(\mathbf{\Xi}(t)) - C_k^{*} \right)\right)
 ```
+
+The outer projection keeps inequality multipliers non-negative; without it, an inactive constraint can drive a zero multiplier below zero.
 
 ---
