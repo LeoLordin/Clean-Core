@@ -1,6 +1,7 @@
 [Back to theory contents](../THEORY.md)
 
 ### Algorithm 5: Linearized Cole-Hopf & Polyhedral AIXI Motor Synthesis
+> **Implementation status:** Partial prototype. It includes graph diffusion, finite-model bounds, and a bounded motor update, but not the continuous PDE or complete expected-free-energy gradient.
 * **Inputs:** Top-layer coordinate $`\boldsymbol{\mu}^{(L)}`$, goal potentials $`\psi_k`$, optimal discrete action $`a^{*}`$, social vector $`\mathbf{a}_{\mathrm{ToM}}^{*}`$.
 * **Outputs:** Continuous motor control vector $`\mathbf{a}(t+\Delta t) \in [-1, 1]^{d_{\mathrm{act}}}`$.
 * **Complexity:** $`O(d_{\mathrm{act}} \cdot (d-1))`$.

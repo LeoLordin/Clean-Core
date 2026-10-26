@@ -1,6 +1,7 @@
 [Back to theory contents](../THEORY.md)
 
 ### Algorithm 12: Holographic Memory Retrieval via Harish-Chandra Spherical Transforms
+> **Implementation status:** Partial radial-phase prototype. The runtime performs bounded Plancherel-weighted similarity retrieval, not the full angle-resolved spherical convolution described here.
 * **Inputs:** Query coordinate $`\boldsymbol{\mu}_i^{(l)}`$, memory buffer $`\mathcal{M}_{\mathrm{fast}}`$, spectral amplitudes $`\tilde{A}_m(\lambda, \mathbf{b})`$.
 * **Outputs:** Associative context recall vector $`\mathbf{H}_{\mathrm{recall}}(\boldsymbol{\mu}_i^{(l)})`$.
 * **Complexity:** $`O(M_{\mathrm{capacity}} \cdot (d-1))`$.

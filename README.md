@@ -49,10 +49,11 @@ The current code provides experimental implementations of:
 * Lorentz-hyperboloid exponential/logarithmic maps, orthonormal boost frames, and tested parallel transport.
 * A graph-based Godunov-style action solver using hyperbolic edge distances.
 * DLR covariance tracking with Oja-QR and Woodbury precision calculation.
-* A bounded observation-score heuristic. It is **not** a Solomonoff/AIXI solver and does not provide a certified safety margin.
+* A bounded observation-score heuristic in the agent pipeline. It is **not** a Solomonoff/AIXI solver and does not provide a certified safety margin. A separate finite-model AIXI-like prototype exists, but it does not perform universal search.
 * A small stateful agent and a separate hand-tuned CartPole-like control demo.
+* Additional partial research prototypes for Cole-Hopf graph diffusion, VIB objectives, multi-agent action scoring, conformal Hamiltonian fields, curvature adaptation, isometric dimension expansion, radial-phase memory retrieval, motor synthesis, and versioned engine dispatch.
 
-The remaining equations in the theory documents are research targets or simplified prototypes, not claims of complete runtime support.
+These additions implement limited, testable subsets only. They do not provide continuous manifold PDE solvers, certified AIXI decisions, full spherical transforms, formal proof checking, lock-free RCU, or complete integration of the theory. The [implementation status matrix](docs/IMPLEMENTATION_STATUS.md) records each section and algorithm's current scope; all are marked `Partial`.
 
 ---
 
@@ -95,12 +96,12 @@ The initial state and controller gains are fixed in the script. Results are illu
 clean_core/
 ├── config.py              # Reference Profile (D=16, d=15, FP64/FP32 layout)
 ├── agent.py               # Experimental CleanCoreProductionAgent pipeline
-├── geometry/              # Lorentz metrics, Boost frames, projected steps, Eikonal
+├── geometry/              # Lorentz maps, projected steps, Hamiltonian, curvature, embeddings
 ├── estimation/            # Fisher-Rao DLR factorization, K-FAC Natural Gradients
 ├── core/                  # Python neuron states, SoftVQ prototype, fast inference
-├── cognition/             # Bounded action heuristic, NOTEARS prototype, reflection
-├── memory/                # Harish-Chandra holography, Sleep Replay Anti-Livelock
-└── interfaces/            # Dirichlet sensory grounding, Motor EFE controllers
+├── cognition/             # Inference, finite-model bounds, ToM, engine dispatch
+├── memory/                # Bounded radial-phase associative retrieval and replay
+└── interfaces/            # Sensory grounding, motor EFE and synthesis prototypes
 ```
 
 ---
