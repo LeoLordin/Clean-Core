@@ -3,6 +3,8 @@ from clean_core.config import D_LORENTZ, D_SPATIAL, FP64, POLE
 from clean_core.geometry.lorentz import exp_map
 
 class DirichletSensoryLayer:
+    """Project vector observations through a Dirichlet prior-posterior update."""
+
     def __init__(self, alpha_params=None):
         self.alpha = np.asarray(
             alpha_params if alpha_params is not None else np.ones(D_SPATIAL),
@@ -22,8 +24,10 @@ class DirichletSensoryLayer:
         else:
             values = values[:D_SPATIAL]
 
-        probs = np.exp(values - np.max(values))
-        probs /= np.sum(probs)
+        evidence = np.exp(values - np.max(values))
+        evidence /= np.sum(evidence)
+        posterior_alpha = self.alpha + evidence
+        probs = posterior_alpha / np.sum(posterior_alpha)
         v_tangent = np.zeros(D_LORENTZ, dtype=FP64)
         v_tangent[1:] = probs
         return exp_map(POLE, v_tangent)

@@ -1,6 +1,11 @@
 import numpy as np
-from clean_core.config import D_SPATIAL, FP64, POLE
-from clean_core.geometry.lorentz import exp_map, get_boost_frame, log_map
+from clean_core.config import D_SPATIAL, ETA_L, FP64, POLE
+from clean_core.geometry.lorentz import (
+    exp_map,
+    get_boost_frame,
+    log_map,
+    parallel_transport,
+)
 
 class GoedelEgoReflectionEngine:
     def __init__(self, dim=D_SPATIAL):
@@ -12,7 +17,18 @@ class GoedelEgoReflectionEngine:
         if len(eps_history) == 0:
             mean_eps = np.zeros(self.dim, dtype=FP64)
         else:
-            mean_eps = np.mean(eps_history, axis=0).astype(FP64)
+            barycenter_frame = get_boost_frame(barycenter_mu)
+            transported_errors = []
+            for entry in eps_history:
+                if isinstance(entry, tuple) and len(entry) == 2:
+                    neuron_mu, error_local = entry
+                    error_ambient = get_boost_frame(neuron_mu) @ np.asarray(error_local, dtype=FP64)
+                    error_at_barycenter = parallel_transport(neuron_mu, barycenter_mu, error_ambient)
+                    error_local = barycenter_frame.T @ (ETA_L * error_at_barycenter)
+                else:
+                    error_local = entry
+                transported_errors.append(np.asarray(error_local, dtype=FP64))
+            mean_eps = np.mean(transported_errors, axis=0)
             if len(mean_eps) < self.dim:
                 mean_eps = np.pad(mean_eps, (0, self.dim - len(mean_eps)))
             else:

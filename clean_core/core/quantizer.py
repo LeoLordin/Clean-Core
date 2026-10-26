@@ -1,6 +1,6 @@
 import numpy as np
 from clean_core.config import K_MAX, D_SPATIAL, FP64, POLE
-from clean_core.geometry.lorentz import log_map, exp_map, chordal_distance
+from clean_core.geometry.lorentz import exp_map, chordal_distance
 
 class SoftVQQuantizer:
     def __init__(self, k_max=K_MAX, dim=D_SPATIAL):
@@ -10,15 +10,22 @@ class SoftVQQuantizer:
         self.usage_counts = np.ones(4, dtype=FP64)
 
     def quantize_tangent(self, mu_point, temp_vq=0.1):
-        v_tangent = log_map(POLE, mu_point)
-        dists = np.linalg.norm(self.centroids - v_tangent[1:], axis=1)
-        k_best = np.argmin(dists)
+        if temp_vq <= 0.0:
+            raise ValueError("temp_vq must be positive")
+        centroid_points = [
+            exp_map(POLE.copy(), np.concatenate(([0.0], centroid)))
+            for centroid in self.centroids
+        ]
+        distances_sq = np.array(
+            [chordal_distance(mu_point, centroid) ** 2 for centroid in centroid_points],
+            dtype=FP64,
+        )
+        k_best = int(np.argmin(distances_sq))
         self.usage_counts[k_best] += 1.0
-        c_k = self.centroids[k_best]
-        v_centroid = np.array([0.0] + list(c_k), dtype=FP64)
-        mu_centroid = exp_map(POLE, v_centroid)
-        q_soft = np.exp(-dists / temp_vq) / np.sum(np.exp(-dists / temp_vq))
-        return k_best, mu_centroid, q_soft
+        logits = -(distances_sq - np.min(distances_sq)) / temp_vq
+        weights = np.exp(logits - np.max(logits))
+        weights /= np.sum(weights)
+        return k_best, centroid_points[k_best], weights
 
     def prune_and_spawn(self, mu_err_point, err_norm_sq, theta_spawn=15.0, theta_prune=0.05):
         if err_norm_sq > theta_spawn and len(self.centroids) < self.k_max:

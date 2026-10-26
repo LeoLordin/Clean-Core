@@ -23,12 +23,12 @@ class CleanCoreProductionAgent:
         self.fe_history = []
         self.barycenter_L1 = POLE.copy()
 
-    def train_step(self, sensory_dict, target_motor_action=None):
+    def train_step(self, sensory_dict):
         raw_v = np.array(list(sensory_dict.values()), dtype=FP64)
         if raw_v.size == 0 or not np.all(np.isfinite(raw_v)):
             raise ValueError("sensory_dict must contain finite numeric observations")
-        if len(raw_v) < 15:
-            raw_v = np.pad(raw_v, (0, 15 - len(raw_v)))
+        if len(raw_v) < D_SPATIAL:
+            raw_v = np.pad(raw_v, (0, D_SPATIAL - len(raw_v)))
         mu_sensory = self.sensory.ground_sensory_vector(raw_v)
         self.barycenter_L1 = streaming_frechet_barycenter(
             self.barycenter_L1, [neuron.mu for neuron in self.neurons]
@@ -37,11 +37,11 @@ class CleanCoreProductionAgent:
         eps_list = []
         for n in self.neurons:
             _, eps = system1_fast_inference_step(n, mu_sensory, barycenter_L1)
-            eps_list.append(eps)
+            eps_list.append((n.mu.copy(), eps))
         selected_action, score_margin, m_poly = self.action_heuristic.select_action(raw_v)
         mu_self, T_intro = self.goedel.step_ego_reflection(eps_list, barycenter_L1)
         a_motor = self.motor.synthesize_motor_action(mu_self, m_poly)
-        state_error = float(np.mean([np.sum(e**2) for e in eps_list]))
+        state_error = float(np.mean([np.sum(error**2) for _, error in eps_list]))
         self.fe_history.append(state_error)
         return {
             "selected_action": selected_action,

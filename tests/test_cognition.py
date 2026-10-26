@@ -5,7 +5,14 @@ from clean_core.cognition.aixi_bridge import BoundedActionHeuristic, SolomonoffA
 from clean_core.cognition.causal_scm import NOTEARSCausalSCM
 from clean_core.cognition.goedel_reflection import GoedelEgoReflectionEngine
 from clean_core.config import POLE
-from clean_core.geometry.lorentz import exp_map, log_map, minkowski_dot, minkowski_norm_sq
+from clean_core.geometry.lorentz import (
+    exp_map,
+    get_boost_frame,
+    log_map,
+    minkowski_dot,
+    minkowski_norm_sq,
+    parallel_transport,
+)
 
 
 def test_bounded_action_heuristic_returns_score_gap_and_normalized_pressure():
@@ -64,6 +71,25 @@ def test_ego_reflection_lifts_tangent_velocity_at_non_pole_barycenter():
     np.testing.assert_allclose(minkowski_norm_sq(mu_self), -1.0, atol=1e-12)
     np.testing.assert_allclose(minkowski_norm_sq(introspection), -1.0, atol=1e-12)
     assert abs(minkowski_dot(barycenter, ego_tangent)) < 1e-12
+
+
+def test_ego_reflection_parallel_transports_errors_to_barycenter_frame():
+    engine = GoedelEgoReflectionEngine()
+    engine.W_self_v.fill(0.0)
+    barycenter = exp_map(POLE.copy(), np.array([0.0, 0.2, -0.1] + [0.0] * 13))
+    neuron_mu = exp_map(POLE.copy(), np.array([0.0, -0.15, 0.05] + [0.0] * 13))
+    error_local = np.linspace(-0.1, 0.1, 15)
+    error_ambient = get_boost_frame(neuron_mu) @ error_local
+    error_at_barycenter = parallel_transport(neuron_mu, barycenter, error_ambient)
+    error_expected = get_boost_frame(barycenter).T @ (np.diag([-1.0] + [1.0] * 15) @ error_at_barycenter)
+    expected_self = exp_map(
+        barycenter,
+        get_boost_frame(barycenter) @ (error_expected / 1.1),
+    )
+
+    actual_self, _ = engine.step_ego_reflection([(neuron_mu, error_local)], barycenter)
+
+    np.testing.assert_allclose(actual_self, expected_self, atol=1e-12)
 
 
 @pytest.mark.parametrize("observations", [[], [[1.0]], [np.nan]])

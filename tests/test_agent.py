@@ -35,3 +35,14 @@ def test_sensory_layer_always_returns_valid_hyperboloid_point(input_size):
 
     assert point.shape == (D_SPATIAL + 1,)
     assert abs(minkowski_norm_sq(point) + 1.0) < 1e-12
+
+
+def test_sensory_dirichlet_prior_affects_grounded_point():
+    observation = np.linspace(-1.0, 1.0, D_SPATIAL)
+    uniform = DirichletSensoryLayer(np.ones(D_SPATIAL))
+    biased_prior = DirichletSensoryLayer(np.arange(1, D_SPATIAL + 1))
+
+    uniform_point = uniform.ground_sensory_vector(observation)
+    biased_point = biased_prior.ground_sensory_vector(observation)
+
+    assert not np.allclose(uniform_point, biased_point)

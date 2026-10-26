@@ -16,6 +16,7 @@ from clean_core.estimation.fisher_rao import FisherRaoDLREstimator
 from clean_core.geometry.eikonal import godunov_fast_sweeping_solver
 from clean_core.core.inference import compute_maupertuis_conformal_drift, system1_fast_inference_step
 from clean_core.core.neuron import NeuronMicrostate
+from clean_core.core.quantizer import SoftVQQuantizer
 from clean_core.config import ETA_L
 
 
@@ -108,6 +109,22 @@ def test_dlr_update_keeps_covariance_factors_finite_and_orthonormal():
     np.testing.assert_allclose(estimator.V_basis.T @ estimator.V_basis, np.eye(3), atol=1e-6)
 
 
+def test_softvq_uses_hyperbolic_distances_and_normalized_soft_weights():
+    quantizer = SoftVQQuantizer(k_max=4, dim=D_SPATIAL)
+    quantizer.centroids = np.zeros((2, D_SPATIAL))
+    quantizer.centroids[1, 0] = 0.2
+    tangent = np.zeros(D_SPATIAL + 1)
+    tangent[1] = 0.05
+    point = exp_map(POLE.copy(), tangent)
+
+    selected, centroid, weights = quantizer.quantize_tangent(point)
+
+    assert selected == 0
+    np.testing.assert_allclose(centroid, POLE, atol=1e-12)
+    np.testing.assert_allclose(np.sum(weights), 1.0, atol=1e-12)
+    assert weights[0] > weights[1]
+
+
 def test_eikonal_fast_sweeping_uses_geodesic_edge_lengths():
     tangent = np.zeros(D_SPATIAL + 1)
     tangent[1] = 1.0
@@ -134,11 +151,12 @@ def test_conformal_drift_matches_local_frame_equation():
     velocity = np.linspace(-0.1, 0.1, D_SPATIAL)
     gradient = np.linspace(0.05, 0.15, D_SPATIAL)
     frame = get_boost_frame(mu)
-    gradient_local = frame.T @ (ETA_L * np.concatenate(([0.0], gradient)))
+    gradient_ambient = frame @ gradient
+    gradient_local = frame.T @ (ETA_L * gradient_ambient)
     expected = -np.dot(velocity, velocity) * gradient_local + 2 * np.dot(velocity, gradient_local) * velocity
 
     np.testing.assert_allclose(
-        compute_maupertuis_conformal_drift(mu, velocity, gradient), expected, atol=1e-12
+        compute_maupertuis_conformal_drift(mu, velocity, gradient_ambient), expected, atol=1e-12
     )
 
 

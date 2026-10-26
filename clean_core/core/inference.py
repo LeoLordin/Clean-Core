@@ -3,8 +3,15 @@ from clean_core.config import ETA_L, POLE, FP64, FP32
 from clean_core.geometry.lorentz import get_boost_frame, exp_map, log_map, minkowski_norm
 
 def compute_maupertuis_conformal_drift(mu, w, grad_ln_omega):
+    """Return conformal drift for an ambient tangent gradient at ``mu``."""
     E = get_boost_frame(mu)
-    internal_grad = E.T @ (ETA_L * np.pad(grad_ln_omega, (1, 0)))
+    grad_ln_omega = np.asarray(grad_ln_omega, dtype=FP64)
+    w = np.asarray(w, dtype=FP64)
+    if grad_ln_omega.shape != mu.shape:
+        raise ValueError(f"grad_ln_omega must have shape {mu.shape}")
+    if w.shape != (E.shape[1],):
+        raise ValueError(f"w must have shape ({E.shape[1]},)")
+    internal_grad = E.T @ (ETA_L * grad_ln_omega)
     speed_sq = float(np.dot(w, w))
     return -speed_sq * internal_grad + 2.0 * np.dot(w, internal_grad) * w
 
