@@ -12,8 +12,6 @@ This reference specification covers non-Euclidean geometric deep learning, activ
 
 **Reference profile:** ambient dimension $`d = 16`$, covariance rank $`r = 4`$, hidden dimension $`h_{\mathrm{dim}} = 32`$, and motor dimension $`d_{\mathrm{act}} = 8`$.
 
-The complete source document is preserved in [THEORY (org).md](THEORY%20%28org%29.md).
-
 ## Contents
 
 ### Preamble
