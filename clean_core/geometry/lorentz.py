@@ -12,7 +12,8 @@ def minkowski_norm(x):
 
 def chordal_distance(x, y):
     diff = x - y
-    return float(np.sqrt(max(0.0, minkowski_norm_sq(diff))))
+    chord = np.sqrt(max(0.0, minkowski_norm_sq(diff)))
+    return float(2.0 * np.arcsinh(0.5 * chord))
 
 def get_boost_frame(mu):
     mu_0 = mu[0]
@@ -44,6 +45,19 @@ def parallel_transport(x, y, v):
     d_xy = minkowski_norm(log_xy)
     if d_xy < 1e-6:
         return v.copy()
-    u = log_xy / d_xy
-    proj_u = minkowski_dot(u, v)
-    return v + (np.cosh(d_xy) - 1.0) * proj_u * u - np.sinh(d_xy) * proj_u * x
+    denominator = 1.0 - minkowski_dot(x, y)
+    return v + (minkowski_dot(v, y) / denominator) * (x + y)
+
+
+def streaming_frechet_barycenter(previous, points, step_size=0.2):
+    points = np.asarray(points, dtype=FP64)
+    previous = np.asarray(previous, dtype=FP64)
+    if points.ndim != 2 or points.shape[1] != D_LORENTZ or points.shape[0] == 0:
+        raise ValueError(f"points must have shape (n > 0, {D_LORENTZ})")
+    if previous.shape != (D_LORENTZ,):
+        raise ValueError(f"previous must have shape ({D_LORENTZ},)")
+    if not 0.0 <= step_size <= 1.0:
+        raise ValueError("step_size must be between 0 and 1")
+
+    mean_tangent = np.mean([log_map(previous, point) for point in points], axis=0)
+    return exp_map(previous, step_size * mean_tangent)

@@ -4,7 +4,7 @@
 Unified Lyapunov energy functional:
 
 ```math
-V(\mathbf{\Xi}(t)) = \frac{1}{2} \sum_{l=1}^L \sum_{i \in V^{(l)}} d_{\mathcal{H}^d}^2\left( \boldsymbol{\mu}_i^{(l)}(t), \overline{\boldsymbol{\mu}}^{(l)}(t) \right) + \frac{1}{2} \|\mathbf{a}(t) - \mathbf{a}_{\mathrm{target}}(t)\|^2 \ge 0
+V(\mathbf{\Xi}(t)) = \frac{1}{2} \sum_{l=1}^L \sum_{i \in V^{(l)}} d_{\mathcal{H}^{d-1}}^2\left( \boldsymbol{\mu}_i^{(l)}(t), \overline{\boldsymbol{\mu}}^{(l)}(t) \right) + \frac{1}{2} \|\mathbf{a}(t) - \mathbf{a}_{\mathrm{target}}(t)\|^2 \ge 0
 ```
 
 ```math

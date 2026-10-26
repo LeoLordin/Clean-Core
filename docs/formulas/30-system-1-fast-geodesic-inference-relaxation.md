@@ -3,7 +3,7 @@
 ### Section 30: System-1 Fast Geodesic Inference Relaxation
 
 ```math
-\boldsymbol{\mu}_i^{(l)}(\tau + 1) = \mathrm{Exp}_{\boldsymbol{\mu}_i^{(l)}(\tau)}^{\mathcal{H}^d}\left( E(\boldsymbol{\mu}_i^{(l)}(\tau)) \cdot \mathbf{w}_{\mathrm{relax}, i}^{(l)}(tau) \right), \quad \tau \in \{0, 1, \dots, K_{\mathrm{relax}}-1\}
+\boldsymbol{\mu}_i^{(l)}(\tau + 1) = \mathrm{Exp}_{\boldsymbol{\mu}_i^{(l)}(\tau)}^{\mathcal{H}^{d-1}}\left( E(\boldsymbol{\mu}_i^{(l)}(\tau)) \cdot \mathbf{w}_{\mathrm{relax}, i}^{(l)}(tau) \right), \quad \tau \in \{0, 1, \dots, K_{\mathrm{relax}}-1\}
 ```
 
 ```math

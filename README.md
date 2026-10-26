@@ -1,119 +1,91 @@
 # Clean Core 5.0 (`v0.1.0-alpha`)
-> **A Lightweight Non-Euclidean Active Inference Kernel on the $\mathcal{H}^{16}$ Lorentz Hyperboloid**
+> **A Lightweight Non-Euclidean Active Inference Kernel on the $\mathcal{H}^{15}$ Lorentz Hyperboloid**
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build: Passing](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
-[![Zero Dependencies](https://img.shields.io/badge/dependencies-numpy%20%7C%20scipy-orange.svg)]()
 
 ---
 
-> ⚠️ **Project Status: Early-Stage Research Prototype (`v0.1.0-alpha`)**  
-> **Clean Core 5.0** is an open, exploratory Proof of Concept synthesizing non-Euclidean differential geometry, Active Inference, and algorithmic information theory. 
-> 
-> * **Theoretical Formulations:** The mathematical models in [`docs/THEORY.md`](docs/THEORY.md) represent an ambitious theoretical synthesis. While dimensionally consistent, certain derivations contain idealized assumptions, and mathematical typos or edge-case inconsistencies **may be present**.
-> * **Code Implementation:** The current codebase is an initial algorithmic prototype demonstrating core mechanics (geodesic stability, Eikonal graph wave propagation, and zero-reward Active Inference). It is **not yet production-hardened**.
-> 
-> **We treat this repository as an open scientific whiteboard.** We warmly welcome peer review, mathematical critiques, bug reports, and contributions! If you spot an error in the derivations or numerical instabilities in the code, please open an [Issue](../../issues) or submit a Pull Request.
+> ⚠️ **Project Status: Early-Stage Research Alpha (`v0.1.0-alpha`)**
+> **Clean Core 5.0** is an open, exploratory research prototype. Errors, omissions, inconsistencies, and untested assumptions may exist in both the mathematical theory and the code. The theory is not a formal proof, and the runtime is not production software or a complete implementation of every theoretical section.
+>
+> **Help is welcome across the whole project:** mathematical derivations, assumptions and notation, geometry and numerical methods, algorithms, implementation, tests, benchmarks, documentation, and reproducibility. Please open an [Issue](../../issues) to discuss questions or report problems, or submit a Pull Request with focused changes and tests where practical.
 
 ---
 
 ## ⚡ Overview
 
-**Clean Core 5.0** is an experimental, dependency-minimal cognitive architecture built from first principles. It unifies **pseudo-Riemannian geometry**, **Friston's Active Inference (Free Energy Principle)**, and **structural causal discovery** into a single deterministic, closed-loop control system.
+**Clean Core 5.0** is an experimental Python research prototype exploring Lorentz-hyperboloid geometry and active-inference-inspired control. The code contains standalone components and demos; it does not yet integrate every module described in the theory documents into one validated cognitive architecture.
 
-Instead of scaling parameter-heavy autoregressive models (Transformers) with high thermodynamic footprint, Clean Core operates as an active dynamical system moving along geodesics on a 16-dimensional Lorentz hyperboloid manifold $\mathcal{H}^{16}$.
+Instead of scaling parameter-heavy autoregressive models (Transformers) with high thermodynamic footprint, Clean Core operates as an active dynamical system moving along geodesics on a 16-dimensional Lorentz hyperboloid manifold $\mathcal{H}^{15}$.
 
 ```
                [ Sensory Packets (Dirichlet Layer) ]
                                │
                                ▼
         ┌──────────────────────────────────────────────┐
-        │       16D LORENTZ HYPERBOLOID (H^16)         │
+       │       R^16 LORENTZ SPACE / H^15 SHEET        │
         │   Weierstrass Embedding: -x0^2 + ∑xi^2 = -1   │
         └──────────────────────┬───────────────────────┘
                                │
         ┌──────────────────────┼───────────────────────┐
         ▼                      ▼                       ▼
- [ System-1 Fast ]      [ Eikonal Wave ]      [ Causal SCM ]
- Geodesic Step via     Godunov Graph Solver    NOTEARS via Real
- Lorentz Boost E(μ)     on Dynamic Meshes      Schur Decoupling
+ [ Geodesic Core ]     [ Graph Action ]       [ NOTEARS Prototype ]
+ Tested manifold      Godunov-style solver    Bounded adjacency update
+ maps and transport   on hyperbolic edges     with log acyclicity
         │                      │                       │
         └──────────────────────┼───────────────────────┘
                                │
                                ▼
-     [ Expected Free Energy (EFE) Motor Synthesis: a(t) ]
+ [ Bounded score heuristic ] -> [ bounded motor vector ]
 ```
 
 ---
 
-## 🔬 Core Architectural Pillars
+## Implemented Components
 
-1. **Pseudo-Riemannian Geodesic Engine (`clean_core/geometry/lorentz.py`)**
-   * Implements strict Lorentz metric signature $(-, +, +, \dots, +)$ in $\mathbb{R}^{16}$.
-   * Continuous Weierstrass parameterization: $\mu_0 = \sqrt{1.0 + \sum_{i=1}^{15} \mu_i^2}$.
-   * Preserves Minkowski pseudo-norm invariant $\langle \boldsymbol{\mu}, \boldsymbol{\mu} \rangle_{\mathcal{L}} \equiv -1.0$ with numerical precision bounded by **$\sim 10^{-16}$ (3 machine epsilons)** over 10,000+ stochastic steps.
-   * Analytical Lorentz boost tetrad frame $E(\boldsymbol{\mu})$ and geodesic parallel transport.
+The current code provides experimental implementations of:
 
-2. **Graph Eikonal Wavefronts (`clean_core/geometry/eikonal.py`)**
-   * Viscous Hamilton-Jacobi-Bellman PDE solver mapped to neural graph adjacency.
-   * Solves quadratic Godunov upwind schemes: $B_m^2 - A_m(C_m - n_i^2) \ge 0$ across metric graphs.
+* Lorentz-hyperboloid exponential/logarithmic maps, orthonormal boost frames, and tested parallel transport.
+* A graph-based Godunov-style action solver using hyperbolic edge distances.
+* DLR covariance tracking with Oja-QR and Woodbury precision calculation.
+* A bounded observation-score heuristic. It is **not** a Solomonoff/AIXI solver and does not provide a certified safety margin.
+* A small stateful agent and a separate hand-tuned CartPole-like control demo.
 
-3. **Curvature-Bounded Causal Discovery (`clean_core/cognition/causal_scm.py`)**
-   * Continuous DAG learning via NOTEARS acyclicity constraint $h(A) = \mathrm{Tr}(e^{A \circ A}) - d = 0$.
-   * Strict spectral radius regularization $\rho(A) \le 0.95$ enforced through real Schur decomposition ($A = Z T Z^\top$).
-
-4. **Dynamic Topological Vocabulary (`clean_core/core/quantizer.py`)**
-   * Tangent-space SoftVQ quantizer with spontaneous centroid emergence (`prune_and_spawn`).
-   * Spawns new concept vectors when epistemic prediction error exceeds threshold $\theta_{\text{spawn}}$.
-
-5. **Symplectic Integration & Phase Memory (`clean_core/geometry/symplectic.py` & `memory/`)**
-   * Midpoint momentum-conserving integration on cotangent bundles $T^*\mathcal{H}^{16}$.
-   * Holographic phase memory indexed by Harish-Chandra spherical functions and Plancherel measure $\lambda \tanh(\pi \lambda)$.
+The remaining equations in the theory documents are research targets or simplified prototypes, not claims of complete runtime support.
 
 ---
 
-## 🚀 Quickstart & Verification (30 Seconds)
+## Quickstart and Tests
 
 ### Installation
-No massive PyTorch/CUDA wheels required. Runs on pure **NumPy** and **SciPy**:
+The package requires NumPy and SciPy. Install the package and test dependencies with:
 
 ```bash
-git clone https://github.com/LeoLordin/Clean-Core-5.0.git
-cd Clean-Core-5.0
-pip install -r requirements.txt
+git clone https://github.com/LeoLordin/Clean-Core.git
+cd Clean-Core
+python -m pip install -e ".[test]"
+python -m pytest
 ```
 
-### Run Production Capability Benchmark
-Verifies geodesic invariants, polyhedral bounds, and measures agent TPS (Ticks Per Second):
+### Run Smoke Benchmark
+Runs a short geometry check and agent loop. The printed timings are machine-dependent and are not performance guarantees:
 
 ```bash
-python test_production_capabilities.py
-```
-
-**Expected Output:**
-```text
-================================================================================
-   CLEAN CORE 5.0 — PRODUCTION CAPABILITIES BENCHMARK (clean_core_package)
-================================================================================
-[MODULE 1/3] Geometry H^16: Drift <mu, mu>_L = 2.22e-16 | Time = ~45 ms
-[MODULE 2/3] AIXI Polyhedral Decider: a*=0, eps_safe=0.5000
-[MODULE 3/3] Agent 1000 steps: ~0.85 sec (~1170.0 TPS)
-================================================================================
+python smoke_capabilities.py
 ```
 
 ---
 
-## 🕹️ Autonomous Zero-Reward Benchmark (CartPole-v1)
+## Standalone CartPole-Like Demo
 
-Clean Core includes a standalone Lagrangian physics benchmark showing how **Active Inference stabilizes chaotic dynamical systems without external rewards ($R_{\text{ext}} = 0$)**:
+This script contains its own small CartPole-like physics simulation and a hand-tuned linear state-feedback controller. It is not Gymnasium's `CartPole-v1` and does not validate the full agent or establish general active-inference performance:
 
 ```bash
 python gym_cartpole_challenge/test_cartpole_active_inference.py
 ```
 
-* **Convergence:** Balances an inverted pendulum for the maximum 500/500 ticks within **2 episodes**.
-* **Mechanism:** The agent treats falling angles as a sudden spike in Variational Free Energy relative to a homeostatic prior preference $p^*(s) = [0, 0, 0, 0]^\top$.
+The initial state and controller gains are fixed in the script. Results are illustrative and should not be treated as a benchmark comparison.
 
 ---
 
@@ -122,20 +94,20 @@ python gym_cartpole_challenge/test_cartpole_active_inference.py
 ```text
 clean_core/
 ├── config.py              # Reference Profile (D=16, d=15, FP64/FP32 layout)
-├── agent.py               # CleanCoreProductionAgent high-level runtime
-├── geometry/              # Lorentz metrics, Boost frames, Symplectic steps, Eikonal
+├── agent.py               # Experimental CleanCoreProductionAgent pipeline
+├── geometry/              # Lorentz metrics, Boost frames, projected steps, Eikonal
 ├── estimation/            # Fisher-Rao DLR factorization, K-FAC Natural Gradients
-├── core/                  # 64-byte aligned Neuron states, SoftVQ, Fast Inference
-├── cognition/             # Polyhedral bounds, NOTEARS SCM, Goedel reflection
+├── core/                  # Python neuron states, SoftVQ prototype, fast inference
+├── cognition/             # Bounded action heuristic, NOTEARS prototype, reflection
 ├── memory/                # Harish-Chandra holography, Sleep Replay Anti-Livelock
 └── interfaces/            # Dirichlet sensory grounding, Motor EFE controllers
 ```
 
 ---
 
-## 🗺️ Roadmap & Open Invitation (v0.2.0)
+## Roadmap and Contributions
 
-We believe the path to general intelligence lies in geometry and physics, not brute-force token prediction. Clean Core is an open architectural foundation.
+Clean Core is an open research prototype. Contributions should distinguish measured behavior from theoretical proposals.
 
 We actively welcome Pull Requests and contributions:
 * [ ] **C++20 / CUDA Acceleration:** Porting `lorentz.py` to custom CUDA kernels via `pybind11`.
@@ -145,11 +117,12 @@ We actively welcome Pull Requests and contributions:
 
 If you are a mathematician, systems programmer, or AI safety researcher — feel free to fork, open an issue, and submit a PR!
 
+See the [contribution guide](CONTRIBUTING.md) and [runtime implementation status](docs/IMPLEMENTATION_STATUS.md) before proposing changes to theoretical modules.
+
 ---
 
 ## 📚 Mathematical Specification
-For the complete, rigorous theoretical derivation (Sections 1–38, Lie-Euler-Maruyama dynamics, 
-Hamiltonian mechanics, and causal Do-calculus), see our [Full Theory Document](docs/THEORY.md).
+For the research specification and notation (Sections 1–38), see the [theory index](docs/THEORY.md). Check the [implementation status matrix](docs/IMPLEMENTATION_STATUS.md) before assuming a section is implemented or independently validated.
 
 ---
 

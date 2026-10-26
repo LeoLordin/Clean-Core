@@ -2,15 +2,15 @@
 
 ### State Variables and Dynamic Vector Fields
 * $`\mathbf{\Xi}_i^{(l)}(t)`$: Full microstate supervector of neuron $`i`$ in layer $`l`$ ($`16\,768\text{ bytes}`$).
-* $`\mathbf{\Gamma}_i^{(l)}(t) = (\boldsymbol{\mu}_i^{(l)}, \mathbf{p}_i^{(l)})`$: Canonical phase point in $`T^{*}\mathcal{H}^d`$ ($`256\text{ bytes}`$ FP64).
-* $`\boldsymbol{\mu}_i^{(l)}(t) \in \mathcal{H}^d`$: Coordinate vector on the Lorentz hyperboloid ($`128\text{ bytes}`$ FP64).
-* $`\mathbf{p}_i^{(l)}(t) \in T_{\boldsymbol{\mu}_i^{(l)}}^{*}\mathcal{H}^d`$: Canonical momentum vector ($`128\text{ bytes}`$ FP64).
-* $`\overline{\boldsymbol{\mu}}^{(l)}(t) \in \mathcal{H}^d`$: Running Fréchet barycenter of layer $`l`$ ($`128\text{ bytes}`$ FP64).
-* $`\boldsymbol{\mu}_{\mathrm{pred}, i}^{(l)}(t) \in \mathcal{H}^d`$: Downward top-down prediction coordinate on the manifold.
-* $`\boldsymbol{\mu}_{\mathrm{self}}^{*}(t) \in \mathcal{H}^d`$: Instantaneous ego-identity coordinate of the Gödelian operator.
-* $`\overline{\mathcal{T}}_{\mathrm{introspect}}(t) \in \mathcal{H}^d`$: Running continuous introspection trajectory.
-* $`\boldsymbol{\mu}_0^{(0)}(t) \in \mathcal{H}^d`$: Pinned Dirichlet sensory input vector.
-* $`\mathbf{v}_i^{(l)}(t) \in T_{\boldsymbol{\mu}_i}\mathcal{H}^d`$: Physical tangent velocity vector on the hyperboloid.
+* $`\mathbf{\Gamma}_i^{(l)}(t) = (\boldsymbol{\mu}_i^{(l)}, \mathbf{p}_i^{(l)})`$: Canonical phase point in $`T^{*}\mathcal{H}^{d-1}`$ ($`256\text{ bytes}`$ FP64).
+* $`\boldsymbol{\mu}_i^{(l)}(t) \in \mathcal{H}^{d-1}`$: Coordinate vector on the Lorentz hyperboloid ($`128\text{ bytes}`$ FP64).
+* $`\mathbf{p}_i^{(l)}(t) \in T_{\boldsymbol{\mu}_i^{(l)}}^{*}\mathcal{H}^{d-1}`$: Canonical momentum vector ($`128\text{ bytes}`$ FP64).
+* $`\overline{\boldsymbol{\mu}}^{(l)}(t) \in \mathcal{H}^{d-1}`$: Running Fréchet barycenter of layer $`l`$ ($`128\text{ bytes}`$ FP64).
+* $`\boldsymbol{\mu}_{\mathrm{pred}, i}^{(l)}(t) \in \mathcal{H}^{d-1}`$: Downward top-down prediction coordinate on the manifold.
+* $`\boldsymbol{\mu}_{\mathrm{self}}^{*}(t) \in \mathcal{H}^{d-1}`$: Instantaneous ego-identity coordinate of the Gödelian operator.
+* $`\overline{\mathcal{T}}_{\mathrm{introspect}}(t) \in \mathcal{H}^{d-1}`$: Running continuous introspection trajectory.
+* $`\boldsymbol{\mu}_0^{(0)}(t) \in \mathcal{H}^{d-1}`$: Pinned Dirichlet sensory input vector.
+* $`\mathbf{v}_i^{(l)}(t) \in T_{\boldsymbol{\mu}_i}\mathcal{H}^{d-1}`$: Physical tangent velocity vector on the hyperboloid.
 * $`\mathbf{w}_i^{(l)}(t) \in \mathbb{R}^{d-1}`$: Inference velocity in the local orthonormal tetrad frame ($`120\text{ bytes}`$ FP64).
 * $`\mathbf{w}_{\mathrm{det}, i}^{(l)}(t), \mathbf{w}_{\mathrm{raw}, i}^{(l)}(t)`$: Deterministic and raw unclipped stochastic velocity registers ($`120\text{ bytes}`$ FP64).
 * $`\mathbf{w}_{\mathrm{geodesic}, i}^{(l)}(t)`$: Optical geodesic velocity vector derived from the Eikonal action gradient.
@@ -20,7 +20,7 @@
 * $`\tilde{\mathbf{v}}_{\mathrm{conformal}, i}^{(l)}(t)`$: Fictitious conformal drift force vector.
 * $`\tilde{\mathbf{v}}_{\mathrm{bottom-up}, i}^{(l)}(t)`$: Bottom-up prediction error forces from child neurons in layer $`l-1`$.
 * $`v_{\mathrm{self}}^{*}(t) \in \mathbb{R}^{d-1}`$: Fixed-point coordinates of the ego-operator in the top layer barycenter frame.
-* $`\boldsymbol{\varepsilon}_i^{(l)}(t) \in T_{\boldsymbol{\mu}_i}\mathcal{H}^d`$: Tangent prediction error vector between state and prediction.
+* $`\boldsymbol{\varepsilon}_i^{(l)}(t) \in T_{\boldsymbol{\mu}_i}\mathcal{H}^{d-1}`$: Tangent prediction error vector between state and prediction.
 * $`\tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) \in \mathbb{R}^{d-1}`$: Local frame prediction error vector ($`60\text{ bytes}`$ FP32).
 * $`\mathbf{a}(t) \in [-1, 1]^{d_{\mathrm{act}}}`$: Continuous motor action vector ($`32\text{ bytes}`$ FP32).
 * $`\mathbf{a}_{\mathrm{target}}(t)`$: Target motor action synthesized by the wave and ToM modules ($`32\text{ bytes}`$ FP32).

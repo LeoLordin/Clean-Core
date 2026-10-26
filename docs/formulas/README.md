@@ -1,5 +1,7 @@
 # Mathematical Foundations and Dynamical Equations
 
+> These equations are a research specification. They are not all implemented in the runtime, and passing code tests does not establish the mathematical validity of every derivation.
+
 ## Part I: Mathematical Foundations & Dynamical Equations
 
 ---

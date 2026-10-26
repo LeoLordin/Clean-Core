@@ -4,13 +4,13 @@
 Continuous Eikonal equation with Laplace-Beltrami viscosity regularization:
 
 ```math
-\left\| \nabla_{\mathcal{H}^d} S(\boldsymbol{\mu}) \right\|_{\mathcal{L}}^2 - \varepsilon_{\mathrm{visc}} \Delta_{\mathcal{H}^d} S(\boldsymbol{\mu}) = n^2(\boldsymbol{\mu}) = \frac{1}{\Omega^2(\boldsymbol{\mu})}
+\left\| \nabla_{\mathcal{H}^{d-1}} S(\boldsymbol{\mu}) \right\|_{\mathcal{L}}^2 - \varepsilon_{\mathrm{visc}} \Delta_{\mathcal{H}^{d-1}} S(\boldsymbol{\mu}) = n^2(\boldsymbol{\mu}) = \frac{1}{\Omega^2(\boldsymbol{\mu})}
 ```
 
 Discrete Godunov upwind scheme on the neural connectivity graph $`\mathcal{N}(i)`$:
 
 ```math
-\sum_{k=1}^m \frac{\left( S_i - S_{(k)} \right)^2}{d_{\mathcal{H}^d}^2\left( \boldsymbol{\mu}_i^{(l)}, \boldsymbol{\mu}_{(k)}^{(l)} \right)} - \varepsilon_{\mathrm{visc}} \left( \Delta_{\mathcal{H}^d} S \right)_i = \frac{1}{\Omega^2\left(\boldsymbol{\mu}_i^{(l)}\right)}, \quad S_{(1)} \le S_{(2)} \le \dots \le S_{(m)} < S_i
+\sum_{k=1}^m \frac{\left( S_i - S_{(k)} \right)^2}{d_{\mathcal{H}^{d-1}}^2\left( \boldsymbol{\mu}_i^{(l)}, \boldsymbol{\mu}_{(k)}^{(l)} \right)} - \varepsilon_{\mathrm{visc}} \left( \Delta_{\mathcal{H}^{d-1}} S \right)_i = \frac{1}{\Omega^2\left(\boldsymbol{\mu}_i^{(l)}\right)}, \quad S_{(1)} \le S_{(2)} \le \dots \le S_{(m)} < S_i
 ```
 
 Analytical root update via the Fast Sweeping method:
@@ -26,7 +26,7 @@ S_i = \frac{B_m + \sqrt{\max\left( 0.0, B_m^2 - A_m \left( C_m - \frac{1}{\Omega
 Optical velocity vector:
 
 ```math
-\mathbf{w}_{\mathrm{geodesic}, i}^{(l)}(t) = -v_{\max} \cdot \frac{E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^d} S\left(\boldsymbol{\mu}_i^{(l)}\right)}{\max\left(\delta_{\mathrm{eps}}, \left\| \nabla_{\mathcal{H}^d} S\left(\boldsymbol{\mu}_i^{(l)}\right) \right\|_{\mathcal{L}}\right)}
+\mathbf{w}_{\mathrm{geodesic}, i}^{(l)}(t) = -v_{\max} \cdot \frac{E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^{d-1}} S\left(\boldsymbol{\mu}_i^{(l)}\right)}{\max\left(\delta_{\mathrm{eps}}, \left\| \nabla_{\mathcal{H}^{d-1}} S\left(\boldsymbol{\mu}_i^{(l)}\right) \right\|_{\mathcal{L}}\right)}
 ```
 
 ---

@@ -20,7 +20,7 @@ Levi-Civita connection transformation on the conformal hyperboloid:
 Closed-form fictitious conformal drift force in local orthonormal tetrad coordinates:
 
 ```math
-\tilde{\mathbf{v}}_{\mathrm{conformal}, i}^{(l)}(t) = -\|\mathbf{w}_i^{(l)}(t)\|_2^2 \cdot E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^d} \ln \Omega\left(\boldsymbol{\mu}_i^{(l)}\right) + 2 \left( \left(\mathbf{w}_i^{(l)}(t)\right)^\top E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^d} \ln \Omega\left(\boldsymbol{\mu}_i^{(l)}\right) \right) \mathbf{w}_i^{(l)}(t)
+\tilde{\mathbf{v}}_{\mathrm{conformal}, i}^{(l)}(t) = -\|\mathbf{w}_i^{(l)}(t)\|_2^2 \cdot E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^{d-1}} \ln \Omega\left(\boldsymbol{\mu}_i^{(l)}\right) + 2 \left( \left(\mathbf{w}_i^{(l)}(t)\right)^\top E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^{d-1}} \ln \Omega\left(\boldsymbol{\mu}_i^{(l)}\right) \right) \mathbf{w}_i^{(l)}(t)
 ```
 
 ---

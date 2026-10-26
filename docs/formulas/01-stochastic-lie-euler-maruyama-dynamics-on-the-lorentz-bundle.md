@@ -10,17 +10,17 @@ Evolution occurs across three distinct physical timescales:
 The sensory layer $`l=0`$ is pinned via a strict Dirichlet boundary condition:
 
 ```math
-\boldsymbol{\mu}_0^{(0)}(t) = \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^d}\left( \mathbf{v}_{\mathrm{bundle}}(t) \right) \in \mathcal{H}^d, \quad \mathbf{w}_0^{(0)}(t) \equiv \mathbf{0}
+\boldsymbol{\mu}_0^{(0)}(t) = \mathrm{Exp}_{\mathbf{o}}^{\mathcal{H}^{d-1}}\left( \mathbf{v}_{\mathrm{bundle}}(t) \right) \in \mathcal{H}^{d-1}, \quad \mathbf{w}_0^{(0)}(t) \equiv \mathbf{0}
 ```
 
 Zero-phase-lag Fréchet barycenter streaming estimator across layers $`l \in \{1, \dots, L\}`$:
 
 ```math
-\overline{\boldsymbol{\mu}}^{(l)}(t) = \begin{cases} \mathbf{o} = (1, 0, \dots, 0)^\top, & t = 0 \\ \mathrm{Exp}_{\overline{\boldsymbol{\mu}}^{(l)}(t-\Delta t)}^{\mathcal{H}^d}\left( \gamma_{\mathrm{bary}} \cdot \mathbf{v}_{\mathrm{bary}}^{(l)}(t) \right), & t > 0 \end{cases}
+\overline{\boldsymbol{\mu}}^{(l)}(t) = \begin{cases} \mathbf{o} = (1, 0, \dots, 0)^\top, & t = 0 \\ \mathrm{Exp}_{\overline{\boldsymbol{\mu}}^{(l)}(t-\Delta t)}^{\mathcal{H}^{d-1}}\left( \gamma_{\mathrm{bary}} \cdot \mathbf{v}_{\mathrm{bary}}^{(l)}(t) \right), & t > 0 \end{cases}
 ```
 
 ```math
-\mathbf{v}_{\mathrm{bary}}^{(l)}(t) = \frac{1}{|V^{(l)}|} \sum_{j \in V^{(l)}} \mathrm{Log}_{\overline{\boldsymbol{\mu}}^{(l)}(t-\Delta t)}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_j^{(l)}(t) \right) \in T_{\overline{\boldsymbol{\mu}}^{(l)}}\mathcal{H}^d
+\mathbf{v}_{\mathrm{bary}}^{(l)}(t) = \frac{1}{|V^{(l)}|} \sum_{j \in V^{(l)}} \mathrm{Log}_{\overline{\boldsymbol{\mu}}^{(l)}(t-\Delta t)}^{\mathcal{H}^{d-1}}\left( \boldsymbol{\mu}_j^{(l)}(t) \right) \in T_{\overline{\boldsymbol{\mu}}^{(l)}}\mathcal{H}^{d-1}
 ```
 
 Canonical closed-form orthonormal Lorentz boost tetrad frame:
@@ -36,7 +36,7 @@ E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} E\le
 Chordal distance to the layer barycenter and kinematic Laplace-Beltrami drift regulator:
 
 ```math
-r_i^{(l)}(t) = d_{\mathcal{H}^d}\left( \boldsymbol{\mu}_i^{(l)}(t), \overline{\boldsymbol{\mu}}^{(l)}(t) \right) = 2 \mathrm{arcsinh}\left( \frac{1}{2} \sqrt{\max\left( 0.0, \left\langle \boldsymbol{\mu}_i^{(l)}(t) - \overline{\boldsymbol{\mu}}^{(l)}(t), \boldsymbol{\mu}_i^{(l)}(t) - \overline{\boldsymbol{\mu}}^{(l)}(t) \right\rangle_{\mathcal{L}} \right)} \right)
+r_i^{(l)}(t) = d_{\mathcal{H}^{d-1}}\left( \boldsymbol{\mu}_i^{(l)}(t), \overline{\boldsymbol{\mu}}^{(l)}(t) \right) = 2 \mathrm{arcsinh}\left( \frac{1}{2} \sqrt{\max\left( 0.0, \left\langle \boldsymbol{\mu}_i^{(l)}(t) - \overline{\boldsymbol{\mu}}^{(l)}(t), \boldsymbol{\mu}_i^{(l)}(t) - \overline{\boldsymbol{\mu}}^{(l)}(t) \right\rangle_{\mathcal{L}} \right)} \right)
 ```
 
 ```math
@@ -74,20 +74,20 @@ H_{\mathrm{neuron}}(\boldsymbol{\mu}, \mathbf{p}) = \frac{1}{2 \Omega^2(\boldsym
 ```
 
 ```math
-\frac{\mathrm{d}\boldsymbol{\mu}}{\mathrm{d}t} = \frac{1}{\Omega^2(\boldsymbol{\mu})} \boldsymbol{\eta}_{\mathcal{L}}^{-1} \mathbf{p}, \qquad \frac{\mathrm{d}\mathbf{p}}{\mathrm{d}t} = -\nabla_{\mathcal{H}^d} \mathcal{F}_{\mathrm{pragmatic}}^{\mathrm{Sylvester}}(\boldsymbol{\mu}) + \frac{\nabla \Omega}{\Omega^3} \langle \mathbf{p}, \mathbf{p} \rangle_{\mathcal{L}}
+\frac{\mathrm{d}\boldsymbol{\mu}}{\mathrm{d}t} = \frac{1}{\Omega^2(\boldsymbol{\mu})} \boldsymbol{\eta}_{\mathcal{L}}^{-1} \mathbf{p}, \qquad \frac{\mathrm{d}\mathbf{p}}{\mathrm{d}t} = -\nabla_{\mathcal{H}^{d-1}} \mathcal{F}_{\mathrm{pragmatic}}^{\mathrm{Sylvester}}(\boldsymbol{\mu}) + \frac{\nabla \Omega}{\Omega^3} \langle \mathbf{p}, \mathbf{p} \rangle_{\mathcal{L}}
 ```
 
 Total internal dynamic forces of inference:
 
 ```math
 \begin{aligned}
-\tilde{\mathbf{v}}_{\mathrm{forces}, i}^{(l)}(t) &= \pi_i^{(l)}(t) \sigma_\beta \tilde{\mathbf{\Pi}}_i^{(l)}(t) \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) + \alpha_{\mathrm{damp}}(t) \cdot \epsilon_0 \cdot f_{\mathrm{drift\_safe}}\left( r_i^{(l)}(t) \right) E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\boldsymbol{\mu}_i^{(l)}}^{\mathcal{H}^d}\left( \overline{\boldsymbol{\mu}}^{(l)} \right) \\
+\tilde{\mathbf{v}}_{\mathrm{forces}, i}^{(l)}(t) &= \pi_i^{(l)}(t) \sigma_\beta \tilde{\mathbf{\Pi}}_i^{(l)}(t) \tilde{\boldsymbol{\varepsilon}}_i^{(l)}(t) + \alpha_{\mathrm{damp}}(t) \cdot \epsilon_0 \cdot f_{\mathrm{drift\_safe}}\left( r_i^{(l)}(t) \right) E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\boldsymbol{\mu}_i^{(l)}}^{\mathcal{H}^{d-1}}\left( \overline{\boldsymbol{\mu}}^{(l)} \right) \\
 &\quad + \tilde{\mathbf{\Delta}}_{\mathrm{fast}, i}^{(l)}(t) + \tilde{\mathbf{v}}_{\mathrm{bottom-up}, i}^{(l)}(t) + \tilde{\mathbf{v}}_{\mathrm{conformal}, i}^{(l)}(t) + E\left(\boldsymbol{\mu}_i^{(l)}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \frac{\nabla \Omega}{\Omega^3} \langle \mathbf{p}_i^{(l)}, \mathbf{p}_i^{(l)} \rangle_{\mathcal{L}} - \left( \lambda_2(t) + \rho_2 \max\left(0.0, \mathcal{C}_2(\mathbf{\Xi}) - C_2^{*}\right) \right) \mathbf{w}_i^{(l)}(t-\Delta t)
 \end{aligned}
 ```
 
 ```math
-\tilde{\mathbf{v}}_{\mathrm{bottom-up}, i}^{(l)}(t) = \sum_{k \in \mathrm{children}(i)} E_{ik}^{(l)}(t) \cdot E\left(\boldsymbol{\mu}_i^{(l)}(t)\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\boldsymbol{\mu}_i^{(l)}(t)}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_{\mathrm{pred}, k}^{(l-1)}(t) \right)
+\tilde{\mathbf{v}}_{\mathrm{bottom-up}, i}^{(l)}(t) = \sum_{k \in \mathrm{children}(i)} E_{ik}^{(l)}(t) \cdot E\left(\boldsymbol{\mu}_i^{(l)}(t)\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\boldsymbol{\mu}_i^{(l)}(t)}^{\mathcal{H}^{d-1}}\left( \boldsymbol{\mu}_{\mathrm{pred}, k}^{(l-1)}(t) \right)
 ```
 
 Unconditionally $`A`$-stable semi-implicit velocity splitting with CFL-calibrated Langevin noise:
@@ -113,7 +113,7 @@ Nonlinear Euclidean velocity clamping:
 Canonical tangent lift and geodesic exponential stepping:
 
 ```math
-\mathbf{v}_i^{(l)}(t) = E\left(\boldsymbol{\mu}_i^{(l)}(t)\right) \mathbf{w}_i^{(l)}(t) \in T_{\boldsymbol{\mu}_i^{(l)}}\mathcal{H}^d, \quad \|\mathbf{v}_i^{(l)}(t)\|_{\mathcal{L}} \equiv \|\mathbf{w}_i^{(l)}(t)\|_2
+\mathbf{v}_i^{(l)}(t) = E\left(\boldsymbol{\mu}_i^{(l)}(t)\right) \mathbf{w}_i^{(l)}(t) \in T_{\boldsymbol{\mu}_i^{(l)}}\mathcal{H}^{d-1}, \quad \|\mathbf{v}_i^{(l)}(t)\|_{\mathcal{L}} \equiv \|\mathbf{w}_i^{(l)}(t)\|_2
 ```
 
 ```math

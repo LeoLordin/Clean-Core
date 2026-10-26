@@ -8,9 +8,13 @@
 
 ## Overview
 
+> **Status:** Research specification, not a formal proof or a claim of complete implementation. Runtime coverage and tested behavior are summarized in the repository [README](../README.md). Some algorithms below are theoretical targets or simplified prototypes.
+
 This reference specification covers non-Euclidean geometric deep learning, active inference, symplectic mechanics, algorithmic information theory, causal discovery, and systems architecture.
 
 **Reference profile:** ambient dimension $`d = 16`$, covariance rank $`r = 4`$, hidden dimension $`h_{\mathrm{dim}} = 32`$, and motor dimension $`d_{\mathrm{act}} = 8`$.
+
+For code-to-theory coverage, see the [runtime implementation status](IMPLEMENTATION_STATUS.md).
 
 ## Contents
 
@@ -63,7 +67,7 @@ This reference specification covers non-Euclidean geometric deep learning, activ
 
 - [Algorithm 1: Multimodal Dirichlet Sensory Grounding ($`l=0`$)](algorithms/01-multimodal-dirichlet-sensory-grounding.md)
 - [Algorithm 2: System-1 Fast Geodesic Inference Step ($`\epsilon_0 \sim 1\text{ ms}`$)](algorithms/02-system-1-fast-geodesic-inference-step.md)
-- [Algorithm 3: Symplectic Implicit Midpoint Step on Cotangent Bundle $`T^{*}\mathcal{H}^{16}`$](algorithms/03-symplectic-implicit-midpoint-step-on-cotangent-bundle.md)
+- [Algorithm 3: Symplectic Implicit Midpoint Step on Cotangent Bundle $`T^{*}\mathcal{H}^{15}`$](algorithms/03-symplectic-implicit-midpoint-step-on-cotangent-bundle.md)
 - [Algorithm 4: Fast Sweeping Eikonal Wavefront Solver](algorithms/04-fast-sweeping-eikonal-wavefront-solver.md)
 - [Algorithm 5: Linearized Cole-Hopf & Polyhedral AIXI Motor Synthesis](algorithms/05-linearized-cole-hopf-and-polyhedral-aixi-motor-synthesis.md)
 - [Algorithm 6: Gödelian Ego-Reflection via Adjoint Resolvents](algorithms/06-godelian-ego-reflection-via-adjoint-resolvents.md)

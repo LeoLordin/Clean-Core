@@ -1,7 +1,9 @@
 [Back to theory contents](../THEORY.md)
 
 ### Section 3: Symplectic Implicit Midpoint Integrator on Cotangent Bundle
-The phase point $`\mathbf{\Gamma}_i^{(l)} = (\boldsymbol{\mu}_i^{(l)}, \mathbf{p}_i^{(l)}) \in T^{*}\mathcal{H}^d`$ obeys strict algebraic constraints:
+
+> **Implementation status:** The runtime currently provides a projected kick-drift step, not the constrained implicit midpoint solve described below. It does not currently prove preservation of the canonical symplectic 2-form.
+The phase point $`\mathbf{\Gamma}_i^{(l)} = (\boldsymbol{\mu}_i^{(l)}, \mathbf{p}_i^{(l)}) \in T^{*}\mathcal{H}^{d-1}`$ obeys strict algebraic constraints:
 
 ```math
 \sigma_1(\boldsymbol{\mu}) = \langle \boldsymbol{\mu}, \boldsymbol{\mu} \rangle_{\mathcal{L}} + 1.0 \equiv 0, \qquad \sigma_2(\boldsymbol{\mu}, \mathbf{p}) = \langle \boldsymbol{\mu}, \mathbf{p} \rangle_{\mathcal{L}} \equiv 0
@@ -14,7 +16,7 @@ The midpoint symplectic integrator evaluates forces at $`\boldsymbol{\mu}_{t+1/2
 ```
 
 ```math
-\mathbf{p}_{i, t+\Delta t}^{(l)} = \mathbf{p}_{i, t}^{(l)} - \Delta t \left( \nabla_{\mathcal{H}^d} \mathcal{F}_{\mathrm{pragmatic}}^{\mathrm{Sylvester}}\left(\boldsymbol{\mu}_{i, t+\frac{\Delta t}{2}}^{(l)}\right) + \lambda_{\mathrm{mid}} \cdot \boldsymbol{\eta}_{\mathcal{L}} \boldsymbol{\mu}_{i, t+\frac{\Delta t}{2}}^{(l)} \right)
+\mathbf{p}_{i, t+\Delta t}^{(l)} = \mathbf{p}_{i, t}^{(l)} - \Delta t \left( \nabla_{\mathcal{H}^{d-1}} \mathcal{F}_{\mathrm{pragmatic}}^{\mathrm{Sylvester}}\left(\boldsymbol{\mu}_{i, t+\frac{\Delta t}{2}}^{(l)}\right) + \lambda_{\mathrm{mid}} \cdot \boldsymbol{\eta}_{\mathcal{L}} \boldsymbol{\mu}_{i, t+\frac{\Delta t}{2}}^{(l)} \right)
 ```
 
 ```math

@@ -1,5 +1,7 @@
 # Algorithmic Execution Specifications
 
+> These algorithms describe the proposed architecture. Several are not implemented or are represented by simplified prototypes; see the repository README for the current runtime scope.
+
 ## Part II: Algorithmic Execution Specifications
 
 ---
@@ -9,7 +11,7 @@
 
 - [Algorithm 1: Multimodal Dirichlet Sensory Grounding ($`l=0`$)](01-multimodal-dirichlet-sensory-grounding.md)
 - [Algorithm 2: System-1 Fast Geodesic Inference Step ($`\epsilon_0 \sim 1\text{ ms}`$)](02-system-1-fast-geodesic-inference-step.md)
-- [Algorithm 3: Symplectic Implicit Midpoint Step on Cotangent Bundle $`T^{*}\mathcal{H}^{16}`$](03-symplectic-implicit-midpoint-step-on-cotangent-bundle.md)
+- [Algorithm 3: Symplectic Implicit Midpoint Step on Cotangent Bundle $`T^{*}\mathcal{H}^{15}`$](03-symplectic-implicit-midpoint-step-on-cotangent-bundle.md)
 - [Algorithm 4: Fast Sweeping Eikonal Wavefront Solver](04-fast-sweeping-eikonal-wavefront-solver.md)
 - [Algorithm 5: Linearized Cole-Hopf & Polyhedral AIXI Motor Synthesis](05-linearized-cole-hopf-and-polyhedral-aixi-motor-synthesis.md)
 - [Algorithm 6: Gödelian Ego-Reflection via Adjoint Resolvents](06-godelian-ego-reflection-via-adjoint-resolvents.md)

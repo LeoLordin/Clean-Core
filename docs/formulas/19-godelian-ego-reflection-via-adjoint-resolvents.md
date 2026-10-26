@@ -14,19 +14,19 @@ v_{\mathrm{self}}^{*}(t) = \left( (1 + \delta_{\mathrm{reg}})\mathbf{I}_{d-1} - 
 ```
 
 ```math
-\mathbf{v}_{\mathrm{ambient}}^{*}(t) = E\left( \overline{\boldsymbol{\mu}}^{(L)}(t) \right) \cdot v_{\mathrm{self}}^{*}(t) \in T_{\overline{\boldsymbol{\mu}}^{(L)}}\mathcal{H}^d
+\mathbf{v}_{\mathrm{ambient}}^{*}(t) = E\left( \overline{\boldsymbol{\mu}}^{(L)}(t) \right) \cdot v_{\mathrm{self}}^{*}(t) \in T_{\overline{\boldsymbol{\mu}}^{(L)}}\mathcal{H}^{d-1}
 ```
 
 ```math
-\boldsymbol{\mu}_{\mathrm{self}}^{*}(t) = \mathrm{Exp}_{\overline{\boldsymbol{\mu}}^{(L)}(t)}^{\mathcal{H}^d}\left( \mathbf{v}_{\mathrm{ambient}}^{*}(t) \right) \in \mathcal{H}^d
+\boldsymbol{\mu}_{\mathrm{self}}^{*}(t) = \mathrm{Exp}_{\overline{\boldsymbol{\mu}}^{(L)}(t)}^{\mathcal{H}^{d-1}}\left( \mathbf{v}_{\mathrm{ambient}}^{*}(t) \right) \in \mathcal{H}^{d-1}
 ```
 
 ```math
-\overline{\mathcal{T}}_{\mathrm{introspect}}(t) = \mathrm{Exp}_{\overline{\mathcal{T}}(t-\Delta t)}^{\mathcal{H}^d}\left( \gamma_{\mathrm{ema}} \mathrm{Log}_{\overline{\mathcal{T}}(t-\Delta t)}^{\mathcal{H}^d}\Big( \boldsymbol{\mu}_{\mathrm{self}}^{*}(t) \Big) \right)
+\overline{\mathcal{T}}_{\mathrm{introspect}}(t) = \mathrm{Exp}_{\overline{\mathcal{T}}(t-\Delta t)}^{\mathcal{H}^{d-1}}\left( \gamma_{\mathrm{ema}} \mathrm{Log}_{\overline{\mathcal{T}}(t-\Delta t)}^{\mathcal{H}^{d-1}}\Big( \boldsymbol{\mu}_{\mathrm{self}}^{*}(t) \Big) \right)
 ```
 
 ```math
-\mathbf{g}_{\mathrm{self}} = E\left(\overline{\mathcal{T}}_{\mathrm{introspect}}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\overline{\mathcal{T}}_{\mathrm{introspect}}(t)}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_{\mathrm{self}}^{*}(t) \right) \in \mathbb{R}^{d-1}
+\mathbf{g}_{\mathrm{self}} = E\left(\overline{\mathcal{T}}_{\mathrm{introspect}}\right)^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\overline{\mathcal{T}}_{\mathrm{introspect}}(t)}^{\mathcal{H}^{d-1}}\left( \boldsymbol{\mu}_{\mathrm{self}}^{*}(t) \right) \in \mathbb{R}^{d-1}
 ```
 
 ```math

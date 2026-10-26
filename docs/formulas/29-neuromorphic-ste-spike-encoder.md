@@ -3,7 +3,7 @@
 ### Section 29: Neuromorphic STE Spike Encoder
 
 ```math
-\lambda_{\mathrm{spike}, i}^{(l)}(t) = f_{\max} \cdot \sigma\left( \mathbf{W}_{\mathrm{enc}} \cdot E(\mathbf{o})^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\mathbf{o}}^{\mathcal{H}^d}\left( \boldsymbol{\mu}_i^{(l)}(t) \right) + \mathbf{b}_{\mathrm{enc}} \right) \in \mathbb{R}^{M_{\mathrm{crossbar}}}
+\lambda_{\mathrm{spike}, i}^{(l)}(t) = f_{\max} \cdot \sigma\left( \mathbf{W}_{\mathrm{enc}} \cdot E(\mathbf{o})^\top \boldsymbol{\eta}_{\mathcal{L}} \mathrm{Log}_{\mathbf{o}}^{\mathcal{H}^{d-1}}\left( \boldsymbol{\mu}_i^{(l)}(t) \right) + \mathbf{b}_{\mathrm{enc}} \right) \in \mathbb{R}^{M_{\mathrm{crossbar}}}
 ```
 
 ```math

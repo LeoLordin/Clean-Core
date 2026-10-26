@@ -1,6 +1,7 @@
 [Back to theory contents](../THEORY.md)
 
 ### Algorithm 11: Anytime Polyhedral Levin Decider
+> **Implementation status:** This is a theoretical algorithm specification. The runtime does not execute Levin's interleaved program search or certify the returned action.
 * **Inputs:** Current bounds $`Q_{\min}(a)`$, $`Q_{\max}(a)`$, Kraft unresolved tail $`\Omega_{\mathrm{unresolved}}(k)`$.
 * **Outputs:** Optimal action $`a^{*}`$ and safety radius $`\varepsilon_{\mathrm{safe}}`$.
 * **Complexity:** $`O(|\mathcal{A}|)`$ per iteration with anytime interruptibility.

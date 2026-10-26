@@ -5,9 +5,9 @@
 * $`\|\mathbf{v}\|_{\mathcal{L}} = \sqrt{\max(0.0, \langle \mathbf{v}, \mathbf{v} \rangle_{\mathcal{L}})}`$: Minkowski seminorm for space-like vectors.
 * $`\|\mathbf{w}\|_2 = \sqrt{\sum_{k=1}^{d-1} w_k^2}`$: Standard Euclidean norm in local orthonormal tetrad frame.
 * $`\|\mathbf{W}\|_F = \sqrt{\sum_{i, j} W_{ij}^2}`$: Frobenius matrix norm.
-* $`d_{\mathcal{H}^d}(\mathbf{x}, \mathbf{y}) = 2 \mathrm{arcsinh}\left(0.5 \sqrt{\max(0, \langle \mathbf{x}-\mathbf{y}, \mathbf{x}-\mathbf{y} \rangle_{\mathcal{L}})}\right)`$: Numerically stable chordal geodesic distance.
-* $`\mathrm{Exp}_{\boldsymbol{\mu}}^{\mathcal{H}^d}(\mathbf{v})`$: Geodesic exponential mapping from $`T_{\boldsymbol{\mu}}\mathcal{H}^d`$ onto $`\mathcal{H}^d`$ with Taylor expansion for small velocities.
-* $`\mathrm{Log}_{\boldsymbol{\mu}}^{\mathcal{H}^d}(\mathbf{y})`$: Riemannian logarithmic mapping projecting manifold coordinates into tangent vectors.
+* $`d_{\mathcal{H}^{d-1}}(\mathbf{x}, \mathbf{y}) = 2 \mathrm{arcsinh}\left(0.5 \sqrt{\max(0, \langle \mathbf{x}-\mathbf{y}, \mathbf{x}-\mathbf{y} \rangle_{\mathcal{L}})}\right)`$: Numerically stable chordal geodesic distance.
+* $`\mathrm{Exp}_{\boldsymbol{\mu}}^{\mathcal{H}^{d-1}}(\mathbf{v})`$: Geodesic exponential mapping from $`T_{\boldsymbol{\mu}}\mathcal{H}^{d-1}`$ onto $`\mathcal{H}^{d-1}`$ with Taylor expansion for small velocities.
+* $`\mathrm{Log}_{\boldsymbol{\mu}}^{\mathcal{H}^{d-1}}(\mathbf{y})`$: Riemannian logarithmic mapping projecting manifold coordinates into tangent vectors.
 * $`\mathbf{P}_{\mathbf{x} \to \mathbf{y}}(\mathbf{v})`$: Isometric parallel transport operator along geodesics.
 * $`h_{\mathrm{log}}(\mathbf{A}) = \ln\left(\frac{1}{d} \mathrm{Tr}\left(\mathrm{expm}(\mathbf{A}\circ\mathbf{A})\right)\right)`$: Smooth NOTEARS acyclicity constraint.
 * $`\mathrm{expm}(\mathbf{M}) = \sum_{k=0}^\infty \frac{\mathbf{M}^k}{k!}`$: Matrix exponential.
@@ -37,6 +37,6 @@
 ---
 
 ## Conclusion & Architectural Parity
-All equations in this specification are dimensionally consistent, Lorentz-invariant, and bounded. Continuous Weierstrass parameterization ensures that machine rounding errors cannot eject state trajectories from the hyperboloid manifold. 
+This index supports a research specification; the equations have not all been independently derived or formally verified. Geometric claims depend on the stated manifold and tangent-space assumptions. See the [runtime implementation status](../IMPLEMENTATION_STATUS.md) for the distinction between proposed and implemented behavior.
 
-The complete dynamic kernel executes in $`O(1)`$ operations per moving entity per timestep, operating deterministically within real-time AAA game engine and robotic control budgets.
+No real-time or asymptotic performance guarantee is implied by this specification. Runtime performance must be measured for each implementation and target environment.

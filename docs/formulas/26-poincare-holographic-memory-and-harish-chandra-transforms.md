@@ -10,13 +10,13 @@ Lorentz group spherical basis ($`\mathrm{SO}^+(1, d-1)`$):
 Direct Harish-Chandra episode encoding:
 
 ```math
-\tilde{A}_m(\lambda, \mathbf{b}) = \int_{\mathcal{H}^d} \mathrm{Log}_{\mathbf{o}}^{\mathcal{H}^d}\left(\boldsymbol{\mu}_m\right) \cdot \phi_{-\lambda, \mathbf{b}}(\boldsymbol{\mu}) \, \mathrm{d}\mathrm{Vol}_{\mathcal{H}^d}(\boldsymbol{\mu})
+\tilde{A}_m(\lambda, \mathbf{b}) = \int_{\mathcal{H}^{d-1}} \mathrm{Log}_{\mathbf{o}}^{\mathcal{H}^{d-1}}\left(\boldsymbol{\mu}_m\right) \cdot \phi_{-\lambda, \mathbf{b}}(\boldsymbol{\mu}) \, \mathrm{d}\mathrm{Vol}_{\mathcal{H}^{d-1}}(\boldsymbol{\mu})
 ```
 
 Interference retrieval via Plancherel measure $`|c(\lambda)|^{-2}`$:
 
 ```math
-\mathbf{H}_{\mathrm{recall}}\left(\boldsymbol{\mu}_i^{(l)}\right) = \int_{0}^\infty \mathrm{d}\lambda \, |c(\lambda)|^{-2} \int_{\mathbb{S}^{d-2}} \mathrm{d}\mathbf{b} \left[ \sum_{m \in \mathcal{M}_{\mathrm{fast}}} \tilde{A}_m(\lambda, \mathbf{b}) \exp\left( -i \frac{\lambda \cdot d_{\mathcal{H}^d}\left( \boldsymbol{\mu}_i^{(l)}, \boldsymbol{\mu}_m \right)}{\hbar_{\mathrm{cog}}} \right) \right] \phi_{\lambda, \mathbf{b}}\left(\boldsymbol{\mu}_i^{(l)}\right)
+\mathbf{H}_{\mathrm{recall}}\left(\boldsymbol{\mu}_i^{(l)}\right) = \int_{0}^\infty \mathrm{d}\lambda \, |c(\lambda)|^{-2} \int_{\mathbb{S}^{d-2}} \mathrm{d}\mathbf{b} \left[ \sum_{m \in \mathcal{M}_{\mathrm{fast}}} \tilde{A}_m(\lambda, \mathbf{b}) \exp\left( -i \frac{\lambda \cdot d_{\mathcal{H}^{d-1}}\left( \boldsymbol{\mu}_i^{(l)}, \boldsymbol{\mu}_m \right)}{\hbar_{\mathrm{cog}}} \right) \right] \phi_{\lambda, \mathbf{b}}\left(\boldsymbol{\mu}_i^{(l)}\right)
 ```
 
 ```math

@@ -11,15 +11,15 @@
 ```
 
 ```math
-d_{\mathcal{H}^d}(\mathbf{x}, \mathbf{y}) = 2 \mathrm{arcsinh}\left( \frac{1}{2} \sqrt{\max\left( 0.0, \langle \mathbf{x} - \mathbf{y}, \mathbf{x} - \mathbf{y} \rangle_{\mathcal{L}} \right)} \right)
+d_{\mathcal{H}^{d-1}}(\mathbf{x}, \mathbf{y}) = 2 \mathrm{arcsinh}\left( \frac{1}{2} \sqrt{\max\left( 0.0, \langle \mathbf{x} - \mathbf{y}, \mathbf{x} - \mathbf{y} \rangle_{\mathcal{L}} \right)} \right)
 ```
 
 ```math
-\mathrm{Exp}_{\boldsymbol{\mu}}^{\mathcal{H}^d}(\mathbf{v}) = \begin{cases} \left( 1 + \frac{1}{2}\|\mathbf{v}\|_{\mathcal{L}}^2 \right) \boldsymbol{\mu} + \left( 1 + \frac{1}{6}\|\mathbf{v}\|_{\mathcal{L}}^2 \right) \mathbf{v}, & \|\mathbf{v}\|_{\mathcal{L}} < 10^{-4} \\ \cosh\left( \|\mathbf{v}\|_{\mathcal{L}} \right) \boldsymbol{\mu} + \sinh\left( \|\mathbf{v}\|_{\mathcal{L}} \right) \frac{\mathbf{v}}{\|\mathbf{v}\|_{\mathcal{L}}}, & \|\mathbf{v}\|_{\mathcal{L}} \ge 10^{-4} \end{cases}
+\mathrm{Exp}_{\boldsymbol{\mu}}^{\mathcal{H}^{d-1}}(\mathbf{v}) = \begin{cases} \left( 1 + \frac{1}{2}\|\mathbf{v}\|_{\mathcal{L}}^2 \right) \boldsymbol{\mu} + \left( 1 + \frac{1}{6}\|\mathbf{v}\|_{\mathcal{L}}^2 \right) \mathbf{v}, & \|\mathbf{v}\|_{\mathcal{L}} < 10^{-4} \\ \cosh\left( \|\mathbf{v}\|_{\mathcal{L}} \right) \boldsymbol{\mu} + \sinh\left( \|\mathbf{v}\|_{\mathcal{L}} \right) \frac{\mathbf{v}}{\|\mathbf{v}\|_{\mathcal{L}}}, & \|\mathbf{v}\|_{\mathcal{L}} \ge 10^{-4} \end{cases}
 ```
 
 ```math
-\mathbf{u} = \mathbf{y} + \langle \boldsymbol{\mu}, \mathbf{y} \rangle_{\mathcal{L}} \boldsymbol{\mu}, \quad \mathrm{Log}_{\boldsymbol{\mu}}^{\mathcal{H}^d}(\mathbf{y}) = \begin{cases} \left( 1 - \frac{\|\mathbf{u}\|_{\mathcal{L}}^2}{6} + \frac{3 \|\mathbf{u}\|_{\mathcal{L}}^4}{40} \right) \mathbf{u}, & \|\mathbf{u}\|_{\mathcal{L}} < 10^{-4} \\ \frac{d_{\mathcal{H}^d}(\boldsymbol{\mu}, \mathbf{y})}{\|\mathbf{u}\|_{\mathcal{L}}} \cdot \mathbf{u}, & \|\mathbf{u}\|_{\mathcal{L}} \ge 10^{-4} \end{cases}
+\mathbf{u} = \mathbf{y} + \langle \boldsymbol{\mu}, \mathbf{y} \rangle_{\mathcal{L}} \boldsymbol{\mu}, \quad \mathrm{Log}_{\boldsymbol{\mu}}^{\mathcal{H}^{d-1}}(\mathbf{y}) = \begin{cases} \left( 1 - \frac{\|\mathbf{u}\|_{\mathcal{L}}^2}{6} + \frac{3 \|\mathbf{u}\|_{\mathcal{L}}^4}{40} \right) \mathbf{u}, & \|\mathbf{u}\|_{\mathcal{L}} < 10^{-4} \\ \frac{d_{\mathcal{H}^{d-1}}(\boldsymbol{\mu}, \mathbf{y})}{\|\mathbf{u}\|_{\mathcal{L}}} \cdot \mathbf{u}, & \|\mathbf{u}\|_{\mathcal{L}} \ge 10^{-4} \end{cases}
 ```
 
 ```math

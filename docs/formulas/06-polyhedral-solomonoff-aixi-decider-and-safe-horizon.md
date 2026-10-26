@@ -1,6 +1,8 @@
 [Back to theory contents](../THEORY.md)
 
 ### Section 6: Polyhedral Solomonoff-AIXI Decider & Safe Horizon
+
+> **Implementation status:** No Levin search, Solomonoff mixture, or certified $`Q_{\min}`$/$`Q_{\max}`$ bounds are implemented. The runtime exposes a bounded observation-score heuristic; its score gap is not an AIXI safety certificate.
 Decision hyperplanes partitioning the observation distribution simplex $`\Delta^{|\mathcal{O}|-1}`$:
 
 ```math

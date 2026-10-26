@@ -1,7 +1,7 @@
 [Back to theory contents](../THEORY.md)
 
-### Algorithm 3: Symplectic Implicit Midpoint Step on Cotangent Bundle $`T^{*}\mathcal{H}^{16}`$
-* **Inputs:** Phase state $`(\boldsymbol{\mu}_{i, t}^{(l)}, \mathbf{p}_{i, t}^{(l)})`$, free energy gradient $`\nabla_{\mathcal{H}^d} \mathcal{F}_{\mathrm{pragmatic}}`$.
+### Algorithm 3: Symplectic Implicit Midpoint Step on Cotangent Bundle $`T^{*}\mathcal{H}^{15}`$
+* **Inputs:** Phase state $`(\boldsymbol{\mu}_{i, t}^{(l)}, \mathbf{p}_{i, t}^{(l)})`$, free energy gradient $`\nabla_{\mathcal{H}^{d-1}} \mathcal{F}_{\mathrm{pragmatic}}`$.
 * **Outputs:** Updated symplectic phase coordinates $`(\boldsymbol{\mu}_{i, t+\Delta t}^{(l)}, \mathbf{p}_{i, t+\Delta t}^{(l)})`$.
 * **Complexity:** $`O(d)`$ elementary operations per neuron.
 * **Execution Steps:**
@@ -11,7 +11,7 @@
 \boldsymbol{\mu}_{i, t+\frac{\Delta t}{2}}^{(l)} = \frac{\boldsymbol{\mu}_{i, t}^{(l)} + \boldsymbol{\mu}_{i, t+\Delta t}^{(l)}}{2}, \quad \mathbf{p}_{i, t+\frac{\Delta t}{2}}^{(l)} = \frac{\mathbf{p}_{i, t}^{(l)} + \mathbf{p}_{i, t+\Delta t}^{(l)}}{2}
 ```
 
-  2. Compute physical force at midpoint: $`\mathbf{g}_{t+1/2} = \nabla_{\mathcal{H}^d} \mathcal{F}_{\mathrm{pragmatic}}(\boldsymbol{\mu}_{i, t+\frac{\Delta t}{2}}^{(l)})`$.
+  2. Compute physical force at midpoint: $`\mathbf{g}_{t+1/2} = \nabla_{\mathcal{H}^{d-1}} \mathcal{F}_{\mathrm{pragmatic}}(\boldsymbol{\mu}_{i, t+\frac{\Delta t}{2}}^{(l)})`$.
   3. Implicit momentum kick:
 
 ```math

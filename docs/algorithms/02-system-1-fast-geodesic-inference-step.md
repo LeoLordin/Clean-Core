@@ -7,7 +7,7 @@
 * **Execution Steps:**
   1. Stream layer barycenter $`\overline{\boldsymbol{\mu}}^{(l)}`$ via Fréchet exponential integration.
   2. Construct analytical Lorentz boost tetrad frame $`E(\boldsymbol{\mu}_i^{(l)})`$.
-  3. SoftVQ context quantization: evaluate distances $`d_{\mathcal{H}^d}^2`$ to centroids $`\mathbf{c}_k`$, normalize softmax weights, assemble $`\tilde{\mathbf{a}}_i^{(l)}`$.
+  3. SoftVQ context quantization: evaluate distances $`d_{\mathcal{H}^{d-1}}^2`$ to centroids $`\mathbf{c}_k`$, normalize softmax weights, assemble $`\tilde{\mathbf{a}}_i^{(l)}`$.
   4. Forward pass through two-layer perceptron: hidden state $`\mathbf{h} = \sigma(\mathbf{W}^{(1)}\tilde{\mathbf{a}} + \mathbf{b}^{(1)})`$, output $`\mathbf{u}_2 = \mathbf{W}^{(2)}\mathbf{h} + \mathbf{b}^{(2)}`$.
   5. Enforce Euclidean retraction: $`\mathbf{u}_{2, \mathrm{safe}} = \mathbf{u}_2 \cdot \min(1.0, 3.0 / \|\mathbf{u}_2\|_2)`$.
   6. Compute target prediction: $`\boldsymbol{\mu}_{\mathrm{pred}} = \mathrm{Exp}_{\overline{\boldsymbol{\mu}}}(E(\overline{\boldsymbol{\mu}})\mathbf{u}_{2, \mathrm{safe}})`$.

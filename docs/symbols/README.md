@@ -1,5 +1,7 @@
 # Complete Mathematical and Symbol Index
 
+> This index defines notation used by the research specification; it does not imply that every symbol or subsystem has a runtime implementation.
+
 ## Part III: Complete Mathematical & Symbol Index
 
 ---

@@ -9,7 +9,7 @@
 * $`\mathcal{H}_{\mathrm{neuron}}(\boldsymbol{\mu}, \mathbf{p})`$: Total microstate Hamiltonian energy functional (FP64).
 * $`\mathbf{H}_{\mathrm{hologram}}(\boldsymbol{\mu}) \in \mathbb{C}`$: Complex-valued holographic memory interference pattern (Complex64).
 * $`\phi_{\lambda, \mathbf{b}}(\boldsymbol{\mu})`$: Gelfand-Graev spherical functions of the Lorentz group $`\mathrm{SO}^+(1, d-1)`$.
-* $`|c(\lambda)|^{-2}`$: Plancherel spectral density measure on the symmetric space $`\mathcal{H}^d`$.
+* $`|c(\lambda)|^{-2}`$: Plancherel spectral density measure on the symmetric space $`\mathcal{H}^{d-1}`$.
 * $`\tilde{A}_m(\lambda, \mathbf{b})`$: Spectral amplitude modes of episodic memories in the Harish-Chandra basis.
 
 ---

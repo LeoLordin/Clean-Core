@@ -5,7 +5,8 @@ from clean_core.geometry.lorentz import get_boost_frame, exp_map, log_map, minko
 def compute_maupertuis_conformal_drift(mu, w, grad_ln_omega):
     E = get_boost_frame(mu)
     internal_grad = E.T @ (ETA_L * np.pad(grad_ln_omega, (1, 0)))
-    return E @ (w + internal_grad)
+    speed_sq = float(np.dot(w, w))
+    return -speed_sq * internal_grad + 2.0 * np.dot(w, internal_grad) * w
 
 def system1_fast_inference_step(neuron, parent_ctx_mu, barycenter_mu, alpha_damp=0.05, dt=0.01):
     mu_curr = neuron.mu.copy()
@@ -20,8 +21,9 @@ def system1_fast_inference_step(neuron, parent_ctx_mu, barycenter_mu, alpha_damp
     neuron.w = w_speed.copy()
     v_tangent = E @ w_speed
     mu_next = exp_map(mu_curr, dt * v_tangent)
-    pred_tangent = log_map(barycenter_mu, mu_next)
-    eps_tilde = pred_tangent[1:]
+    prediction_error = log_map(mu_next, parent_ctx_mu)
+    local_frame = get_boost_frame(mu_next)
+    eps_tilde = local_frame.T @ (ETA_L * prediction_error)
     neuron.eps_tilde = eps_tilde.astype(FP32)
     neuron.mu = mu_next.copy()
     return mu_next, eps_tilde

@@ -5,9 +5,9 @@
 * $`\boldsymbol{\eta}_{\mathcal{L}} = \mathrm{diag}(-1, 1, \dots, 1) \in \mathbb{R}^{d \times d}`$: Minkowski metric tensor of signature $`(-, +, \dots, +)`$.
 * $`\tilde{g}_{AB}(\boldsymbol{\mu}) \in \mathbb{R}^{d \times d}`$: Maupertuis-Jacobi conformal metric tensor.
 * $`\tilde{\Gamma}_{BC}^A`$: Christoffel symbols of the second kind on the conformal manifold.
-* $`\omega \in \Lambda^2(T^{*}\mathcal{H}^d)`$: Canonical symplectic 2-form of the cotangent phase space.
-* $`\Delta_{\mathcal{H}^d}`$: Laplace-Beltrami differential operator on the Lorentz hyperboloid.
-* $`\nabla_{\mathcal{H}^d}`$: Riemannian gradient operator: $`\nabla_{\mathcal{H}^d} f = \boldsymbol{\eta}_{\mathcal{L}}^{-1} \mathrm{d}f + \langle \boldsymbol{\mu}, \boldsymbol{\eta}_{\mathcal{L}}^{-1} \mathrm{d}f \rangle_{\mathcal{L}} \boldsymbol{\mu}`$.
+* $`\omega \in \Lambda^2(T^{*}\mathcal{H}^{d-1})`$: Canonical symplectic 2-form of the cotangent phase space.
+* $`\Delta_{\mathcal{H}^{d-1}}`$: Laplace-Beltrami differential operator on the Lorentz hyperboloid.
+* $`\nabla_{\mathcal{H}^{d-1}}`$: Riemannian gradient operator: $`\nabla_{\mathcal{H}^{d-1}} f = \boldsymbol{\eta}_{\mathcal{L}}^{-1} \mathrm{d}f + \langle \boldsymbol{\mu}, \boldsymbol{\eta}_{\mathcal{L}}^{-1} \mathrm{d}f \rangle_{\mathcal{L}} \boldsymbol{\mu}`$.
 * $`\tilde{\mathbf{\Sigma}}_i^{(l)} \in \mathbb{R}^{(d-1) \times (d-1)}`$: Fisher-Rao local prediction error covariance matrix ($`900\text{ bytes}`$ FP32).
 * $`\tilde{\mathbf{\Pi}}_i^{(l)} = (\tilde{\mathbf{\Sigma}}_i^{(l)})^{-1}`$: Full local precision matrix inverted via Woodbury identity ($`900\text{ bytes}`$ FP32).
 * $`\tilde{\mathbf{V}}_i^{(l)} \in \mathbb{R}^{(d-1) \times r}`$: Orthonormal basis of principal error covariance modes ($`240\text{ bytes}`$ FP32).

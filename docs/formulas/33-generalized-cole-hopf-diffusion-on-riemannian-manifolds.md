@@ -10,7 +10,7 @@ Logarithmic value potential substitution:
 Parabolic Schrödinger-Beltrami diffusion equation:
 
 ```math
-\frac{\partial \psi(\boldsymbol{\mu}, t)}{\partial t} = \frac{\lambda \sigma^2}{2} \Delta_{\mathcal{H}^d} \psi(\boldsymbol{\mu}, t) - \frac{\mathcal{F}_{\mathrm{pragmatic}}(\boldsymbol{\mu})}{\lambda \sigma^2} \psi(\boldsymbol{\mu}, t)
+\frac{\partial \psi(\boldsymbol{\mu}, t)}{\partial t} = \frac{\lambda \sigma^2}{2} \Delta_{\mathcal{H}^{d-1}} \psi(\boldsymbol{\mu}, t) - \frac{\mathcal{F}_{\mathrm{pragmatic}}(\boldsymbol{\mu})}{\lambda \sigma^2} \psi(\boldsymbol{\mu}, t)
 ```
 
 Linear superposition of conflicting goal wavefronts:
@@ -22,7 +22,7 @@ Linear superposition of conflicting goal wavefronts:
 Instantaneous geodesic inference velocity optimum:
 
 ```math
-\mathbf{w}_{\mathrm{optimal}}(\boldsymbol{\mu}) = \lambda \sigma^2 \cdot E(\boldsymbol{\mu})^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^d} \ln \psi_{\mathrm{total}}(\boldsymbol{\mu})
+\mathbf{w}_{\mathrm{optimal}}(\boldsymbol{\mu}) = \lambda \sigma^2 \cdot E(\boldsymbol{\mu})^\top \boldsymbol{\eta}_{\mathcal{L}} \nabla_{\mathcal{H}^{d-1}} \ln \psi_{\mathrm{total}}(\boldsymbol{\mu})
 ```
 
 ---
