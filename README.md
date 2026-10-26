@@ -52,6 +52,7 @@ The current code provides experimental implementations of:
 * A bounded observation-score heuristic in the agent pipeline. It is **not** a Solomonoff/AIXI solver and does not provide a certified safety margin. A separate finite-model AIXI-like prototype exists, but it does not perform universal search.
 * A small stateful agent and a separate hand-tuned CartPole-like control demo.
 * Additional partial research prototypes for Cole-Hopf graph diffusion, VIB objectives, multi-agent action scoring, conformal Hamiltonian fields, curvature adaptation, isometric dimension expansion, radial-phase memory retrieval, motor synthesis, and versioned engine dispatch.
+* Numbered prototypes for all 38 formula sections and all 13 algorithms under `clean_core/prototypes/`. The algorithm modules compose related section modules where the specifications provide compatible interfaces. `sensory_to_inference_step` connects numeric sensory grounding to a bounded Lorentz inference update; this is a reference prototype path, not the complete theory.
 
 These additions implement limited, testable subsets only. They do not provide continuous manifold PDE solvers, certified AIXI decisions, full spherical transforms, formal proof checking, lock-free RCU, or complete integration of the theory. The [implementation status matrix](docs/IMPLEMENTATION_STATUS.md) records each section and algorithm's current scope; all are marked `Partial`.
 
@@ -68,6 +69,18 @@ cd Clean-Core
 python -m pip install -e ".[test]"
 python -m pytest
 ```
+
+Run the full suite or one numbered prototype in isolation:
+
+```bash
+python scripts/run_prototype_tests.py --all
+python scripts/run_prototype_tests.py --section 26
+python scripts/run_prototype_tests.py --algorithm 12
+```
+
+For programmatic discovery, use `clean_core.prototypes.catalog.load_section`,
+`load_algorithm`, or `load_all_prototypes`. A composed sensory-to-inference
+step is available as `clean_core.prototypes.runtime.sensory_to_inference_step`.
 
 ### Run Smoke Benchmark
 Runs a short geometry check and agent loop. The printed timings are machine-dependent and are not performance guarantees:
@@ -101,7 +114,8 @@ clean_core/
 ├── core/                  # Python neuron states, SoftVQ prototype, fast inference
 ├── cognition/             # Inference, finite-model bounds, ToM, engine dispatch
 ├── memory/                # Bounded radial-phase associative retrieval and replay
-└── interfaces/            # Sensory grounding, motor EFE and synthesis prototypes
+├── interfaces/            # Sensory grounding, motor EFE and synthesis prototypes
+└── prototypes/            # Numbered prototypes for 38 formula sections and 13 algorithms
 ```
 
 ---
